@@ -5,9 +5,15 @@ class UsersController < ApplicationController
 
     user = User.find_by(uid: auth_hash[:uid], provider: params[:provider])
     if user
-      flash[:success] = "Logged in as returning user #{user.username}."
+      flash[:success] = "Logged in as returning user: #{user.username}."
     else
-      # TODO: Attempt to create a new user
+      user = User.build_from_github(auth_hash)
+
+      if user.save
+        flash[:success] = "Successfully created new user: #{user.username}."
+      else
+        flash[:error] = "Sorry, we were unable to create that user account: #{user.errors.messages}"
+      end
     end
 
     session[:user_id] = user.id
