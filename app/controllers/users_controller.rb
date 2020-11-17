@@ -13,6 +13,7 @@ class UsersController < ApplicationController
         flash[:success] = "Successfully created new user: #{user.username}."
       else
         flash[:error] = "Sorry, we were unable to create that user account: #{user.errors.messages}"
+        return redirect_to root_path
       end
     end
 
