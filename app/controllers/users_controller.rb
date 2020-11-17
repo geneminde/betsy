@@ -21,4 +21,16 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def logout
+    # if session[:user_id]
+      user = User.find_by(id: session[:user_id])
+      user ? flash[:success] = 'Successfully logged out' : flash[:notice] = 'Error: unknown user'
+      session[:user_id] = nil
+    # else
+    #   authentication_notice
+    # end
+
+    redirect_to root_path
+  end
+
 end
