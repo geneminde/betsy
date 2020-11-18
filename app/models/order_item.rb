@@ -1,6 +1,7 @@
 class OrderItem < ApplicationRecord
   belongs_to :order
   belongs_to :product
+  has_one :merchant, through: :products
 
 
   validates_presence_of :order
@@ -13,10 +14,10 @@ class OrderItem < ApplicationRecord
 
   # Check if orderitem quantity is greater than product quantity
   # Should this be in product?
-  def in_stock?(product, order_quantity)
-    inventory_quantity = @product.quantity
-    return inventory_quantity > order_quantity
-  end
+  # def in_stock?(product, order_quantity)
+  #   inventory_quantity = product.quantity
+  #   return inventory_quantity > order_quantity
+  # end
 
   # def sell(order_quantity)
   #   inventory_quantity = self.product.quantity

@@ -1,8 +1,11 @@
 class OrderItemsController < ApplicationController
+  skip_before_action :require_login
   before_action :find_order_item, only: [:update, :destroy]
 
   # Add item to order/cart
   def create
+    puts params
+
     @product = Product.find_by(id: params[:product_id])
 
     check_stock(@product)
@@ -85,7 +88,8 @@ class OrderItemsController < ApplicationController
   end
 
   def check_stock(product)
-    order_quantity = params[:quantity]
+    order_quantity = params[:order_item][:quantity].to_i
+
 
     # If quantity is 0 and OrderItem has been created / is in the cart, remove it from the cart
     if order_quantity == 0 && @order_item
@@ -93,7 +97,7 @@ class OrderItemsController < ApplicationController
       return
     end
 
-    unless in_stock?(product, order_quantity)
+    unless product.in_stock?(order_quantity)
       flash[:error] = "A problem occurred. #{product.name} was not added to the cart. Only #{product.quantity} available"
       redirect_back(fallback_location: root_path)
       return
