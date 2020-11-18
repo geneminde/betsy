@@ -1,11 +1,10 @@
 class UsersController < ApplicationController
-  skip_before_action :require_login, only: [:create]
+  skip_before_action :require_login, only: [:create, :show]
 
   def not_found_error_notice
     flash[:error] = 'Uh oh! That user could not be found... Please try again.'
     redirect_to users_path
   end
-
 
   def show
     user_id = params[:id].to_i
