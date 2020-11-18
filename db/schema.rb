@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_18_003006) do
+ActiveRecord::Schema.define(version: 2020_11_18_171408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,21 +21,21 @@ ActiveRecord::Schema.define(version: 2020_11_18_003006) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "categories_products_joins", force: :cascade do |t|
+  create_table "categories_products", force: :cascade do |t|
     t.bigint "category_id"
     t.bigint "product_id"
-    t.index ["category_id"], name: "index_categories_products_joins_on_category_id"
-    t.index ["product_id"], name: "index_categories_products_joins_on_product_id"
+    t.index ["category_id"], name: "index_categories_products_on_category_id"
+    t.index ["product_id"], name: "index_categories_products_on_product_id"
   end
 
-  create_table "orderitems", force: :cascade do |t|
+  create_table "order_items", force: :cascade do |t|
     t.integer "quantity"
     t.bigint "product_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "order_id"
-    t.index ["order_id"], name: "index_orderitems_on_order_id"
-    t.index ["product_id"], name: "index_orderitems_on_product_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["product_id"], name: "index_order_items_on_product_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -80,5 +80,5 @@ ActiveRecord::Schema.define(version: 2020_11_18_003006) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "orderitems", "products"
+  add_foreign_key "order_items", "products"
 end
