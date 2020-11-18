@@ -16,3 +16,28 @@
 @import "bootstrap";
 
 @import "**/*";
+
+* {
+  border: black 1px solid;
+}
+
+body {
+  padding-top: 65px;
+}
+
+main {
+  display: block;
+}
+
+.merch-container {
+  width: 80%;
+  display: grid;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.merch-header {
+  margin-top: 64px;
+  margin-bottom: 56px;
+}
+
