@@ -11,7 +11,7 @@ require 'faker'
 require 'date'
 
 user_upload_failures = []
-20.times do |num|
+50.times do |num|
   user = User.new
 
   user.username = "user#{num}"
@@ -34,7 +34,7 @@ puts "#{user_upload_failures.size} users failed to save"
 #########################################################
 
 product_upload_failures = []
-100.times do
+200.times do
   product = Product.new
 
   product.name = Faker::Movies::HitchhikersGuideToTheGalaxy.planet.to_s
