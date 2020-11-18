@@ -7,9 +7,9 @@ class OrderItem < ApplicationRecord
   validates_presence_of :product
 
   accepts_nested_attributes_for :order
-  def remove_orderitem
-
-  end
+  # def remove_orderitem
+  #
+  # end
 
   # Check if orderitem quantity is greater than product quantity
   # Should this be in product?

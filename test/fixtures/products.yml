@@ -1,80 +1,80 @@
-#product1:
-#  name: 'Flargathon'
-#  price: 495
-#  photo_url: 'https://www.prettyprettypicture.com'
-#  description: 'Whatever your tastes, Magrathea can cater for you. We are not proud.'
-#  quantity: 383
-#  available: 'false'
-#  user: user6
-#product2:
-#  name: 'Hawalius'
-#  price: 284
-#  photo_url: 'https://www.prettyprettypicture.com'
-#  description: 'In the beginning, the Universe was created. This has made a lot of people very angry and been widely regarded as a bad move.'
-#  quantity: 257
-#  available: 'true'
-#  user: user1
-#product3:
-#  name: 'Krikkit'
-#  price: 159
-#  photo_url: 'https://www.prettyprettypicture.com'
-#  description: 'Magrathea itself disappeared and its memory soon passed into the obscurity of legend. In these enlightened days, of course, no one believes a word of it.'
-#  quantity: 127
-#  available: 'true'
-#  user: user7
-#product4:
-#  name: 'Fallia'
-#  price: 231
-#  photo_url: 'https://www.prettyprettypicture.com'
-#  description: 'Don’t Panic'
-#  quantity: 162
-#  available: 'true'
-#  user: user4
-#product5:
-#  name: 'Happi-Werld III'
-#  price: 853
-#  photo_url: 'https://www.prettyprettypicture.com'
-#  description: 'It seemed to me that any civilization that had so far lost its head as to need to include a set of detailed instructions for use in a packet of toothpicks, was no longer a civilization in which I could live and stay sane.'
-#  quantity: 606
-#  available: 'true'
-#  user: user4
-#product6:
-#  name: 'Damogran'
-#  price: 439
-#  photo_url: 'https://www.prettyprettypicture.com'
-#  description: 'According to the legends, the Magratheans lived most of their lives underground.'
-#  quantity: 503
-#  available: 'false'
-#  user: user10
-#product7:
-#  name: 'Sqornshellous Zeta'
-#  price: 935
-#  photo_url: 'https://www.prettyprettypicture.com'
-#  description: 'Will you open up the exit hatch, please, computer?'
-#  quantity: 70
-#  available: 'false'
-#  user: user7
-#product8:
-#  name: 'Jajazikstak'
-#  price: 428
-#  photo_url: 'https://www.prettyprettypicture.com'
-#  description: 'I/'ve just had an unhappy love affair, so I don/'t see why anybody else should have a good time.'
-#  quantity: 721
-#  available: 'false'
-#  user: user10
-#product9:
-#  name: 'Hawalius'
-#  price: 451
-#  photo_url: 'https://www.prettyprettypicture.com'
-#  description: 'Curiously enough, the only thing that went through the mind of the bowl of petunias as it fell was Oh no, not again.'
-#  quantity: 883
-#  available: 'false'
-#  user: user10
-#product10:
-#  name: 'Oglaroon'
-#  price: 458
-#  photo_url: 'https://www.prettyprettypicture.com'
-#  description: 'there’s an infinite number of monkeys outside who want to talk to us about this script for Hamlet they’ve worked out.'
-#  quantity: 885
-#  available: 'true'
-#  user: user8
+product1:
+  name: 'Lamuella'
+  price: 744
+  photo_url: 'https://www.prettyprettypicture.com'
+  description: 'Curiously enough, the only thing that went through the mind of the bowl of petunias as it fell was Oh no, not again.'
+  quantity: 819
+  available: 'true'
+  user: user10
+product2:
+  name: 'Vogsphere'
+  price: 944
+  photo_url: 'https://www.prettyprettypicture.com'
+  description: 'But Mr. Dent, the plans have been available in the local planning office for the last nine months.'
+  quantity: 804
+  available: 'false'
+  user: user4
+product3:
+  name: 'Krikkit'
+  price: 567
+  photo_url: 'https://www.prettyprettypicture.com'
+  description: 'He was staring at the instruments with the air of one who is trying to convert Fahrenheit to centigrade in his head while his house is burning down.'
+  quantity: 164
+  available: 'false'
+  user: user1
+product4:
+  name: 'Traal'
+  price: 98
+  photo_url: 'https://www.prettyprettypicture.com'
+  description: 'But Mr. Dent, the plans have been available in the local planning office for the last nine months.'
+  quantity: 492
+  available: 'true'
+  user: user3
+product5:
+  name: 'Frogstar World C'
+  price: 589
+  photo_url: 'https://www.prettyprettypicture.com'
+  description: 'He was staring at the instruments with the air of one who is trying to convert Fahrenheit to centigrade in his head while his house is burning down.'
+  quantity: 22
+  available: 'false'
+  user: user6
+product6:
+  name: 'Poghril'
+  price: 421
+  photo_url: 'https://www.prettyprettypicture.com'
+  description: 'Magrathea itself disappeared and its memory soon passed into the obscurity of legend. In these enlightened days, of course, no one believes a word of it.'
+  quantity: 54
+  available: 'false'
+  user: user2
+product7:
+  name: 'Earth'
+  price: 936
+  photo_url: 'https://www.prettyprettypicture.com'
+  description: 'I`ve just had an unhappy love affair, so I don`t see why anybody else should have a good time.'
+  quantity: 800
+  available: 'true'
+  user: user6
+product8:
+  name: 'Nano'
+  price: 643
+  photo_url: 'https://www.prettyprettypicture.com'
+  description: 'If there`s anything more important than my ego around, I want it caught and shot now.'
+  quantity: 444
+  available: 'false'
+  user: user8
+product9:
+  name: 'Sesefras Magna'
+  price: 258
+  photo_url: 'https://www.prettyprettypicture.com'
+  description: 'If they don’t keep exercising their lips, he thought, their brains start working.'
+  quantity: 719
+  available: 'true'
+  user: user8
+product10:
+  name: 'Burphon XII'
+  price: 888
+  photo_url: 'https://www.prettyprettypicture.com'
+  description: 'It seemed to me that any civilization that had so far lost its head as to need to include a set of detailed instructions for use in a packet of toothpicks, was no longer a civilization in which I could live and stay sane.'
+  quantity: 444
+  available: 'true'
+  user: user9

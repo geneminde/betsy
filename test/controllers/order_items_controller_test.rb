@@ -12,7 +12,10 @@ describe OrderItemsController do
     #   post order_item_path, params: @order_item_hash
     # }.must_change "OrderItem.count"
 
-    p @orders = orders(:order1)
+    p Order.count
+    p Product.count
+    p OrderItem.count
+    p User.count
   end
 
   # it "creates an order item in an existing order and redirects" do

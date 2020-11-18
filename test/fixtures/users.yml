@@ -1,50 +1,50 @@
 user1:
-  username: 'messier-83'
-  email: 'curtis.dicki@vonrueden.org'
-  uid: 9590602
+  username: 'milky way'
+  email: 'berry@price.name'
+  uid: 6391419
   provider: 'github'
 user2:
-  username: 'triangulum'
-  email: 'waylon_hane@murazik-ullrich.org'
-  uid: 4630817
+  username: 'pinwheel'
+  email: 'rudy.gislason@heller.name'
+  uid: 8207882
   provider: 'github'
 user3:
-  username: 'sunflower'
-  email: 'sebastian@veum-jacobi.name'
-  uid: 6805303
+  username: 'centaurus a'
+  email: 'edwin_harris@swift.info'
+  uid: 9820625
   provider: 'github'
 user4:
-  username: 'blackeye'
-  email: 'danielle_mcdermott@renner.com'
-  uid: 8629793
+  username: 'hoags object'
+  email: 'noah.bins@borer-franecki.name'
+  uid: 9303633
   provider: 'github'
 user5:
-  username: 'centaurus-a'
-  email: 'mauro_pfannerstill@wiza.name'
-  uid: 8162605
+  username: 'messier 83'
+  email: 'brent.romaguera@reilly.biz'
+  uid: 5635443
   provider: 'github'
 user6:
-  username: 'whirlpool'
-  email: 'ed@smitham-koepp.name'
-  uid: 5445416
+  username: 'sunflower'
+  email: 'diann@sipes.io'
+  uid: 2926403
   provider: 'github'
 user7:
-  username: 'hoags-object'
-  email: 'denver_ortiz@steuber-weimann.net'
-  uid: 1351074
+  username: 'blackeye'
+  email: 'sumiko.rath@hermiston.biz'
+  uid: 5326177
   provider: 'github'
 user8:
-  username: 'pinwheel'
-  email: 'charmain.hegmann@farrell.io'
-  uid: 2097258
+  username: 'andromeda'
+  email: 'alease.goyette@upton.io'
+  uid: 2168836
   provider: 'github'
 user9:
-  username: 'andromeda'
-  email: 'kera@funk.name'
-  uid: 6665106
+  username: 'triangulum'
+  email: 'thelma@okon.biz'
+  uid: 7088932
   provider: 'github'
 user10:
-  username: 'milky-way'
-  email: 'nathanial.medhurst@cronin-renner.org'
-  uid: 9471211
+  username: 'whirlpool'
+  email: 'davida@vandervort-nitzsche.com'
+  uid: 8268679
   provider: 'github'
