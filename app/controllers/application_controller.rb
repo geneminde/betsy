@@ -13,4 +13,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def current_order
+    return @current_order = Order.find_by(id: session[:order_id]) if session[:order_id]
+  end
 end
