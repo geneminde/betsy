@@ -1,21 +1,23 @@
 require "test_helper"
 
 describe OrderItemsController do
-  # before do
-  #   @product = products(:product1)
-  # end
+  before do
+    @product = products(:product1)
+    @order_item_hash = {
+      order_item: {
+        quantity: 2,
+        order_id: nil,
+        product_id: @product.id
+      }
+    }
+  end
 
   it "creates an order item and order if no order is in session and redirects" do
-    # Order.destroy_all
-    #
-    # expect{
-    #   post order_item_path, params: @order_item_hash
-    # }.must_change "OrderItem.count"
+    Order.destroy_all
 
-    p Order.count
-    p Product.count
-    p OrderItem.count
-    p User.count
+    expect{
+      post product_order_items_path(@product), params: @order_item_hash
+    }.must_change "OrderItem.count", 1
   end
 
   # it "creates an order item in an existing order and redirects" do
@@ -30,3 +32,4 @@ describe OrderItemsController do
   #
   # end
 end
+

@@ -1,8 +1,11 @@
 class OrderItemsController < ApplicationController
+  skip_before_action :require_login
   before_action :find_order_item, only: [:update, :destroy]
 
   # Add item to order/cart
   def create
+    puts params
+
     @product = Product.find_by(id: params[:product_id])
 
     check_stock(@product)
@@ -25,35 +28,35 @@ class OrderItemsController < ApplicationController
   end
 
 
-# Update quantity of item in order/cart
-  def update
-    check_stock(@order_item.product)
-
-    if @order_item.update(order_item_params)
-      flash[:success] = "Successfully updated cart"
-      redirect_back(fallback_location: root_path)
-      return
-    else
-      flash[:error] = "A problem occurred. Could not update item in cart"
-      flash[:validation_error] = @order_item.errors.messages
-      redirect_back(fallback_location: root_path)
-      return
-    end
-  end
-
-  # Remove item from order/cart
-  def destroy
-    if @order_item.destroy
-      flash[:success] = "Successfully removed item from cart"
-      redirect_back(fallback_location: root_path)
-      return
-    else
-      flash[:error] = "A problem occurred. Could not remove item from cart"
-      flash[:validation_error] = @order_item.errors.messages
-      redirect_back(fallback_location: root_path)
-      return
-    end
-  end
+# # Update quantity of item in order/cart
+#   def update
+#     check_stock(@order_item.product)
+#
+#     if @order_item.update(order_item_params)
+#       flash[:success] = "Successfully updated cart"
+#       redirect_back(fallback_location: root_path)
+#       return
+#     else
+#       flash[:error] = "A problem occurred. Could not update item in cart"
+#       flash[:validation_error] = @order_item.errors.messages
+#       redirect_back(fallback_location: root_path)
+#       return
+#     end
+#   end
+#
+#   # Remove item from order/cart
+#   def destroy
+#     if @order_item.destroy
+#       flash[:success] = "Successfully removed item from cart"
+#       redirect_back(fallback_location: root_path)
+#       return
+#     else
+#       flash[:error] = "A problem occurred. Could not remove item from cart"
+#       flash[:validation_error] = @order_item.errors.messages
+#       redirect_back(fallback_location: root_path)
+#       return
+#     end
+#   end
 
 
   private
@@ -85,7 +88,8 @@ class OrderItemsController < ApplicationController
   end
 
   def check_stock(product)
-    order_quantity = params[:quantity]
+    order_quantity = params[:order_item][:quantity].to_i
+
 
     # If quantity is 0 and OrderItem has been created / is in the cart, remove it from the cart
     if order_quantity == 0 && @order_item
@@ -93,7 +97,7 @@ class OrderItemsController < ApplicationController
       return
     end
 
-    unless in_stock?(product, order_quantity)
+    unless product.in_stock?(order_quantity)
       flash[:error] = "A problem occurred. #{product.name} was not added to the cart. Only #{product.quantity} available"
       redirect_back(fallback_location: root_path)
       return
