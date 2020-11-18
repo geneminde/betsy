@@ -1,1 +1,5 @@
-<%= render partial: "user_summary", locals: { message: "Hey, #{@current_user.username}! ✌️" } %>
+<%= render partial: "user_summary",
+           locals: {
+               message: "Hey, #{@current_user.username}! ✌️",
+               stats: "#{@current_user.products.count} products listed"
+           } %>
