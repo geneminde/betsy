@@ -2,8 +2,18 @@
   <div class="merch-container">
     <section class="merch-header">
       <h1><%= message %></h1>
-      <div>Seller since <%= @user.created_at %></div>
-<!--      <div class="merch-stats"><%#= stats %></div>-->
+      <div>Seller since <%= join_date %></div>
+      <div class="merch-stats">
+        <ul>
+          <% stats.each do |stat| %>
+            <% if stat == stats[-1] %>
+              <li><%= stat %></li>
+            <% else  %>
+              <li><%= stat %> | </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
     </section>
   </div>
 </main>

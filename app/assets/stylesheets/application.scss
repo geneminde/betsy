@@ -17,9 +17,9 @@
 
 @import "**/*";
 
-* {
-  border: black 1px solid;
-}
+//* {
+//  border: black 1px solid;
+//}
 
 body {
   padding-top: 65px;
@@ -41,3 +41,18 @@ main {
   margin-bottom: 56px;
 }
 
+.merch-header div {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.merch-stats ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.merch-stats li {
+  float: left;
+  margin-right: 10px;
+}
