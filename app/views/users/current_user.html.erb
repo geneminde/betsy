@@ -1,7 +1,8 @@
 <%= render partial: "user_summary",
            locals: {
+               user: @current_user,
                message: "Hey, #{@current_user.username}! ✌️",
-               join_date: @current_user.created_at.strftime("%B %-d, %Y"),
+               # join_date: @current_user.created_at.strftime("%B %-d, %Y"),
                stats: [
                    "#{@current_user.products.count} products currently listed",
                    "#{@current_user.order_items.count} items sold",

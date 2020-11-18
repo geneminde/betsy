@@ -41,9 +41,14 @@ main {
   margin-right: auto;
 }
 
+.merch-container section {
+  margin-top: 48px;
+  margin-bottom: 48px;
+}
+
 .merch-header {
   margin-top: 64px;
-  margin-bottom: 56px;
+  margin-bottom: 48px;
 }
 
 .merch-header h1 {
@@ -70,4 +75,14 @@ main {
   border-bottom-width: 1px;
   border-bottom-style: solid;
   border-bottom-color: #EBEBEB;
+}
+
+.listings ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.listings ul li {
+  list-style: none;
+  flex: 0 0 33.333333%;
 }
