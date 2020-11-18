@@ -84,27 +84,28 @@ end
 
 puts "Added #{Order.count} order records"
 puts "#{order_upload_failures.size} orders failed to save"
+p order_upload_failures
 
-#########################################################
+########################################################
 
-# order_item_upload_failures = []
-# 100.times do
-#   order_item = Orderitem.new
-#
-#   order_item.quantity = rand(1..10).to_s
-#   order_item.order_id = "#{rand(49)}"
-#   order_item.product_id = "#{rand(99)}"
-#
-#   successful = order_item.save
-#   if !successful
-#     order_item_upload_failures << order_item
-#     puts "Failed to save order item: #{order_item.inspect}"
-#   else
-#     puts "Created order item: #{order_item.inspect}"
-#   end
-# end
-#
-# puts "Added #{Orderitem.count} product records"
-# puts "#{order_item_upload_failures.size} order items failed to save"
-#
-# puts 'done'
+order_item_upload_failures = []
+100.times do
+  order_item = OrderItem.new
+
+  order_item.quantity = rand(1..10).to_s
+  order_item.order_id = "#{rand(1..49)}"
+  order_item.product_id = "#{rand(1..99)}"
+
+  successful = order_item.save
+  if !successful
+    order_item_upload_failures << order_item
+    puts "Failed to save order item: #{order_item.inspect}"
+  else
+    puts "Created order item: #{order_item.inspect}"
+  end
+end
+
+puts "Added #{OrderItem.count} product records"
+puts "#{order_item_upload_failures.size} order items failed to save"
+
+puts 'done'

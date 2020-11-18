@@ -1,5 +1,4 @@
 class Order < ApplicationRecord
-  has_many :orderitems, autosave: true
+  has_many :order_items
 
-  validates_presence_of :orderitems
 end

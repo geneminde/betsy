@@ -1,40 +1,40 @@
-orderitem1:
+order_item1:
   quantity: 8
   order: order4
   product: product2
-orderitem2:
+order_item2:
   quantity: 1
   order: order6
   product: product9
-orderitem3:
+order_item3:
   quantity: 6
   order: order10
   product: product9
-orderitem4:
+order_item4:
   quantity: 3
   order: order6
   product: product9
-orderitem5:
+order_item5:
   quantity: 2
   order: order8
   product: product6
-orderitem6:
+order_item6:
   quantity: 0
   order: order8
   product: product7
-orderitem7:
+order_item7:
   quantity: 9
   order: order10
   product: product9
-orderitem8:
+order_item8:
   quantity: 6
   order: order10
   product: product9
-orderitem9:
+order_item9:
   quantity: 6
   order: order2
   product: product4
-orderitem10:
+order_item10:
   quantity: 5
   order: order5
   product: product3
