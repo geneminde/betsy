@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :products
   resources :categories, except: [:destroy]
   resources :orders
-  resources :orderitems
+  resources :order_items
   resources :users
 
 end

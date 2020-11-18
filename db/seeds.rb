@@ -84,7 +84,6 @@ end
 
 puts "Added #{Order.count} order records"
 puts "#{order_upload_failures.size} orders failed to save"
-p order_upload_failures
 
 ########################################################
 
