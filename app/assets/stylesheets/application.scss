@@ -17,10 +17,13 @@
 
 @import "**/*";
 
+//To visualize - can delete this before submission:
 //* {
 //  border: black 1px solid;
 //}
 
+
+//All pages
 body {
   padding-top: 65px;
 }
@@ -29,6 +32,8 @@ main {
   display: block;
 }
 
+
+//Merch dash and user show views
 .merch-container {
   width: 80%;
   display: grid;
@@ -39,6 +44,10 @@ main {
 .merch-header {
   margin-top: 64px;
   margin-bottom: 56px;
+}
+
+.merch-header h1 {
+  margin-bottom: 25px;
 }
 
 .merch-header div {
@@ -55,4 +64,10 @@ main {
 .merch-stats li {
   float: left;
   margin-right: 10px;
+}
+
+.separator {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #EBEBEB;
 }

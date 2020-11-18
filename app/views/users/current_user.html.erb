@@ -4,6 +4,9 @@
                join_date: @current_user.created_at.strftime("%B %-d, %Y"),
                stats: [
                    "#{@current_user.products.count} products currently listed",
-                   "#{@current_user.order_items.count} items sold"
-                ]
-           } %>
+                   "#{@current_user.order_items.count} items sold",
+                   "TO:DO: Average rating or num ratings"
+                ],
+               contact: "Contact: #{@current_user.email}"
+           }
+%>

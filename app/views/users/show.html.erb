@@ -1,5 +1,12 @@
 <%= render partial: "user_summary",
            locals: {
-               message: "Welcome to #{@current_user.username}'s store. 👋️",
-               join_date: @user.created_at.strftime("%B %-d, %Y")
-           } %>
+               message: "Welcome to #{@user.username}'s store. 👋️",
+               join_date: @user.created_at.strftime("%B %-d, %Y"),
+               stats: [
+                   "#{@user.products.count} products currently listed",
+                   "#{@user.order_items.count} items sold",
+                   "TO:DO: Average rating or num ratings"
+               ],
+               contact: "Questions?  Comments?  Reach me @ #{@user.email}"
+           }
+%>

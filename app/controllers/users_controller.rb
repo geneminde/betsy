@@ -1,6 +1,21 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: [:create]
 
+  def not_found_error_notice
+    flash[:error] = 'Uh oh! That user could not be found... Please try again.'
+    redirect_to users_path
+  end
+
+
+  def show
+    user_id = params[:id].to_i
+    @user = User.find_by(id: user_id)
+    if @user.nil?
+      not_found_error_notice
+      return
+    end
+  end
+
   def create
     auth_hash = request.env['omniauth.auth']
 
