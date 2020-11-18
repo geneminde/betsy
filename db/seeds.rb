@@ -43,7 +43,7 @@ product_upload_failures = []
   product.description = Faker::Movies::HitchhikersGuideToTheGalaxy.quote.to_s
   product.quantity = rand(1000).to_s
   product.available = [true, false].sample.to_s
-  product.user_id = rand(19).to_s
+  product.user_id = rand(1..19).to_s
 
   successful = product.save
   if !successful
@@ -93,7 +93,7 @@ order_item_upload_failures = []
   order_item = OrderItem.new
 
   order_item.quantity = rand(1..10).to_s
-  order_item.order_id = "#{rand(1..49)}"
+  order_item.order_id = "#{rand(1..40)}"
   order_item.product_id = "#{rand(1..99)}"
 
   successful = order_item.save
