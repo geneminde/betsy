@@ -8,4 +8,5 @@ class Product < ApplicationRecord
     inventory_quantity = self.quantity
     return inventory_quantity > order_quantity
   end
+
 end

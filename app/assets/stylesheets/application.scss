@@ -16,3 +16,84 @@
 @import "bootstrap";
 
 @import "**/*";
+
+//To visualize - can delete this before submission:
+//* {
+//  border: black 1px solid;
+//}
+
+
+//All pages
+body {
+  padding-top: 65px;
+}
+
+main {
+  display: block;
+}
+
+
+//Merch dash and user show views
+.merch-container {
+  width: 80%;
+  display: grid;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.merch-container section {
+  margin-top: 48px;
+  margin-bottom: 48px;
+}
+
+.merch-header {
+  margin-top: 64px;
+  margin-bottom: 48px;
+}
+
+.merch-header h1 {
+  margin-bottom: 25px;
+}
+
+.merch-header div {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.merch-stats ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.merch-stats li {
+  float: left;
+  margin-right: 10px;
+}
+
+.separator {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #EBEBEB;
+}
+
+.listings ul {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+}
+
+.listings ul li {
+  list-style: none;
+  flex: 0 0 33.333333%;
+}
+
+.listings ul li img {
+  max-height: 100px;
+  width: auto;
+  margin: 10px 0 5px 0;
+}
+
+.listings ul li .item {
+  margin-left: 10px;
+}
