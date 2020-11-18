@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   get '/auth/github', as: 'github_login'
   get '/auth/:provider/callback', to: 'users#create', as: 'omniauth_callback'
 
-  post "/logout", to: "users#logout", as: :logout
+  post '/logout', to: 'users#logout', as: :logout
+  get '/users/current', to: 'users#current', as: :current_user
 
   resources :products
   resources :categories, except: [:destroy]
