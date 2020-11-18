@@ -5,13 +5,6 @@
       <div>Seller since <%= user.created_at.strftime("%B %-d, %Y") %></div>
       <div class="merch-stats">
         <ul>
-          <%# stats.each do |stat| %>
-            <%# if stat == stats[-1] %>
-<!--              <li><%#= stat %></li>-->
-            <%# else  %>
-<!--              <li><%#= stat %> | </li>-->
-            <%# end %>
-          <%# end %>
           <li><%= user.products.count %> products currently listed | </li>
           <li><%= user.order_items.count %> items sold | </li>
           <li>TO:DO: Average rating or num ratings</li>
@@ -24,12 +17,14 @@
     <section class="listings">
       <h3>Items</h3>
       <ul class="listing-items">
-        <% listings.each do |listing| %>
-          <%# if stat == stats[-1] %>
-            <li><%= listing %></li>
-          <%# else  %>
-<!--            <li><%#= stat %> | </li>-->
-          <%# end %>
+        <% user.products.each do |product| %>
+          <li>
+            <div class="item">
+              <%= image_tag(product.photo_url) %>
+              <br>
+              <%= product.name %>: <%= product.price %>
+            </div>
+          </li>
         <% end %>
       </ul>
     </section>

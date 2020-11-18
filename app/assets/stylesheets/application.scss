@@ -80,9 +80,20 @@ main {
 .listings ul {
   display: flex;
   flex-wrap: wrap;
+  padding: 0;
 }
 
 .listings ul li {
   list-style: none;
   flex: 0 0 33.333333%;
+}
+
+.listings ul li img {
+  max-height: 100px;
+  width: auto;
+  margin: 10px 0 5px 0;
+}
+
+.listings ul li .item {
+  margin-left: 10px;
 }

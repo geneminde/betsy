@@ -39,7 +39,7 @@ product_upload_failures = []
 
   product.name = Faker::Movies::HitchhikersGuideToTheGalaxy.planet.to_s
   product.price = number_to_currency(rand(10..1000)).to_s
-  product.photo_url = 'https://www.prettyprettypicture.com'
+  product.photo_url = 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/4b0f7269010315.5b71b33089965.jpg'
   product.description = Faker::Movies::HitchhikersGuideToTheGalaxy.quote.to_s
   product.quantity = rand(1000).to_s
   product.available = [true, false].sample.to_s

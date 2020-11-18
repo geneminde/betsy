@@ -2,15 +2,6 @@
            locals: {
                user: @user,
                message: "Welcome to #{@user.username}'s store. 👋️",
-               # join_date: @user.created_at.strftime("%B %-d, %Y"),
-               stats: [
-                   "#{@user.products.count} products currently listed",
-                   "#{@user.order_items.count} items sold",
-                   "TO:DO: Average rating or num ratings"
-               ],
-               contact: "Questions?  Comments?  Reach me @ #{@user.email}",
-               listings: [
-
-               ]
+               contact: "Questions?  Comments?  Reach me @ #{@user.email}"
            }
 %>
