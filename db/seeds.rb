@@ -105,7 +105,7 @@ order_item_upload_failures = []
   end
 end
 
-puts "Added #{OrderItem.count} product records"
+puts "Added #{OrderItem.count} order_items records"
 puts "#{order_item_upload_failures.size} order items failed to save"
 
 puts 'done'
