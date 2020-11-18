@@ -15,12 +15,12 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(
-      :name,
-      :price,
-      :photo_url,
-      :description,
-      :quantity,
-      :available
+        :name,
+        :price,
+        :photo_url,
+        :description,
+        :quantity,
+        :available
     )
   end
 
@@ -31,5 +31,4 @@ class ProductsController < ApplicationController
       render :notfound, status: not_found
     end
   end
-
 end
