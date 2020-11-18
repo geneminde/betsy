@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :require_login, only: [:create]
 
   def create
     auth_hash = request.env['omniauth.auth']
@@ -21,15 +22,9 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
-  def logout
-    # if session[:user_id]
-      user = User.find_by(id: session[:user_id])
-      user ? flash[:success] = 'Successfully logged out' : flash[:notice] = 'Error: unknown user'
-      session[:user_id] = nil
-    # else
-    #   authentication_notice
-    # end
-
+  def destroy
+    session[:user_id] = nil
+    flash[:success] = 'Successfully logged out.'
     redirect_to root_path
   end
 
