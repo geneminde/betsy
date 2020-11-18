@@ -8,10 +8,6 @@
       <div>
         Price: <%= product.price %> |
         <%= link_to "Details", product_path(product) %> |
-
-        <%# if product.available? %>
-        <!--        <%#= link_to "Add to cart", orderitem_path(product), method: :patch %> |-->
-        <%# end %>
       </div>
     </li>
   <% end %>
