@@ -1,6 +1,5 @@
 <%= form_with model: order_item, url: order_item_path(order_item) do |f| %>
 
-  <%= f.label :quantity %>
   <%= f.select :quantity, (1..order_item.product.quantity), {}, { value: order_item.quantity, onchange: 'this.form.submit()' }%>
 
 <% end %>

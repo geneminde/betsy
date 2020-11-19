@@ -10,7 +10,6 @@
       </tr>
     </thead>
     <tbody>
-    <%= order.id %>
       <% order.order_items.each do |item| %>
         <tr>
           <td><%= item.product.name %></td>
@@ -18,22 +17,18 @@
 
           <td><%= render partial: "order_items/edit_order_item", locals: { order_item: item } %></td>
 
-
-          <td><%= item.subtotal %></td>
-          <td><%= button_to "Remove Item", order_item_path(item.id), method: :delete,
-                            data: {confirm: "Are you sure you want to remove #{item.product.name} from your cart?"} %></td>
-
 <!--          <td>-->
-            <%#= form_with model: @order_item, class: "quantity_menu", url: order_item_path, method: :patch do |f| %>
+            <%#= form_with model: item, class: "quantity_menu", url: order_item_path(item), method: :patch do |f| %>
               <%#= f.select :quantity, (1..item.product.quantity), :selected => item.quantity %>
               <%#= hidden_field_tag "product_id", "#{item.product.id}" %>
 
               <%#= f.submit "Update Quantity" %>
             <%# end %>
-
 <!--          </td>-->
 
-<!--          <td><%#= button_to "Remove Item", order_items_path(item.id), method: :delete, data: {confirm: "Are you sure you want to remove #{item.product.name} from your cart.html.erb?"} %></td>-->
+          <td><%= item.subtotal %></td>
+
+          <td><%= button_to "Remove Item", order_items_path(item.id), method: :delete, data: {confirm: "Are you sure you want to remove #{item.product.name} from your cart.html.erb?"} %></td>
 
         </tr>
       <% end %>

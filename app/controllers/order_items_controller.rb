@@ -37,7 +37,7 @@ class OrderItemsController < ApplicationController
 # Update quantity of item in order/cart
   def update
     @current_order = current_order
-    puts params
+
     order_quantity = params[:order_item][:quantity].to_i
 
 
