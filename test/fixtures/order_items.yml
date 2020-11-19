@@ -3,11 +3,11 @@ order_item1:
   order: order1
   product: product7
 order_item2:
-  quantity: 0
+  quantity: 1
   order: order7
   product: product4
 order_item3:
-  quantity: 0
+  quantity: 1
   order: order6
   product: product6
 order_item4:
@@ -27,7 +27,7 @@ order_item7:
   order: order5
   product: product4
 order_item8:
-  quantity: 0
+  quantity: 1
   order: order1
   product: product10
 order_item9:
