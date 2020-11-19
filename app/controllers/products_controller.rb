@@ -13,6 +13,20 @@ class ProductsController < ApplicationController
 
   def edit; end
 
+  def retire
+    @product = Product.find_by(id: params[:id])
+
+    if @product.nil?
+      flash[:error] = 'Uh oh! That user could not be found... Please try again.'
+    else
+      @product.update(available: false)
+    end
+
+    @product.save
+    redirect_to current_user_path
+    return
+  end
+
   private
 
   def product_params
