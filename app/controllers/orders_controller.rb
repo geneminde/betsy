@@ -1,9 +1,8 @@
 class OrdersController < ApplicationController
   skip_before_action :require_login
+  before_action :find_order, only: [:show, :confirmation]
 
   def show
-    @order = Order.find_by(id: params[:id])
-
     if @order.nil? || Order.empty_cart?(@order)
       redirect_to root_path
     end
@@ -34,7 +33,6 @@ class OrdersController < ApplicationController
   end
 
   def confirmation
-    @order = Order.find_by(id: params[:id])
     if @order.nil?
       flash[:error] = "Something went wrong while processing your order"
       redirect_to root_path
@@ -46,6 +44,10 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def find_order
+    @order = Order.find_by(id: params[:id])
+  end
 
   def order_params
     return params.require(:order).permit(:status, :customer_name, :shipping_address,
