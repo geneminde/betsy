@@ -9,9 +9,8 @@ class OrderItem < ApplicationRecord
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validate :cant_exceed_inventory
 
-
-  def in_inventory?
-
+  def name
+    return self.product.name
   end
 
   def subtotal
@@ -37,9 +36,7 @@ class OrderItem < ApplicationRecord
     @cart = Order.find_by(id: session[:order_id])
 
     if @cart
-      return @cart.order_items.include?(self)
+      return @cart.products.include?(self.product)
     end
   end
-
-
 end

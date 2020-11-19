@@ -98,6 +98,14 @@ describe OrderItem do
 
 
   describe "custom model methods" do
+    describe "name" do
+      it "returns name of product" do
+        product_name = products(:product7).name
+
+        expect(order_item.name).must_equal product_name
+      end
+    end
+
     describe "subtotal" do
       it "returns the subtotal of order items" do
         quantity = order_item.quantity

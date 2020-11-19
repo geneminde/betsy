@@ -8,7 +8,7 @@ class OrderItemsController < ApplicationController
   def create
     @product = Product.find_by(id: params[:product_id])
 
-
+    consolidate_cart(@product)
 
     order_quantity = params[:quantity].to_i
 
@@ -93,4 +93,9 @@ class OrderItemsController < ApplicationController
     end
   end
 
+  def consolidate_cart(product)
+    if @cart && @cart.products.include?(product)
+      redirect_to action: :update
+    end
+  end
 end
