@@ -13,4 +13,5 @@ class Product < ApplicationRecord
   def available?
     self.quantity.positive? ? :available : :unavailable
   end
+
 end
