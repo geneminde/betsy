@@ -1,7 +1,13 @@
 require "test_helper"
 
 describe OrdersController do
-  # it "does a thing" do
-  #   value(1+1).must_equal 2
-  # end
+  describe 'show' do
+    it 'it gets the show page when an active cart exists' do
+
+    end
+
+    it 'it gets an emtpy cart page' do
+
+    end
+  end
 end
