@@ -10,4 +10,14 @@ describe OrdersController do
 
     end
   end
+
+  describe 'edit' do
+    it 'gets the checkout page if there are items in the cart' do
+
+    end
+
+    it 'redirects to the root_path if there are no items in the cart' do
+
+    end
+  end
 end

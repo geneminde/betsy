@@ -9,5 +9,14 @@ class OrdersController < ApplicationController
     end
   end
 
+  def edit
+    @order = session[:order_id]
+    if @order.empty_cart?
+      flash[:error] = "You must add an item to your cart to checkout"
+      redirect_to root_path
+      return
+    end
+  end
+
 
 end
