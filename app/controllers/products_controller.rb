@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
         :photo_url,
         :description,
         :quantity,
-        :available
+        :available,
     )
   end
 

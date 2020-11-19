@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get '/users/current', to: 'users#current_user', as: :current_user
 
   resources :products do
-    post '/order_items', to: 'order_items#create'
+    resources :order_items, only: [:create]
   end
 
   resources :categories, except: [:destroy]

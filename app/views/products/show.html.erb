@@ -17,3 +17,16 @@
 <!--    edit buttons for when logged in-->
   </section>
 </section>
+
+<!--# Add to cart in product show page-->
+<% if @product.available %>
+  <%= form_with model: @order_item, url: product_order_items_path(@product) do |f| %>
+
+      <%= f.label :quantity %>
+      <%=  f.select :quantity, options_for_select(1..@product.quantity) %>
+      <%= f.submit "Add to cart" %>
+    </li>
+  <% end %>
+<% else %>
+  <p>Out of Stock</p>
+<% end %>
