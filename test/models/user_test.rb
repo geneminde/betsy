@@ -2,6 +2,27 @@ require "test_helper"
 
 describe User do
   let (:user) { User.first }
+  let (:auth_hash) {
+    {
+        provider: 'github',
+        uid: 123456,
+        info: {
+            email: 'test@test.com',
+            name: 'testtest'
+        }
+    }
+  }
+
+  let (:invalid_auth_hash) {
+    {
+        provider: 'github',
+        uid: nil,
+        info: {
+            email: 'test2@test.com',
+            name: 'testtest2'
+        }
+    }
+  }
 
   it 'can be instantiated with the required fields' do
     expect(user.valid?).must_equal true
@@ -78,8 +99,13 @@ describe User do
   end
 
   describe 'custom methods' do
-    it 'build_from_github' do
+    it 'build_from_github: returns a user given a hash' do
+      new_user = User.build_from_github(auth_hash)
 
+      expect(new_user.username).must_equal auth_hash[:info][:name]
+      expect(new_user.email).must_equal auth_hash[:info][:email]
+      expect(new_user.uid).must_equal auth_hash[:uid]
+      expect(new_user.provider).must_equal auth_hash[:provider]
     end
   end
 end
