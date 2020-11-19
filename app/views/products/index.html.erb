@@ -5,7 +5,7 @@
     <li>
       <% product_style = product.available? ? 'available' : 'unavailable' %>
       <div> <%= link_to product.name.capitalize, product_path(product) %> </div>
-<!--      <div> image here <%#= link_to image, product_path(product), class: product_style %> </div>-->
+      <%= image_tag(product.photo_url) %>
       <div>
         Price: $<%= product.price %> |
         <%= link_to "Details", product_path(product) %> |

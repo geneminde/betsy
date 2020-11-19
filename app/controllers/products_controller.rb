@@ -14,6 +14,18 @@ class ProductsController < ApplicationController
 
   def edit; end
 
+  def create
+    @product = Product.new(product_params)
+
+    if @product.save
+      flash[:success] = "Successfully created new #{@product.name}, \"for $#{@product.price}!\""
+      redirect_to product_path(@product)
+    else
+      flash[:error] = "Product was NOT added"
+      redirect_to new_product_path
+    end
+  end
+
   private
 
   def product_params
@@ -32,7 +44,7 @@ class ProductsController < ApplicationController
     if @product.nil?
       flash.now[:warning] = 'Oops? Try again!'
       # render :notfound, status: not_found
-      redirect_to product_path
+      redirect_to products_path
     end
   end
 end
