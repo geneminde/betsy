@@ -8,9 +8,9 @@
                }
     %>
     <section class="listings">
-      <h3>Items</h3>
+      <h3>Items for Sale</h3>
       <ul class="listing-items">
-        <% @current_user.products.each do |product| %>
+        <% @current_user.products.where(available: true).each do |product| %>
           <li>
             <div class="item">
               <%= image_tag(product.photo_url) %>
@@ -19,6 +19,24 @@
               <br>
               <%= link_to 'Edit', edit_product_path(product) %> |
               <%= link_to 'Retire', retire_product_path(product), method: :patch %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </section>
+    <div class="separator"></div>
+    <section class="listings">
+      <h3>Retired Items</h3>
+      <ul class="listing-items">
+        <% @current_user.products.where(available: false).each do |product| %>
+          <li class="retired">
+            <div class="item">
+              <%= image_tag(product.photo_url) %>
+              <br>
+              <%= product.name %>: $<%= product.price %>
+              <br>
+              <%= link_to 'Edit', edit_product_path(product) %> |
+              <%= link_to 'Return to Stock', retire_product_path(product), method: :patch %>
             </div>
           </li>
         <% end %>

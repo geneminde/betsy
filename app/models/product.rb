@@ -14,7 +14,7 @@ class Product < ApplicationRecord
   end
 
   def retire_product
-    product = find_product
+    product = self
     product.available = false
     product.save
   end
