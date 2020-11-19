@@ -6,12 +6,19 @@ class OrderItem < ApplicationRecord
   validates_presence_of :order
   validates_presence_of :product
 
+  validates :quantity, presence: true
 
-  # def sell(order_quantity)
-  #   inventory_quantity = self.product.quantity
-  #   if inventory_quantity > order_quantity
-  #     self.product.quantity = inventory_quantity - order_quantity
-  #   else
-  #     raise ArgumentError
-  # end
+  def subtotal
+    return self.quantity * self.product.price
+  end
+
+  def sell(order_quantity)
+    inventory_quantity = self.product.quantity
+    if inventory_quantity > order_quantity
+      self.product.quantity = inventory_quantity - order_quantity
+    else
+      return false
+    end
+  end
+
 end

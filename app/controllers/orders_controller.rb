@@ -1,10 +1,12 @@
 class OrdersController < ApplicationController
+  skip_before_action :require_login
 
   def show
+    puts "session order_id #{session[:order_id]}"
     order_id = session[:order_id]
     @order = Order.find_by(id: order_id)
 
-    if @order.nil? || Order.empty_cart?(@order)
+    if @order.nil? || @order.empty_cart?
       redirect_to root_path
     end
   end

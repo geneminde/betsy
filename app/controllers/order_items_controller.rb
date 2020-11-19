@@ -25,7 +25,7 @@ class OrderItemsController < ApplicationController
       end
 
       save_item_to_cart
-
+      puts "session order #{session[:order_id]}"
     else
       redirect_back(fallback_location: root_path)
       return
@@ -35,18 +35,29 @@ class OrderItemsController < ApplicationController
 
 # Update quantity of item in order/cart
   def update
-    order_quantity = params[:quantity].to_i
+    @current_order = current_order
+
+    puts "order item quantity before update #{@order_item.quantity} for order #{@order_item.order.id}"
+
+    order_quantity = params[:order_item][:quantity].to_i
 
     item_in_stock?(@order_item.product, order_quantity)
 
-    if @order_item.update(quantity: params[:quantity])
-      flash[:success] = "Successfully updated cart"
+    if @order_item.update(quantity: params[:order_item][:quantity])
+      flash[:success] = "Successfully updated order cart"
+      puts "after update"
+      puts "order item quantity #{@order_item.quantity} for order #{@order_item.order.id} "
+      puts "updating order id #{@order_item.order.id}"
+      puts "session order_id #{session[:order_id]}"
+      redirect_to order_path(@order_item.order)
     else
       flash[:error] = "A problem occurred. Could not update item in cart"
       flash[:validation_error] = @order_item.errors.messages
+      puts "can't update"
+      redirect_back(fallback_location: root_path)
+      return
     end
-    redirect_back(fallback_location: root_path)
-    return
+
   end
 
   # Remove item from order/cart
@@ -79,6 +90,8 @@ class OrderItemsController < ApplicationController
     end
   end
 
+
+
   def save_item_to_cart
     if @order_item.save
       flash[:success] = "#{@order_item.product.name} added to the shopping cart"
@@ -96,14 +109,17 @@ class OrderItemsController < ApplicationController
   def item_in_stock?(product, order_quantity)
     if product.nil?
       flash[:error] = "A problem occurred. Could not update cart"
+      puts "no product"
       return false
     end
 
     unless product.in_stock?(order_quantity)
       flash[:error] = "A problem occurred. #{product.name} was not added to the cart. Only #{product.quantity} available"
+      puts "not in stock"
       return false
     end
 
+    puts "in stock"
     return true
   end
 
