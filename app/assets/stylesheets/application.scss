@@ -32,6 +32,31 @@ main {
   display: block;
 }
 
+.flash-msg__section {
+  margin: 1rem 0 1rem 0;
+}
+
+.flash-alert {
+  margin: 0;
+  margin-bottom: 1rem;
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
+.flash-msg__section .success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.flash-msg__section .error {
+  color: #856404;
+  background-color: #fff3cd;
+  border-color: #ffeeba;
+}
+
 
 //Merch dash and user show views
 .merch-container {
