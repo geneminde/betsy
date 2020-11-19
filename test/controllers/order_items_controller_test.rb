@@ -60,9 +60,24 @@ describe OrderItemsController do
       @order_item_data[:product] = nil
 
       expect{
-        post product_order_items_path(-1), params: @order_item_hash
+        post product_order_items_path(-1), params: @order_item_data
       }.wont_change "OrderItem.count"
       must_respond_with :redirect
+    end
+
+    it "does not create a new order item if an existing item of the product is already in the cart" do
+      # Initiate an order by adding an order item
+      post product_order_items_path(@product), params: @order_item_data
+
+      @order_item_data[:quantity] = 2
+
+      expect{
+        post product_order_items_path(@product), params: @order_item_data
+      }.wont_change "OrderItem.count"
+
+      created_order_item = OrderItem.order(created_at: :desc).first
+
+      expect(created_order_item.quantity).must_equal 2
     end
   end
 
