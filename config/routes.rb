@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get '/cart', to: 'orders#cart'
   root to: 'products#index'
 
   # Omniauth
@@ -14,7 +15,9 @@ Rails.application.routes.draw do
   end
 
   resources :categories, except: [:destroy]
-  resources :orders
+  resources :orders, except: [:destroy] do
+    get '/confirmation', to: 'orders#confirmation'
+  end
   resources :order_items, only: [:create, :update, :destroy]
   resources :users
 

@@ -1,3 +1,4 @@
+
 <h1>Planetary Products</h1>
 <ul>
   <% @products.each do |product| %>
@@ -6,9 +7,18 @@
       <div> <%= link_to product.name.capitalize, product_path(product) %> </div>
 <!--      <div> image here <%#= link_to image, product_path(product), class: product_style %> </div>-->
       <div>
-        Price: <%= product.price %> |
+        Price: $<%= product.price %> |
         <%= link_to "Details", product_path(product) %> |
+        <% if product.available %>
+          <%= form_with model: @order_item, url: product_order_items_path(product) do |f| %>
+            <%= f.label :quantity %>
+            <%=  f.text_field :quantity %>
+            <%= f.submit "Add to cart" %>
+          <% end %>
+        <% else %>
+          <p>Out of Stock</p>
+        <% end %>
       </div>
-    </li>
+
   <% end %>
 </ul>
