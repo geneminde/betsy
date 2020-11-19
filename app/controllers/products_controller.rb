@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  skip_before_action :require_login, only: [:index]
+  skip_before_action :require_login, only: [:index, :show]
   before_action :current_user, only: [:index]
   before_action :find_product, only: [:show, :edit]
 
@@ -8,7 +8,9 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
 
-  def show; end
+  def show;
+    @user = User.find_by(id: params[:uid])
+  end
   def edit; end
 
   private
