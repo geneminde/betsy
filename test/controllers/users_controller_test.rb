@@ -6,6 +6,11 @@ describe UsersController do
 
   # Guest user tests
   describe 'guest user' do
+    it 'users#index: can view list of all merchant' do
+      get users_path
+      must_respond_with :success
+    end
+
     it 'users#show: can browse products by merchant' do
       get user_path(user.id)
       must_respond_with :success

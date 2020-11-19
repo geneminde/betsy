@@ -21,6 +21,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def current_user
+    if session[:user_id]
+      return @current_user = User.find_by(id: session[:user_id])
+    else
+      flash[:error] = 'Please log in to perform this action.'
+      redirect_to root_path
+    end
+  end
+
   def create
     if session[:user_id]
       flash[:error] = 'Error: already logged in.'
