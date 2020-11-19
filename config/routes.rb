@@ -9,10 +9,13 @@ Rails.application.routes.draw do
   delete '/logout', to: 'users#destroy', as: :logout
   get '/users/current', to: 'users#current_user', as: :current_user
 
-  resources :products
+  resources :products do
+    post '/order_items', to: 'order_items#create'
+  end
+
   resources :categories, except: [:destroy]
   resources :orders
-  resources :orderitems
+  resources :order_items, only: [:create, :update, :destroy]
   resources :users
 
 end

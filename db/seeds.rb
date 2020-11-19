@@ -11,7 +11,7 @@ require 'faker'
 require 'date'
 
 user_upload_failures = []
-20.times do |num|
+50.times do |num|
   user = User.new
 
   user.username = "user#{num}"
@@ -34,16 +34,16 @@ puts "#{user_upload_failures.size} users failed to save"
 #########################################################
 
 product_upload_failures = []
-100.times do
+200.times do
   product = Product.new
 
   product.name = Faker::Movies::HitchhikersGuideToTheGalaxy.planet.to_s
-  product.price = number_to_currency(rand(10..1000)).to_s
-  product.photo_url = 'https://www.prettyprettypicture.com'
+  product.price = rand(10..1000).to_s
+  product.photo_url = 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/4b0f7269010315.5b71b33089965.jpg'
   product.description = Faker::Movies::HitchhikersGuideToTheGalaxy.quote.to_s
   product.quantity = rand(1000).to_s
   product.available = [true, false].sample.to_s
-  product.user_id = rand(19).to_s
+  product.user_id = rand(1..19).to_s
 
   successful = product.save
   if !successful
@@ -84,7 +84,6 @@ end
 
 puts "Added #{Order.count} order records"
 puts "#{order_upload_failures.size} orders failed to save"
-p order_upload_failures
 
 ########################################################
 
@@ -93,7 +92,7 @@ order_item_upload_failures = []
   order_item = OrderItem.new
 
   order_item.quantity = rand(1..10).to_s
-  order_item.order_id = "#{rand(1..49)}"
+  order_item.order_id = "#{rand(1..40)}"
   order_item.product_id = "#{rand(1..99)}"
 
   successful = order_item.save
