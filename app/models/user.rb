@@ -7,7 +7,7 @@ class User < ApplicationRecord
             presence: true,
             uniqueness: { scope: :provider }
 
-  validates :username,
+  validates :username, :email,
             presence: true,
             uniqueness: true
 

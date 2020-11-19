@@ -61,6 +61,20 @@ describe User do
       expect(user.errors.messages).must_include :username
       expect(user.errors.messages[:username]).must_equal ['has already been taken']
     end
+
+    it 'must have an email address' do
+      user.email = nil
+      expect(user.valid?).must_equal false
+      expect(user.errors.messages).must_include :email
+    end
+
+    it 'must have a unique email address' do
+      user.email = User.last.email
+
+      expect(user.valid?).must_equal false
+      expect(user.errors.messages).must_include :email
+      expect(user.errors.messages[:email]).must_equal ['has already been taken']
+    end
   end
 
   describe 'custom methods' do
