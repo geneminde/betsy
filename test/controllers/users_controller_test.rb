@@ -41,9 +41,31 @@ describe UsersController do
     end
 
     it "creates an account for a new user and redirects to the root route" do
+      new_user = User.new(
+        username: 'username',
+        provider: 'github',
+        email: 'someone@somewhere.com',
+        uid: 123
+      )
+
+      expect{
+        perform_login(new_user)
+      }.must_change "User.count", 1
+
+      must_redirect_to root_path
+      expect(session[:user_id]).must_equal User.last.id
     end
 
     it "redirects to the login route if given invalid user data" do
+
+    end
+  end
+
+  describe 'logout' do
+    it 'can logout an existing user' do
+      perform_login(user)
+      delete logout_path
+      assert_nil(session[:user_id])
     end
   end
 end
