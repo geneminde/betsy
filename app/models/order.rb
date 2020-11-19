@@ -12,4 +12,8 @@ class Order < ApplicationRecord
   def mark_paid
     self.status = "paid"
   end
+
+  def mark_shipped
+    self.status = "shipped"
+  end
 end

@@ -1,0 +1,37 @@
+<h2>Order Confirmation</h2>
+<h3>Order Placed: <%= @order.updated_at.strftime('%c') %></h3>
+<h3>Order Status: <%= @order.status.capitalize %></h3>
+<section class="summary">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Item Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @order.order_items.each do |item| %>
+      <tr>
+        <td><%= link_to "#{item.product.name}", product_path(item.product.id) %></td>
+        <td><%= item.product.price %></td>
+        <td><%= item.quantity %></td>
+        <td>need a order item method to calc item total</td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <section class="subtotal">
+    <p>
+      Subtotal: <%= @order.subtotal %>
+    </p>
+    <p>
+      Shipping: Free!
+    </p>
+    <p>
+      Total: <%= @order.subtotal %>
+    </p>
+  </section>
+</section>

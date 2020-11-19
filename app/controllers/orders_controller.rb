@@ -24,12 +24,20 @@ class OrdersController < ApplicationController
     elsif @order.update(order_params)
       session[:order_id] = nil
       @order.mark_paid
-      redirect_to confirmation_path
+      redirect_to order_confirmaiton_path
       return
     else
       flash.now[:error] = "Something went wrong while processing your order"
       render :edit, status: :bad_request
       return
+    end
+  end
+
+  def confirmation
+    @order = Order.find_by(id: params[:id])
+    if @order.nil?
+      flash[:error] = "Something went wrong while processing your order"
+      redirect_to root_path
     end
   end
 

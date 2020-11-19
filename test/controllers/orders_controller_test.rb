@@ -34,4 +34,14 @@ describe OrdersController do
 
     end
   end
+
+  describe 'confirmation' do
+    it 'shows the confirmation page for a successful transaction' do
+
+    end
+
+    it 'redirects to root_path if a transaction is unsuccessful' do
+
+    end
+  end
 end

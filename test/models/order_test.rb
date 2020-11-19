@@ -40,5 +40,7 @@ describe Order do
       expect(order.status).must_equal "paid"
     end
   end
+
+    describe
 end
 
