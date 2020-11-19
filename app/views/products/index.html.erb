@@ -8,6 +8,7 @@
       <div>
         Price: $<%= product.price %> |
         <%= link_to "Details", product_path(product) %> |
+        <%= @product.available? ? 'Available! Add to cart' : 'Item is temporarily unavailable' %>
       </div>
     </li>
   <% end %>
