@@ -2,6 +2,7 @@ class Product < ApplicationRecord
   has_many :order_items, dependent: :destroy
   belongs_to :user
 
+
   def in_stock?(order_quantity)
     self.quantity
 
@@ -12,4 +13,5 @@ class Product < ApplicationRecord
   def available?
     self.quantity.positive? ? :available : :unavailable
   end
+
 end

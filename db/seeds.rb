@@ -38,6 +38,7 @@ product_upload_failures = []
   product = Product.new
 
   product.name = Faker::Movies::HitchhikersGuideToTheGalaxy.planet.to_s
+
   product.price = rand(10..1000)
   product.photo_url = 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/4b0f7269010315.5b71b33089965.jpg'
   product.description = Faker::Movies::HitchhikersGuideToTheGalaxy.quote.to_s
