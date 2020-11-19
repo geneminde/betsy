@@ -69,12 +69,20 @@ describe OrderItemsController do
   describe "update" do
     before do
       @order_item = order_items(:order_item1)
-      @order_item_hash[:order] = @order_item.order
-      @order_item_hash[:product] = @order_item.product
+      @order_item_hash = {
+        order_item: {
+          quantity: 5,
+          order: nil,
+          product: @product
+        }
+      }
+
+      @order_item_hash[:order_item][:order] = @order_item.order
+      @order_item_hash[:order_item][:product] = @order_item.product
     end
 
     it "updates existing order item in the cart and redirects" do
-      @order_item_hash[:quantity] = 10
+      @order_item_hash[:order_item][:quantity] = 10
 
       expect{
         patch order_item_path(@order_item), params: @order_item_hash
@@ -82,7 +90,7 @@ describe OrderItemsController do
 
       @order_item.reload
 
-      expect(@order_item.quantity).must_equal @order_item_hash[:quantity]
+      expect(@order_item.quantity).must_equal @order_item_hash[:order_item][:quantity]
       must_respond_with :redirect
     end
 

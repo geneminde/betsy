@@ -37,24 +37,19 @@ class OrderItemsController < ApplicationController
 # Update quantity of item in order/cart
   def update
     @current_order = current_order
-
-    puts "order item quantity before update #{@order_item.quantity} for order #{@order_item.order.id}"
-
+    puts params
     order_quantity = params[:order_item][:quantity].to_i
+
 
     item_in_stock?(@order_item.product, order_quantity)
 
+
     if @order_item.update(quantity: params[:order_item][:quantity])
       flash[:success] = "Successfully updated order cart"
-      puts "after update"
-      puts "order item quantity #{@order_item.quantity} for order #{@order_item.order.id} "
-      puts "updating order id #{@order_item.order.id}"
-      puts "session order_id #{session[:order_id]}"
       redirect_to order_path(@order_item.order)
     else
       flash[:error] = "A problem occurred. Could not update item in cart"
       flash[:validation_error] = @order_item.errors.messages
-      puts "can't update"
       redirect_back(fallback_location: root_path)
       return
     end
