@@ -8,6 +8,8 @@ class OrderItemsController < ApplicationController
   def create
     @product = Product.find_by(id: params[:product_id])
 
+
+
     order_quantity = params[:quantity].to_i
 
     @order_item = OrderItem.new(product: @product, quantity: order_quantity)

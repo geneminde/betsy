@@ -32,16 +32,6 @@
         </div>
       </nav>
 
-
-      <% if flash.any? %>
-          <ul>
-          <% flash.each do |name, problem| %>
-              <li class="<%= name %>"><%= problem %></li>
-            <% end %>
-          </ul>
-        <% end %>
-
-
     </header>
 
     <section class="flash-msg__section">
