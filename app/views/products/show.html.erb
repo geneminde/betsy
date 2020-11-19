@@ -5,6 +5,12 @@
   <p><%= @product.description %></p>
 <p>Sold by: <%= link_to @product.user.username, user_path(@product.user) %></p>
 
-  <%= @product.available? ? 'Available! Add to cart' : 'Item is temporarily unavailable' %>
-
-
+<% if @product.available %>
+  <%= form_with model: @order_item, url: product_order_items_path(@product) do |f| %>
+    <%= f.label :"Get it before it's gone!" %>
+    <%=  f.text_field :quantity %>
+    <%= f.submit "Add to cart" %>
+  <% end %>
+<% else %>
+  <p>Item is temporarily unavailable</p>
+<% end %>

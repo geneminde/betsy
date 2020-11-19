@@ -8,9 +8,10 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
 
-  def show;
+  def show
     @user = User.find_by(id: params[:uid])
   end
+
   def edit; end
 
   private
@@ -30,7 +31,8 @@ class ProductsController < ApplicationController
     @product = Product.find_by(id: params[:id])
     if @product.nil?
       flash.now[:warning] = 'Oops? Try again!'
-      render :notfound, status: not_found
+      # render :notfound, status: not_found
+      redirect_to product_path
     end
   end
 end
