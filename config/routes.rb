@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get '/cart', to: 'orders#cart'
   root to: 'products#index'
 
   # Omniauth

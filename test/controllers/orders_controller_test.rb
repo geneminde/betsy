@@ -2,21 +2,21 @@ require "test_helper"
 
 describe OrdersController do
   describe 'show' do
-    it 'it gets the show page when an active cart exists' do
+    it 'it gets the show page when an active cart.html.erb exists' do
 
     end
 
-    it 'it gets an emtpy cart page' do
+    it 'it gets an emtpy cart.html.erb page' do
 
     end
   end
 
   describe 'edit' do
-    it 'gets the checkout page if there are items in the cart' do
+    it 'gets the checkout page if there are items in the cart.html.erb' do
 
     end
 
-    it 'redirects to the root_path if there are no items in the cart' do
+    it 'redirects to the root_path if there are no items in the cart.html.erb' do
 
     end
   end
