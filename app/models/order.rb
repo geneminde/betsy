@@ -1,5 +1,8 @@
 class Order < ApplicationRecord
   has_many :order_items
+  has_many :products, through: :order_items
+
+  scope :user_orders, -> (user_id) { joins(:products).where(products: {user_id: user_id}) }
 
   def subtotal
     self.order_items.inject(0) { |memo, item| memo + (item.product.price * item.quantity) }
