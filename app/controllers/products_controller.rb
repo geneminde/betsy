@@ -17,12 +17,11 @@ class ProductsController < ApplicationController
     @product = Product.find_by(id: params[:id])
 
     if @product.nil?
-      flash[:error] = 'Uh oh! That user could not be found... Please try again.'
+      flash[:error] = 'Uh oh! That product could not be found... Please try again.'
     else
-      @product.update(available: false)
+      @product.retire_product
     end
 
-    @product.save
     redirect_to current_user_path
     return
   end
