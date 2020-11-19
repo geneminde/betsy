@@ -5,10 +5,6 @@
   <p><%= @product.description %></p>
 <p>Sold by: <%= link_to @product.user.username, user_path(@product.user) %></p>
 
-  <% case @product.available %>
-    <% when true %>
-      <p> <%= @product.quantity %> available! Add to cart </p>
-    <% when false %>
-      <div>Item is temporarily unavailable</div>
-  <% end %>
+  <%= @product.available? ? 'Available! Add to cart' : 'Item is temporarily unavailable' %>
+
 
