@@ -39,10 +39,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  def cart
-    session[:user_id] = 1
-  end
-
   private
 
   def find_order
