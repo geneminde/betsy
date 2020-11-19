@@ -14,7 +14,15 @@
         <tr>
           <td><%= item.product.name %></td>
           <td><%= item.product.price %></td>
-          <td>put a partial here</td>
+          <td>
+            <%= form_with model: @order_item, class: "quantity_menu", url: order_item_path, method: :patch do |f| %>
+              <%= f.select :quantity, (1..item.product.quantity), :selected => item.quantity %>
+              <%= hidden_field_tag "product_id", "#{item.product.id}" %>
+
+              <%= f.submit "Update Quantity" %>
+            <% end %>
+
+          </td>
           <td>need a order item method to calc item total</td>
           <td><%= button_to "Remove Item", order_items_path(item.id), method: :delete,
                             data: {confirm: "Are you sure you want to remove #{item.product.name} from your cart?"} %></td>
