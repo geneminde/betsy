@@ -23,21 +23,26 @@
                 <%= link_to 'Login', github_login_path, class: 'nav-link' %>
               </li>
             <% end %>
+            <% if session[:order_id] %>
+              <li class="nav-item"><%= link_to "Cart", order_path(session[:order_id]), class: 'nav-link' %></li>
+            <% else %>
+              <li class="nav-item"><%= link_to "Cart", '/cart', class: 'nav-link' %></li>
+            <% end %>
           </ul>
         </div>
       </nav>
     </header>
 
-    <section class="flash-msg_section">
-      <% flash.each do |name, message| %>
-      <strong class="<%= name %>">
-        <%= message %>
-      </strong>
+    <section class="flash-msg__section">
+      <% flash.each do |type, message| %>
+        <div class="flash-alert <%= type %>">
+          <%= message %>
       <% end %>
+        </div>
     </section>
 
     <%= yield %>
-    <%= link_to "Back to Main Page", root_path %>
+ 
 
   </body>
 </html>
