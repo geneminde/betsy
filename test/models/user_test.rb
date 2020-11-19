@@ -34,10 +34,38 @@ describe User do
   end
 
   describe 'validations' do
+    it 'must have a uid' do
+      user.uid = nil
+      expect(user.valid?).must_equal false
+      expect(user.errors.messages).must_include :uid
+    end
 
+    it 'must have a unique uid' do
+      user.uid = User.last.uid
+
+      expect(user.valid?).must_equal false
+      expect(user.errors.messages).must_include :uid
+      expect(user.errors.messages[:uid]).must_equal ['has already been taken']
+    end
+
+    it 'must have a username' do
+      user.username = nil
+      expect(user.valid?).must_equal false
+      expect(user.errors.messages).must_include :username
+    end
+
+    it 'must have a unique username' do
+      user.username = User.last.username
+
+      expect(user.valid?).must_equal false
+      expect(user.errors.messages).must_include :username
+      expect(user.errors.messages[:username]).must_equal ['has already been taken']
+    end
   end
 
   describe 'custom methods' do
+    it 'build_from_github' do
 
+    end
   end
 end

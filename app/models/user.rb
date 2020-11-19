@@ -3,7 +3,9 @@ class User < ApplicationRecord
   has_many :order_items, through: :products, dependent: :destroy
   has_many :categories, through: :products
 
-  validates :uid, uniqueness: { scope: :provider }
+  validates :uid,
+            presence: true,
+            uniqueness: { scope: :provider }
 
   validates :username,
             presence: true,
