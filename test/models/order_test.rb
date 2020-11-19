@@ -33,14 +33,12 @@ describe Order do
   end
   describe 'mark_paid' do
     it 'changes the order status to "paid"' do
-      order = empty_order
+      empty_order
 
-      order.mark_paid
+      empty_order.mark_paid
 
+      order = Order.find_by_id(empty_order.id)
       expect(order.status).must_equal "paid"
     end
   end
-
-    describe
 end
-
