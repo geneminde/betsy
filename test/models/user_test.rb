@@ -13,17 +13,6 @@ describe User do
     }
   }
 
-  let (:invalid_auth_hash) {
-    {
-        provider: 'github',
-        uid: nil,
-        info: {
-            email: 'test2@test.com',
-            name: 'testtest2'
-        }
-    }
-  }
-
   it 'can be instantiated with the required fields' do
     expect(user.valid?).must_equal true
 
