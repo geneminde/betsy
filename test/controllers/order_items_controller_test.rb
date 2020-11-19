@@ -5,7 +5,7 @@ describe OrderItemsController do
     @product = products(:product1)
     @order = orders(:order1)
 
-    @order_item_hash = {
+    @order_item_data = {
         quantity: 5,
         order: nil,
         product: @product
@@ -17,7 +17,7 @@ describe OrderItemsController do
       Order.destroy_all
 
       expect{
-        post product_order_items_path(@product), params: @order_item_hash
+        post product_order_items_path(@product), params: @order_item_data
       }.must_change "OrderItem.count", 1
 
       expect(Order.count).must_equal 1
@@ -26,8 +26,8 @@ describe OrderItemsController do
       created_order = Order.first
 
       expect(created_order_item.order).must_equal created_order
-      expect(created_order_item.product).must_equal @order_item_hash[:product]
-      expect(created_order_item.quantity).must_equal @order_item_hash[:quantity]
+      expect(created_order_item.product).must_equal @order_item_data[:product]
+      expect(created_order_item.quantity).must_equal @order_item_data[:quantity]
 
       expect(session[:order_id]).must_equal created_order.id
       must_respond_with :redirect
@@ -35,29 +35,29 @@ describe OrderItemsController do
 
     it "creates an order item in an existing order and redirects" do
       # Initiate an order by adding an order item
-      post product_order_items_path(@product), params: @order_item_hash
+      post product_order_items_path(@product), params: @order_item_data
 
       num_of_existing_orders = Order.count
 
       current_order = Order.find_by(id: session[:order_id])
       product_to_add = products(:product2)
-      @order_item_hash[:product] = product_to_add
+      @order_item_data[:product] = product_to_add
 
       expect{
-        post product_order_items_path(product_to_add), params: @order_item_hash
+        post product_order_items_path(product_to_add), params: @order_item_data
       }.must_change "OrderItem.count", 1
 
       created_order_item = OrderItem.order(created_at: :desc).first
 
       expect(created_order_item.order).must_equal current_order
-      expect(created_order_item.product).must_equal @order_item_hash[:product]
-      expect(created_order_item.quantity).must_equal @order_item_hash[:quantity]
+      expect(created_order_item.product).must_equal @order_item_data[:product]
+      expect(created_order_item.quantity).must_equal @order_item_data[:quantity]
       expect(Order.count).must_equal num_of_existing_orders
       must_respond_with :redirect
     end
 
     it "does not create an order item if there is no product" do
-      @order_item_hash[:product] = nil
+      @order_item_data[:product] = nil
 
       expect{
         post product_order_items_path(-1), params: @order_item_hash
@@ -82,6 +82,9 @@ describe OrderItemsController do
     end
 
     it "updates existing order item in the cart and redirects" do
+      # Initiate an order by adding an order item
+      post product_order_items_path(@product), params: @order_item_hash
+
       @order_item_hash[:order_item][:quantity] = 10
 
       expect{
@@ -95,9 +98,16 @@ describe OrderItemsController do
     end
 
     it "does not update if order item does not exist and redirects" do
-      # Initiate an order by adding an order item
       expect{
         patch order_item_path(-1), params: @order_item_hash
+      }.wont_change "OrderItem.count"
+
+      must_respond_with :redirect
+    end
+
+    it "does not update item if there's no cart and redirects" do
+      expect{
+        patch order_item_path(@order_item), params: @order_item_hash
       }.wont_change "OrderItem.count"
 
       must_respond_with :redirect

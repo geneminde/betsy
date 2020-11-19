@@ -9,6 +9,11 @@ class OrderItem < ApplicationRecord
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validate :cant_exceed_inventory
 
+
+  def in_inventory?
+
+  end
+
   def subtotal
     return self.quantity * self.product.price if self.product
   end
@@ -27,5 +32,14 @@ class OrderItem < ApplicationRecord
       errors.add(:quantity, "Cannot add #{self.quantity}. Only #{self.product.quantity} in stock")
     end
   end
+
+  def already_in_cart?
+    @cart = Order.find_by(id: session[:order_id])
+
+    if @cart
+      return @cart.order_items.include?(self)
+    end
+  end
+
 
 end

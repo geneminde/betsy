@@ -2,32 +2,25 @@ class OrderItemsController < ApplicationController
   skip_before_action :require_login
   before_action :find_order_item, only: [:update, :destroy]
 
+  before_action :has_cart?, only: [:create, :update]
+
   # Add item to order/cart.html.erb
   def create
     @product = Product.find_by(id: params[:product_id])
 
     order_quantity = params[:quantity].to_i
 
-    if item_in_stock?(@product, order_quantity)
-      @current_order = current_order
+    @order_item = OrderItem.new(product: @product, quantity: order_quantity)
 
-      # If order/cart has not been created
-      if @current_order.nil?
-        @new_order = Order.new()
-        @order_item = OrderItem.new(product: @product, quantity: order_quantity)
-        @new_order.order_items << @order_item
+    add_to_cart(@order_item)
 
-        if @new_order.save
-          session[:order_id] = @new_order.id
-        end
-      # If order has been created with items in cart
-      else
-        @order_item = OrderItem.new(order: @current_order, product: @product, quantity: order_quantity)
-      end
-
-      save_item_to_cart
-
+    if @order_item.save
+      flash[:success] = "#{@order_item.product.name} added to the shopping cart"
+      redirect_to order_path(@order_item.order)
+      return
     else
+      flash[:error] = "A problem occurred. Could not add item to cart"
+      flash[:validation_error] = @order_item.errors.messages
       redirect_back(fallback_location: root_path)
       return
     end
@@ -36,24 +29,26 @@ class OrderItemsController < ApplicationController
 
 # Update quantity of item in order/cart
   def update
-    @current_order = current_order
-
     order_quantity = params[:order_item][:quantity].to_i
+    puts "#{order_quantity} order_items before update"
 
-
-    item_in_stock?(@order_item.product, order_quantity)
-
-
-    if @order_item.update(quantity: params[:order_item][:quantity])
-      flash[:success] = "Successfully updated order cart"
-      redirect_to order_path(@order_item.order)
+    if @cart && @order_item
+      if @order_item.update(quantity: order_quantity)
+        flash[:success] = "Successfully updated order cart"
+        puts "changed to #{@order_item.quantity}"
+        redirect_to order_path(@cart.id)
+        return
+      else
+        flash[:error] = "A problem occurred. Could not update item in cart"
+        flash[:validation_error] = @order_item.errors.messages
+        redirect_back(fallback_location: root_path)
+        return
+      end
     else
       flash[:error] = "A problem occurred. Could not update item in cart"
-      flash[:validation_error] = @order_item.errors.messages
       redirect_back(fallback_location: root_path)
       return
     end
-
   end
 
   # Remove item from order/cart
@@ -86,36 +81,14 @@ class OrderItemsController < ApplicationController
     end
   end
 
-
-
-  def save_item_to_cart
-    if @order_item.save
-      flash[:success] = "#{@order_item.product.name} added to the shopping cart.html.erb"
-      redirect_to order_path(@order_item.order)
-      return
-    else
-      flash[:error] = "A problem occurred. Could not add item to cart.html.erb"
-      flash[:validation_error] = @order_item.errors.messages
-      redirect_back(fallback_location: root_path)
-      return
+  def add_to_cart(order_item)
+    if @cart  # If order/cart has not been created
+      order_item.order_id = @cart.id
+    else  # If order has been created with items in cart
+      order = Order.create()
+      order.order_items << order_item
+      session[:order_id] = order.id
     end
   end
-
-
-
-  def item_in_stock?(product, order_quantity)
-    if product.nil?
-      flash[:error] = "A problem occurred. Could not update cart"
-      return false
-    end
-
-    unless product.in_stock?(order_quantity)
-      flash[:error] = "A problem occurred. #{product.name} was not added to the cart. Only #{product.quantity} available"
-      return false
-    end
-
-    return true
-  end
-
 
 end
