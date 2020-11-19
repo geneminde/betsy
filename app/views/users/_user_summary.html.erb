@@ -12,21 +12,3 @@
   <div><%= contact %></div>
 </section>
 <div class="separator"></div>
-<section class="listings">
-  <h3>Items</h3>
-  <ul class="listing-items">
-    <% user.products.each do |product| %>
-      <li>
-        <div class="item">
-          <%= image_tag(product.photo_url) %>
-          <br>
-          <%= product.name %>: $<%= product.price %>
-        </div>
-      </li>
-    <% end %>
-  </ul>
-</section>
-<div class="separator"></div>
-<section class="ratings">
-  <h3>Ratings</h3>
-</section>

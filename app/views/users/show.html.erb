@@ -7,5 +7,25 @@
                    contact: "Questions?  Comments?  Reach me @ #{@user.email}"
                }
     %>
+    <section class="listings">
+      <h3>Items</h3>
+      <ul class="listing-items">
+        <% @user.products.each do |product| %>
+          <% if product.available %>
+            <li>
+              <div class="item">
+                <%= image_tag(product.photo_url) %>
+                <br>
+                <%= product.name %>: $<%= product.price %>
+              </div>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </section>
+    <div class="separator"></div>
+    <section class="ratings">
+      <h3>Ratings</h3>
+    </section>
   </div>
 </main>
