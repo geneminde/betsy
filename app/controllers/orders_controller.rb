@@ -2,9 +2,8 @@ class OrdersController < ApplicationController
   skip_before_action :require_login
 
   def show
-    puts "session order_id #{session[:order_id]}"
-    order_id = session[:order_id]
-    @order = Order.find_by(id: order_id)
+
+    @order = Order.find_by(id: params[:id])
 
     if @order.nil? || @order.empty_cart?
       redirect_to root_path
@@ -14,7 +13,7 @@ class OrdersController < ApplicationController
   def edit
     @order = session[:order_id]
     if @order.empty_cart?
-      flash[:error] = "You must add an item to your cart to checkout"
+      flash[:error] = "You must add an item to your cart.html.erb to checkout"
       redirect_to root_path
       return
     end
@@ -41,6 +40,10 @@ class OrdersController < ApplicationController
       flash[:error] = "Something went wrong while processing your order"
       redirect_to root_path
     end
+  end
+
+  def cart
+    session[:user_id] = 1
   end
 
   private

@@ -23,6 +23,11 @@
                 <%= link_to 'Login', github_login_path, class: 'nav-link' %>
               </li>
             <% end %>
+            <% if session[:order_id] %>
+              <li class="nav-item"><%= link_to "Carta", order_path(session[:order_id]), class: 'nav-link' %></li>
+            <% else %>
+              <li class="nav-item"><%= link_to "Cartb", '/cart', class: 'nav-link' %></li>
+            <% end %>
           </ul>
         </div>
       </nav>

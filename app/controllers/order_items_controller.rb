@@ -2,9 +2,10 @@ class OrderItemsController < ApplicationController
   skip_before_action :require_login
   before_action :find_order_item, only: [:update, :destroy]
 
-  # Add item to order/cart
+  # Add item to order/cart.html.erb
   def create
     @product = Product.find_by(id: params[:product_id])
+
     order_quantity = params[:quantity].to_i
 
     if item_in_stock?(@product, order_quantity)
@@ -25,7 +26,7 @@ class OrderItemsController < ApplicationController
       end
 
       save_item_to_cart
-      puts "session order #{session[:order_id]}"
+
     else
       redirect_back(fallback_location: root_path)
       return
@@ -94,11 +95,11 @@ class OrderItemsController < ApplicationController
 
   def save_item_to_cart
     if @order_item.save
-      flash[:success] = "#{@order_item.product.name} added to the shopping cart"
+      flash[:success] = "#{@order_item.product.name} added to the shopping cart.html.erb"
       redirect_to order_path(@order_item.order)
       return
     else
-      flash[:error] = "A problem occurred. Could not add item to cart"
+      flash[:error] = "A problem occurred. Could not add item to cart.html.erb"
       flash[:validation_error] = @order_item.errors.messages
       redirect_back(fallback_location: root_path)
       return
@@ -106,20 +107,18 @@ class OrderItemsController < ApplicationController
   end
 
 
+
   def item_in_stock?(product, order_quantity)
     if product.nil?
       flash[:error] = "A problem occurred. Could not update cart"
-      puts "no product"
       return false
     end
 
     unless product.in_stock?(order_quantity)
       flash[:error] = "A problem occurred. #{product.name} was not added to the cart. Only #{product.quantity} available"
-      puts "not in stock"
       return false
     end
 
-    puts "in stock"
     return true
   end
 
