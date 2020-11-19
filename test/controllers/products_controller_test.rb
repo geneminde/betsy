@@ -27,12 +27,11 @@ describe ProductsController do
       must_respond_with :redirect
     end
 
-    # it 'can get a valid product' do
-    #   # Act
-    #   get product_path(product1)
-    #   # Assert
-    #   must_respond_with :success
-    # end
+    it 'can get a valid product' do
+      product = products(:product1)
+      get product_path(product)
+      must_respond_with :success
+    end
   end
 
 end
