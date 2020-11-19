@@ -3,7 +3,6 @@ class ProductsController < ApplicationController
   before_action :current_user, only: [:index]
   before_action :find_product, only: [:show, :edit]
 
-
   def index
     @products = Product.all
   end
@@ -32,7 +31,7 @@ class ProductsController < ApplicationController
     if @product.nil?
       flash.now[:warning] = 'Oops? Try again!'
       # render :notfound, status: not_found
-      redirect_to product_path
+      redirect_to products_path
     end
   end
 end
