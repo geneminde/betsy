@@ -1,36 +1,32 @@
-<main>
-  <div class="merch-container">
-    <section class="merch-header">
-      <h1><%= message %></h1>
-      <div>Seller since <%= user.created_at.strftime("%B %-d, %Y") %></div>
-      <div class="merch-stats">
-        <ul>
-          <li><%= user.products.count %> products currently listed | </li>
-          <li><%= user.order_items.count %> items sold | </li>
-          <li>TO:DO: Average rating or num ratings</li>
-        </ul>
-      </div>
-      <br>
-      <div><%= contact %></div>
-    </section>
-    <div class="separator"></div>
-    <section class="listings">
-      <h3>Items</h3>
-      <ul class="listing-items">
-        <% user.products.each do |product| %>
-          <li>
-            <div class="item">
-              <%= image_tag(product.photo_url) %>
-              <br>
-              <%= product.name %>: $<%= product.price %>
-            </div>
-          </li>
-        <% end %>
-      </ul>
-    </section>
-    <div class="separator"></div>
-    <section class="ratings">
-      <h3>Ratings</h3>
-    </section>
+<section class="merch-header">
+  <h1><%= message %></h1>
+  <div>Seller since <%= user.created_at.strftime("%B %-d, %Y") %></div>
+  <div class="merch-stats">
+    <ul>
+      <li><%= user.products.count %> products currently listed | </li>
+      <li><%= user.order_items.count %> items sold | </li>
+      <li>TO:DO: Average rating or num ratings</li>
+    </ul>
   </div>
-</main>
+  <br>
+  <div><%= contact %></div>
+</section>
+<div class="separator"></div>
+<section class="listings">
+  <h3>Items</h3>
+  <ul class="listing-items">
+    <% user.products.each do |product| %>
+      <li>
+        <div class="item">
+          <%= image_tag(product.photo_url) %>
+          <br>
+          <%= product.name %>: $<%= product.price %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</section>
+<div class="separator"></div>
+<section class="ratings">
+  <h3>Ratings</h3>
+</section>

@@ -1,7 +1,11 @@
-<%= render partial: "user_summary",
-           locals: {
-               user: @user,
-               message: "Welcome to #{@user.username}'s store. 👋️",
-               contact: "Questions?  Comments?  Reach me @ #{@user.email}"
-           }
-%>
+<main>
+  <div class="merch-container">
+    <%= render partial: "user_summary",
+               locals: {
+                   user: @user,
+                   message: "Welcome to #{@user.username}'s store. 👋️",
+                   contact: "Questions?  Comments?  Reach me @ #{@user.email}"
+               }
+    %>
+  </div>
+</main>
