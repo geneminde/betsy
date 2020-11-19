@@ -18,6 +18,11 @@ class UsersController < ApplicationController
   end
 
   def create
+    if session[:user_id]
+      flash[:error] = 'Error: already logged in.'
+      return redirect_to root_path
+    end
+
     auth_hash = request.env['omniauth.auth']
 
     user = User.find_by(uid: auth_hash[:uid], provider: params[:provider])
