@@ -9,4 +9,7 @@ class Product < ApplicationRecord
     return inventory_quantity > order_quantity
   end
 
+  def available?
+    self.quantity.positive? ? :available : :unavailable
+  end
 end

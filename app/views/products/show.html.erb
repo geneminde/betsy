@@ -1,19 +1,16 @@
-<section class= "product-content">
-  <h2 class="product-content-header">
-    <%= @product.name %>, <%= @product.price %>
-  </h2>
-  <p class="m-0"><%= @product.photo_url %></p>
-  <p class="m-0"><%= @product.description %></p>
 
-  <section class="mt-3">
-    <%= link_to "Back to Main Page", root_path, class: "btn btn-info m-2", role: "button" %>
-    <%# case @product.available %>
-    <%# when available %>
-      <%#= #{@product.quantity} available!" %>
-      <%#= link_to "Add to cart.html.erb", put path here, class: "btn btn-info m-2", role: "button" %>
-    <%# when :unavailable %>
-<!--    <div class="text-muted d-inline">Item is temporarily unavailable</div>-->
-      <%# end %>
-<!--    edit buttons for when logged in-->
-  </section>
-</section>
+
+<h2><%= @product.name %>, $<%= @product.price %></h2>
+  <p><%= @product.photo_url %></p>
+  <p><%= @product.description %></p>
+<p>Sold by: <%= link_to @product.user.username, user_path(@product.user) %></p>
+
+<% if @product.available %>
+  <%= form_with model: @order_item, url: product_order_items_path(@product) do |f| %>
+    <%= f.label :"Get it before it's gone!" %>
+    <%=  f.text_field :quantity %>
+    <%= f.submit "Add to cart" %>
+  <% end %>
+<% else %>
+  <p>Item is temporarily unavailable</p>
+<% end %>

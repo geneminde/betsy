@@ -32,6 +32,7 @@
         </div>
       </nav>
     </header>
+
     <section class="flash-msg__section">
       <% flash.each do |type, message| %>
         <div class="flash-alert <%= type %>">
@@ -39,6 +40,9 @@
       <% end %>
         </div>
     </section>
+
     <%= yield %>
+ 
+
   </body>
 </html>
