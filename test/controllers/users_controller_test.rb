@@ -81,7 +81,7 @@ describe UsersController do
       get current_user_path
       must_respond_with :success
     end
-    
+
     it 'users#login: cannot log in if already logged in' do
       perform_login(user)
       expect(flash[:error]).must_equal 'Error: already logged in.'
