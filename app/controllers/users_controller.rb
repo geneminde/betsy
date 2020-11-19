@@ -6,6 +6,8 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+  ##################################################
+
   def show
     user_id = params[:id].to_i
     @user = User.find_by(id: user_id)
