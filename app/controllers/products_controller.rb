@@ -14,6 +14,10 @@ class ProductsController < ApplicationController
 
   def edit; end
 
+  def new
+    @product = Product.new
+  end
+
   def create
     @product = Product.new(product_params)
 
