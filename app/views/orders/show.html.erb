@@ -1,0 +1,10 @@
+
+<% if @order.empty_cart? || @order.nil? %>
+
+  <%= render partial: "empty" %>
+
+<%= else %>
+
+  <%= render partial: "order_items", locals: { order: @order } %>
+
+<% end %>
