@@ -31,4 +31,14 @@ describe Order do
       expect(order.empty_cart?).must_equal false
     end
   end
+  describe 'mark_paid' do
+    it 'changes the order status to "paid"' do
+      order = empty_order
+
+      order.mark_paid
+
+      expect(order.status).must_equal "paid"
+    end
+  end
 end
+

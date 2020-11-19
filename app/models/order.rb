@@ -8,4 +8,8 @@ class Order < ApplicationRecord
   def empty_cart?
     self.order_items.blank? ? true : false
   end
+
+  def mark_paid
+    self.status = "paid"
+  end
 end

@@ -20,4 +20,18 @@ describe OrdersController do
 
     end
   end
+
+  describe 'update' do
+    it 'updates the order with with a valid post request' do
+
+    end
+
+    it 'respond with not_found for invalid order ids' do
+
+    end
+
+    it 'will not update the order for invalid inputs' do
+
+    end
+  end
 end

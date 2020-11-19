@@ -18,5 +18,26 @@ class OrdersController < ApplicationController
     end
   end
 
+  def update
+    if @order.nil?
+      flash[:warning] = "Cart empty"
+    elsif @order.update(order_params)
+      session[:order_id] = nil
+      @order.mark_paid
+      redirect_to confirmation_path
+      return
+    else
+      flash.now[:error] = "Something went wrong while processing your order"
+      render :edit, status: :bad_request
+      return
+    end
+  end
+
+  private
+
+  def order_params
+    return params.require(:order).permit(:status, :customer_name, :shipping_address,
+                                         :cardholder_name, :cc_number, :cc_expiry, :billing_zip)
+  end
 
 end
