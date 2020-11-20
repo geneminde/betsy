@@ -3,7 +3,7 @@
     <%= render partial: "user_summary",
                locals: {
                    user: @current_user,
-                   message: "Hey, #{@current_user.username}! ✌️",
+                   message: "Welcome back, #{@current_user.username}! ✌️",
                    contact: "Contact: #{@current_user.email}"
                }
     %>
@@ -13,7 +13,6 @@
                    section_header: 'In Stock Items',
                    products: @current_user.products.where("quantity > ?", 0).where(is_retired: false),
                    button: 'Retire',
-                   path_method: 'retire_product_path(product), method: :patch',
                    item_class: 'not-retired'
                }
     %>
@@ -24,7 +23,6 @@
                    section_header: 'Out of Stock Items',
                    products: @current_user.products.where(quantity: 0),
                    button: 'Retire',
-                   path_method: 'retire_product_path(product), method: :patch',
                    item_class: 'not-retired'
                }
     %>
@@ -35,7 +33,6 @@
                    section_header: 'Retired Items',
                    products: @current_user.products.where(is_retired: true),
                    button: 'Return to Stock',
-                   path_method: 'retire_product_path(product), method: :patch',
                    item_class: 'retired'
                }
     %>
