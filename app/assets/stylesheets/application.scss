@@ -66,7 +66,7 @@ main {
 //////////////////////////////////////
 
 //Merch dash and user show views
-.merch-container {
+.merch-container, .prod-container {
   width: 80%;
   display: grid;
   margin-left: auto;
@@ -135,6 +135,23 @@ main {
 
 .listings ul li .item {
   margin-left: 10px;
+}
+
+//////////////////////////////////////
+
+//Product index page
+.prod-container {
+  justify-content: center;
+  align-items: center;
+}
+
+.prod-container h1, .prod-container h2, .prod-container h3 {
+  text-align: center;
+}
+
+.prod_container listing_items li {
+  list-style: none;
+  flex: 0 0 25% !important;
 }
 
 //////////////////////////////////////
