@@ -1,50 +1,50 @@
 order_item1:
-  quantity: 10
-  order: order9
-  product: product8
+  quantity: 2
+  order: order1
+  product: product7
   shipped: false
 order_item2:
-  quantity: 7
-  order: order4
-  product: product9
+  quantity: 1
+  order: order7
+  product: product4
   shipped: false
 order_item3:
-  quantity: 8
-  order: order7
-  product: product2
+  quantity: 1
+  order: order6
+  product: product6
   shipped: false
 order_item4:
-  quantity: 5
-  order: order8
-  product: product6
-  shipped: true
-order_item5:
-  quantity: 10
-  order: order8
-  product: product7
-  shipped: false
-order_item6:
-  quantity: 8
-  order: order8
-  product: product7
-  shipped: true
-order_item7:
-  quantity: 3
-  order: order9
+  quantity: 7
+  order: order10
   product: product8
   shipped: false
-order_item8:
-  quantity: 4
+order_item5:
+  quantity: 9
   order: order4
+  product: product3
+  shipped: false
+order_item6:
+  quantity: 1
+  order: order6
   product: product6
+  shipped: false
+order_item7:
+  quantity: 5
+  order: order5
+  product: product4
+  shipped: false
+order_item8:
+  quantity: 1
+  order: order1
+  product: product10
   shipped: false
 order_item9:
   quantity: 6
-  order: order6
-  product: product5
+  order: order3
+  product: product1
   shipped: false
 order_item10:
-  quantity: 4
-  order: order5
-  product: product4
+  quantity: 2
+  order: order8
+  product: product7
   shipped: false

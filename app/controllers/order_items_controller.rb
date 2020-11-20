@@ -1,6 +1,6 @@
 class OrderItemsController < ApplicationController
   skip_before_action :require_login
-  before_action :find_order_item, only: [:update, :destroy]
+  before_action :find_order_item, only: [:update, :destroy, :ship]
   before_action :has_cart?, only: [:create, :update]
   before_action :consolidate_cart, only: [:create]
 
@@ -43,6 +43,12 @@ class OrderItemsController < ApplicationController
       flash[:validation_error] = @order_item.errors.messages
       redirect_back(fallback_location: root_path)
       return
+    end
+  end
+
+  def ship
+    if @order_item.mark_shipped
+      flash[:success] = "#{@order_item.name} shipped"
     end
   end
 

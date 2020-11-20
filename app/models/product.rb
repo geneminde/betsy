@@ -3,6 +3,7 @@ class Product < ApplicationRecord
   belongs_to :user
   has_many :orders, through: :order_items
 
+
   def in_stock?(order_quantity)
     self.quantity
 

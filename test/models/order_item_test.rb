@@ -136,5 +136,23 @@ describe OrderItem do
         expect(order_item.product.quantity).must_equal product_inventory
       end
     end
+
+    describe "mark_shipped" do
+      it "sets shipped status to true" do
+        order_item.shipped = false
+
+        order_item.mark_shipped
+
+        expect(order_item.shipped).must_equal true
+      end
+
+      it "sets shipped status to true even if already true" do
+        order_item.shipped = true
+
+        order_item.mark_shipped
+
+        expect(order_item.shipped).must_equal true
+      end
+    end
   end
 end

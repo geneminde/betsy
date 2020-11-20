@@ -1,0 +1,39 @@
+
+<% if order %>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Item Total</th>
+      <th>Mark Item Shipped</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% order.order_items.each do |item| %>
+      <tr>
+        <td><%= item.product.name %></td>
+        <td><%= item.quantity %></td>
+        <td><%= item.subtotal %></td>
+
+        <td><%= button_to "Mark Item Shipped", order_item_path(item), method: :delete, data: {confirm: "Are you sure you want to remove #{item.product.name} from your cart?"} %></td>
+
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <section class="subtotal">
+    <p>
+      Subtotal: <%= order.subtotal %>
+    </p>
+    <p>
+      Shipping:
+    </p>
+    <p>
+      Total:
+    </p>
+  </section>
+
+
+<% end %>

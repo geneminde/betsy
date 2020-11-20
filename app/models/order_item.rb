@@ -1,11 +1,9 @@
 class OrderItem < ApplicationRecord
   belongs_to :order
   belongs_to :product
-  has_one :merchant, through: :products
+  has_one :user, through: :products
 
-  validates_presence_of :order
-  validates_presence_of :product
-
+  validates_presence_of :order, :product
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validate :cant_exceed_inventory
 
@@ -38,5 +36,10 @@ class OrderItem < ApplicationRecord
     if @cart
       return @cart.products.include?(self.product)
     end
+  end
+
+  def mark_shipped
+    self.shipped = true
+    return self.save
   end
 end

@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   delete '/logout', to: 'users#destroy', as: :logout
   get '/users/current', to: 'users#current_user', as: :current_user
 
+  post 'order_items/:id/ship', to: 'order_items#ship', as: 'ship'
+
   resources :products do
     resources :order_items, only: [:create]
   end

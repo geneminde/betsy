@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2020_11_19_235315) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "order_id"
-    t.boolean "shipped"
+    t.boolean "shipped", default: false
     t.index ["order_id"], name: "index_order_items_on_order_id"
     t.index ["product_id"], name: "index_order_items_on_product_id"
   end
