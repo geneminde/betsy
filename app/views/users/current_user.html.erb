@@ -21,7 +21,7 @@
                locals: {
                    user: @current_user,
                    section_header: 'Out of Stock Items',
-                   products: @current_user.products.where(quantity: 0),
+                   products: @current_user.products.where(quantity: 0).where(is_retired: false),
                    button: 'Retire',
                    item_class: 'retired'
                }
