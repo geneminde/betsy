@@ -1,28 +1,45 @@
 class OrderItem < ApplicationRecord
   belongs_to :order
   belongs_to :product
-  has_one :merchant, through: :products
+  has_one :user, through: :products
 
-  validates_presence_of :order
-  validates_presence_of :product
+  validates_presence_of :order, :product
+  validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
+  validate :cant_exceed_inventory
 
-  accepts_nested_attributes_for :order
-  # def remove_orderitem
-  #
-  # end
+  def name
+    return self.product.name
+  end
 
-  # Check if orderitem quantity is greater than product quantity
-  # Should this be in product?
-  # def in_stock?(product, order_quantity)
-  #   inventory_quantity = product.quantity
-  #   return inventory_quantity > order_quantity
-  # end
+  def subtotal
+    return self.quantity * self.product.price if self.product
+  end
 
-  # def sell(order_quantity)
-  #   inventory_quantity = self.product.quantity
-  #   if inventory_quantity > order_quantity
-  #     self.product.quantity = inventory_quantity - order_quantity
-  #   else
-  #     raise ArgumentError
-  # end
+  def sell(order_quantity)
+    inventory_quantity = self.product.quantity
+    if inventory_quantity > order_quantity
+      self.product.quantity = inventory_quantity - order_quantity
+    else
+      return false
+    end
+  end
+
+  def cant_exceed_inventory
+    if self.product && self.quantity && ( self.quantity > self.product.quantity )
+      errors.add(:quantity, "Cannot add #{self.quantity}. Only #{self.product.quantity} in stock")
+    end
+  end
+
+  def already_in_cart?
+    @cart = Order.find_by(id: session[:order_id])
+
+    if @cart
+      return @cart.products.include?(self.product)
+    end
+  end
+
+  def mark_shipped
+    self.shipped = true
+    return self.save
+  end
 end

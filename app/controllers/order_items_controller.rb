@@ -1,6 +1,7 @@
 class OrderItemsController < ApplicationController
   skip_before_action :require_login
-  before_action :find_order_item, only: [:update, :destroy]
+  before_action :find_order_item, only: [:update, :destroy, :ship]
+  before_action :has_cart?, only: [:create, :update]
   before_action :consolidate_cart, only: [:create]
 
   # Add item to order/cart.html.erb
@@ -26,7 +27,11 @@ class OrderItemsController < ApplicationController
   end
 
 
+<<<<<<< HEAD
+# Update quantity of item in order/cart
+=======
   # Update quantity of item in order/cart
+>>>>>>> 3114fdf810fa3e44164dbdd6f65219f813caabf4
   def update
     save_update(@order_item)
   end
@@ -44,6 +49,15 @@ class OrderItemsController < ApplicationController
       return
     end
   end
+<<<<<<< HEAD
+
+  def ship
+    if @order_item.mark_shipped
+      flash[:success] = "#{@order_item.name} shipped"
+    end
+  end
+=======
+>>>>>>> 3114fdf810fa3e44164dbdd6f65219f813caabf4
 
   private
 
@@ -65,14 +79,21 @@ class OrderItemsController < ApplicationController
     if @cart  # If order/cart has not been created
       order_item.order_id = @cart.id
     else  # If order has been created with items in cart
+<<<<<<< HEAD
+      order = Order.create()
+      order.order_items << order_item
+      session[:order_id] = order.id
+=======
     order = Order.create()
     order.order_items << order_item
     session[:order_id] = order.id
+>>>>>>> 3114fdf810fa3e44164dbdd6f65219f813caabf4
     end
   end
 
   def consolidate_cart
     @product = Product.find_by(id: params[:product_id])
+<<<<<<< HEAD
 
     if @cart && @cart.products.include?(@product)
       existing_order_item = OrderItem.where(product: @product, order: @cart)
@@ -80,6 +101,15 @@ class OrderItemsController < ApplicationController
       # Modify the params hash to work with create and update actions
       params[:order_item] = { quantity: params[:quantity] }
 
+=======
+
+    if @cart && @cart.products.include?(@product)
+      existing_order_item = OrderItem.where(product: @product, order: @cart)
+
+      # Modify the params hash to work with create and update actions
+      params[:order_item] = { quantity: params[:quantity] }
+
+>>>>>>> 3114fdf810fa3e44164dbdd6f65219f813caabf4
       save_update(existing_order_item)
     end
   end

@@ -1,0 +1,42 @@
+<% if order %>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Order Placed</th>
+      <th>Total</th>
+      <th>Order Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>TODO logic to determine when order is placed when 'paid'</td>
+      <td>TODO logic to determine order total</td>
+      <td>order.status.capitalize</td>
+    </tr>
+    </tbody>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Item Total</th>
+      <th>Mark Item Shipped</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% order.order_items.each do |item| %>
+      <tr>
+        <td><%= item.product.name %></td>
+        <td><%= item.quantity %></td>
+        <td><%= item.subtotal %></td>
+
+        <td><%= button_to "Mark Item Shipped", order_item_path(item), method: :patch, data: {confirm: "Are you sure you want to mark #{item.name} shipped?"} %></td>
+
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+
+<% end %>

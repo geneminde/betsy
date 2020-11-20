@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_11_20_003752) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,6 +35,7 @@ ActiveRecord::Schema.define(version: 2020_11_20_003752) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "order_id"
+    t.boolean "shipped", default: false
     t.index ["order_id"], name: "index_order_items_on_order_id"
     t.index ["product_id"], name: "index_order_items_on_product_id"
   end
@@ -49,6 +51,7 @@ ActiveRecord::Schema.define(version: 2020_11_20_003752) do
     t.integer "billing_zip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "date_placed", precision: 6, null: false
   end
 
   create_table "products", force: :cascade do |t|

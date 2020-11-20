@@ -12,7 +12,7 @@ describe Order do
     it 'returns the sum of the product prices in the cart.html.erb' do
       order = orders(:order4)
 
-      expect(order.subtotal).must_equal 5103
+      expect(order.subtotal).must_equal 495
     end
 
     it 'returns 0 if there are no items in the cart.html.erb' do

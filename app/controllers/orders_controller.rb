@@ -4,8 +4,10 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find_by(id: params[:id])
+
     if @order.nil? || @order.empty_cart?
       redirect_to cart_path
+
     end
   end
 
