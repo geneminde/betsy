@@ -38,6 +38,7 @@ end
   puts "  quantity: #{rand(1000)}"
   puts "  available: #{[true, false].sample}"
   puts "  user: user#{rand(1..10)}"
+  puts "  is_retired: '#{[true, false].sample}'"
 end
 
 

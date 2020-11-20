@@ -6,6 +6,7 @@ product1:
   quantity: 572
   available: true
   user: user2
+  is_retired: true
 product2:
   name: 'Broop Kidron 13'
   price: 559
@@ -14,14 +15,16 @@ product2:
   quantity: 468
   available: true
   user: user3
+  is_retired: false
 product3:
   name: 'Brontitall'
   price: 55
   photo_url: 'https://www.prettyprettypicture.com'
-  description: 'if you’ve never been through a matter transference beam before you’ve probably lost some salt and protein. The beer you had should have cushioned your system a bit.'
-  quantity: 311
-  available: true
-  user: user4
+  description: 'He was staring at the instruments with the air of one who is trying to convert Fahrenheit to centigrade in his head while his house is burning down.'
+  quantity: 164
+  available: false
+  user: user1
+  is_retired: false
 product4:
   name: 'Vogsphere'
   price: 955
@@ -30,6 +33,7 @@ product4:
   quantity: 581
   available: false
   user: user9
+  is_retired: false
 product5:
   name: 'Sesefras Magna'
   price: 16
@@ -38,6 +42,7 @@ product5:
   quantity: 440
   available: true
   user: user2
+  is_retired: false
 product6:
   name: 'Broop Kidron Thirteen'
   price: 846
@@ -46,6 +51,7 @@ product6:
   quantity: 687
   available: true
   user: user10
+  is_retired: true
 product7:
   name: 'Traal'
   price: 783
@@ -54,6 +60,7 @@ product7:
   quantity: 53
   available: true
   user: user6
+  is_retired: false
 product8:
   name: 'Nano'
   price: 106
@@ -62,6 +69,7 @@ product8:
   quantity: 574
   available: true
   user: user1
+  is_retired: false
 product9:
   name: 'Happi-Werld III'
   price: 665
@@ -70,6 +78,7 @@ product9:
   quantity: 675
   available: false
   user: user3
+  is_retired: false
 product10:
   name: 'Golgafrincham'
   price: 528
@@ -78,3 +87,5 @@ product10:
   quantity: 303
   available: false
   user: user3
+  is_retired: false
+

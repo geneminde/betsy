@@ -6,8 +6,8 @@ class OrdersController < ApplicationController
     @order = Order.find_by(id: params[:id])
 
     if @order.nil? || @order.empty_cart?
+      redirect_to cart_path
 
-      redirect_to root_path
     end
   end
 
@@ -42,10 +42,8 @@ class OrdersController < ApplicationController
     end
   end
 
-  def cart
-    session[:user_id] = 1
-  end
-
+  def cart; end
+  
   private
 
   def find_order

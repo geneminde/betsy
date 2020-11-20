@@ -19,5 +19,4 @@ class User < ApplicationRecord
     user.email = auth_hash[:info][:email]
     return user
   end
-
 end

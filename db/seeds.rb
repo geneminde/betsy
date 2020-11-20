@@ -45,6 +45,7 @@ product_upload_failures = []
   product.quantity = rand(1000)
   product.available = [true, false].sample
   product.user_id = rand(1..19)
+  product.is_retired = [true, false].sample
 
   successful = product.save
   if !successful
@@ -105,6 +106,14 @@ order_item_upload_failures = []
     puts "Created order item: #{order_item.inspect}"
   end
 end
+
+puts 'FINAL SUMMARY:'
+
+puts "Added #{Product.count} product records"
+puts "#{product_upload_failures.size} products failed to save"
+
+puts "Added #{Order.count} order records"
+puts "#{order_upload_failures.size} orders failed to save"
 
 puts "Added #{OrderItem.count} order_items records"
 puts "#{order_item_upload_failures.size} order items failed to save"
