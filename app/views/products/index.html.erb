@@ -1,10 +1,9 @@
-
 <main>
   <div class="prod-container listings">
     <h2>Planetary Products</h2>
     <ul class="listing-items">
       <% @products.each do |product| %>
-        <li class=<% (product.is_retired || product.quantity == 0) ? "retired" : "not-retired" %>>
+        <li class=<% product.available ? "retired" : "not-retired" %>>
           <div>
             <% product_style = product.available? ? 'available' : 'unavailable' %>
             <%= image_tag(product.photo_url) %>
@@ -20,7 +19,7 @@
                 <%=  f.text_field :quantity %>
                 <%= f.submit "Add to cart" %>
               <% end %>
-            <% else %>
+            <% elsif product.quantity.zero? && !product.is_retired %>
               Sold Out
             <% end %>
           </div>
