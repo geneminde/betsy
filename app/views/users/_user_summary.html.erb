@@ -11,12 +11,12 @@
         <li><%= user.products.where(is_retired: false).count %> products currently listed | </li>
         <li>TO:DO: Average rating or num ratings</li>
       <% end %>
-<!--      <li><%#= user.products.count %> products currently listed | </li>-->
-<!--      <li><%#= user.order_items.count %> items sold | </li>-->
-<!--      <li>TO:DO: Average rating or num ratings</li>-->
     </ul>
   </div>
   <br>
   <div><%= contact %></div>
+  <% if defined? num_items %>
+    <div class="create-button"><%= link_to 'Create a new product', new_product_path %></div>
+  <% end %>
 </section>
 <div class="separator"></div>
