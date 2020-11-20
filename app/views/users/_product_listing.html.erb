@@ -4,7 +4,7 @@
     <% products.each do |product| %>
       <li class=<%= item_class %>>
         <div class="item">
-          <%= image_tag(product.photo_url) %>
+          <%= image_tag product.photo_url, alt: "Product image" %>
           <br>
           <%= product.name %>: $<%= product.price %>
           <br>
