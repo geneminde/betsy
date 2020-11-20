@@ -1,7 +1,5 @@
-
-
 <h2><%= @product.name %>, $<%= @product.price %></h2>
-  <p><%= @product.photo_url %></p>
+  <p><%= image_tag(@product.photo_url) %></p>
   <p><%= @product.description %></p>
 <p>Sold by: <%= link_to @product.user.username, user_path(@product.user) %></p>
 
