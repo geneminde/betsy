@@ -45,7 +45,7 @@ product_upload_failures = []
   product.quantity = rand(1000)
   product.available = [true, false].sample
   product.user_id = rand(1..19)
-  product.is_retired = [true, false].sample
+  product.is_retired = [true, true, true, false].sample
 
   successful = product.save
   if !successful
