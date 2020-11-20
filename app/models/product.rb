@@ -13,9 +13,9 @@ class Product < ApplicationRecord
     self.quantity.positive? ? :available : :unavailable
   end
 
-  def retire_product
+  def toggle_retire
     product = self
-    product.available = false
+    product.is_retired = (product.is_retired == true ? false : true)
     product.save
   end
 

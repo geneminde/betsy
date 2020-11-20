@@ -19,7 +19,7 @@ class ProductsController < ApplicationController
     if @product.nil?
       flash[:error] = 'Uh oh! That product could not be found... Please try again.'
     else
-      @product.retire_product
+      @product.toggle_retire
     end
 
     redirect_to current_user_path
