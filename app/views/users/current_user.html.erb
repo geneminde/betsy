@@ -7,41 +7,38 @@
                    contact: "Contact: #{@current_user.email}"
                }
     %>
-    <section class="listings">
-      <h3>Currently Listed Items</h3>
-      <ul class="listing-items">
-        <% @current_user.products.where(available: true).each do |product| %>
-          <li>
-            <div class="item">
-              <%= image_tag(product.photo_url) %>
-              <br>
-              <%= product.name %>: $<%= product.price %>
-              <br>
-              <%= link_to 'Edit', edit_product_path(product) %> |
-              <%= link_to 'Retire', retire_product_path(product), method: :patch %>
-            </div>
-          </li>
-        <% end %>
-      </ul>
-    </section>
+    <%= render partial: "product_listing",
+               locals: {
+                   user: @current_user,
+                   section_header: 'In Stock Items',
+                   products: @current_user.products.where("quantity > ?", 0).where(is_retired: false),
+                   button: 'Retire',
+                   path_method: 'retire_product_path(product), method: :patch',
+                   item_class: 'not-retired'
+               }
+    %>
     <div class="separator"></div>
-    <section class="listings">
-      <h3>Retired and Out of Stock Items</h3>
-      <ul class="listing-items">
-        <% @current_user.products.where(available: false).each do |product| %>
-          <li class="retired">
-            <div class="item">
-              <%= image_tag(product.photo_url) %>
-              <br>
-              <%= product.name %>: $<%= product.price %>
-              <br>
-              <%= link_to 'Edit', edit_product_path(product) %> |
-              <%= link_to 'Return to Stock', retire_product_path(product), method: :patch %>
-            </div>
-          </li>
-        <% end %>
-      </ul>
-    </section>
+    <%= render partial: "product_listing",
+               locals: {
+                   user: @current_user,
+                   section_header: 'Out of Stock Items',
+                   products: @current_user.products.where(quantity: 0),
+                   button: 'Retire',
+                   path_method: 'retire_product_path(product), method: :patch',
+                   item_class: 'not-retired'
+               }
+    %>
+    <div class="separator"></div>
+    <%= render partial: "product_listing",
+               locals: {
+                   user: @current_user,
+                   section_header: 'Retired Items',
+                   products: @current_user.products.where(is_retired: true),
+                   button: 'Return to Stock',
+                   path_method: 'retire_product_path(product), method: :patch',
+                   item_class: 'retired'
+               }
+    %>
     <div class="separator"></div>
     <section class="ratings">
       <h3>Ratings</h3>
