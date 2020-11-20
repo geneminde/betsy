@@ -8,7 +8,7 @@
                }
     %>
     <section class="listings">
-      <h3>Items for Sale</h3>
+      <h3>Currently Listed Items</h3>
       <ul class="listing-items">
         <% @current_user.products.where(available: true).each do |product| %>
           <li>
@@ -26,7 +26,7 @@
     </section>
     <div class="separator"></div>
     <section class="listings">
-      <h3>Retired Items</h3>
+      <h3>Retired and Out of Stock Items</h3>
       <ul class="listing-items">
         <% @current_user.products.where(available: false).each do |product| %>
           <li class="retired">
