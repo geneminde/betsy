@@ -1,80 +1,80 @@
 product1:
-  name: 'Lamuella'
-  price: 744
+  name: 'Brontitall'
+  price: 851
   photo_url: 'https://www.prettyprettypicture.com'
-  description: 'Curiously enough, the only thing that went through the mind of the bowl of petunias as it fell was Oh no, not again.'
-  quantity: 819
-  available: 'true'
-  user: user10
-product2:
-  name: 'Vogsphere'
-  price: 944
-  photo_url: 'https://www.prettyprettypicture.com'
-  description: 'But Mr. Dent, the plans have been available in the local planning office for the last nine months.'
-  quantity: 804
-  available: 'false'
-  user: user4
-product3:
-  name: 'Krikkit'
-  price: 567
-  photo_url: 'https://www.prettyprettypicture.com'
-  description: 'He was staring at the instruments with the air of one who is trying to convert Fahrenheit to centigrade in his head while his house is burning down.'
-  quantity: 164
-  available: 'false'
-  user: user1
-product4:
-  name: 'Traal'
-  price: 98
-  photo_url: 'https://www.prettyprettypicture.com'
-  description: 'But Mr. Dent, the plans have been available in the local planning office for the last nine months.'
-  quantity: 492
-  available: 'true'
-  user: user3
-product5:
-  name: 'Frogstar World C'
-  price: 589
-  photo_url: 'https://www.prettyprettypicture.com'
-  description: 'He was staring at the instruments with the air of one who is trying to convert Fahrenheit to centigrade in his head while his house is burning down.'
-  quantity: 22
-  available: 'false'
-  user: user6
-product6:
-  name: 'Poghril'
-  price: 421
-  photo_url: 'https://www.prettyprettypicture.com'
-  description: 'Magrathea itself disappeared and its memory soon passed into the obscurity of legend. In these enlightened days, of course, no one believes a word of it.'
-  quantity: 54
-  available: 'false'
+  description: 'Will you open up the exit hatch, please, computer?'
+  quantity: 572
+  available: true
   user: user2
-product7:
-  name: 'Earth'
-  price: 936
+product2:
+  name: 'Broop Kidron 13'
+  price: 559
   photo_url: 'https://www.prettyprettypicture.com'
-  description: 'I`ve just had an unhappy love affair, so I don`t see why anybody else should have a good time.'
-  quantity: 800
-  available: 'true'
+  description: 'If there`s anything more important than my ego around, I want it caught and shot now.'
+  quantity: 468
+  available: true
+  user: user3
+product3:
+  name: 'Brontitall'
+  price: 55
+  photo_url: 'https://www.prettyprettypicture.com'
+  description: 'if you’ve never been through a matter transference beam before you’ve probably lost some salt and protein. The beer you had should have cushioned your system a bit.'
+  quantity: 311
+  available: true
+  user: user4
+product4:
+  name: 'Vogsphere'
+  price: 955
+  photo_url: 'https://www.prettyprettypicture.com'
+  description: 'In the beginning, the Universe was created. This has made a lot of people very angry and been widely regarded as a bad move.'
+  quantity: 581
+  available: false
+  user: user9
+product5:
+  name: 'Sesefras Magna'
+  price: 16
+  photo_url: 'https://www.prettyprettypicture.com'
+  description: 'According to the legends, the Magratheans lived most of their lives underground.'
+  quantity: 440
+  available: true
+  user: user2
+product6:
+  name: 'Broop Kidron Thirteen'
+  price: 846
+  photo_url: 'https://www.prettyprettypicture.com'
+  description: 'if you’ve never been through a matter transference beam before you’ve probably lost some salt and protein. The beer you had should have cushioned your system a bit.'
+  quantity: 687
+  available: true
+  user: user10
+product7:
+  name: 'Traal'
+  price: 783
+  photo_url: 'https://www.prettyprettypicture.com'
+  description: 'If they don’t keep exercising their lips, he thought, their brains start working.'
+  quantity: 53
+  available: true
   user: user6
 product8:
   name: 'Nano'
-  price: 643
+  price: 106
   photo_url: 'https://www.prettyprettypicture.com'
-  description: 'If there`s anything more important than my ego around, I want it caught and shot now.'
-  quantity: 444
-  available: 'false'
-  user: user8
+  description: 'Earth: Mostly Harmless'
+  quantity: 574
+  available: true
+  user: user1
 product9:
-  name: 'Sesefras Magna'
-  price: 258
+  name: 'Happi-Werld III'
+  price: 665
   photo_url: 'https://www.prettyprettypicture.com'
   description: 'If they don’t keep exercising their lips, he thought, their brains start working.'
-  quantity: 719
-  available: 'true'
-  user: user8
+  quantity: 675
+  available: false
+  user: user3
 product10:
-  name: 'Burphon XII'
-  price: 888
+  name: 'Golgafrincham'
+  price: 528
   photo_url: 'https://www.prettyprettypicture.com'
-  description: 'It seemed to me that any civilization that had so far lost its head as to need to include a set of detailed instructions for use in a packet of toothpicks, was no longer a civilization in which I could live and stay sane.'
-  quantity: 444
-  available: 'true'
-  user: user9
+  description: 'I`ve just had an unhappy love affair, so I don`t see why anybody else should have a good time.'
+  quantity: 303
+  available: false
+  user: user3

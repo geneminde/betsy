@@ -95,6 +95,7 @@ order_item_upload_failures = []
   order_item.quantity = rand(1..10)
   order_item.order_id = rand(1..40)
   order_item.product_id = rand(1..99)
+  order_item.shipped = [true, false].sample
 
   successful = order_item.save
   if !successful
