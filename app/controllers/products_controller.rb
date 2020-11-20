@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @user = User.find_by(id: params[:uid])
+    @product = Product.find_by(id: params[:id])
   end
 
   def edit; end

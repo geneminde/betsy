@@ -10,7 +10,7 @@
     <%= render partial: "product_listing",
                locals: {
                    user: @user,
-                   section_header: 'In Stock Items',
+                   section_header: 'Items for Sale',
                    products: @user.products.where("quantity > ?", 0).where(is_retired: false),
                    item_class: 'not-retired'
                }
