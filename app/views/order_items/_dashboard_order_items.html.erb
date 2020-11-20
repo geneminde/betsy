@@ -1,5 +1,20 @@
-
 <% if order %>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Order Placed</th>
+      <th>Total</th>
+      <th>Order Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>TODO logic to determine when order is placed when 'paid'</td>
+      <td>TODO logic to determine order total</td>
+      <td>order.status.capitalize</td>
+    </tr>
+    </tbody>
+
   <table class="table">
     <thead>
     <tr>
@@ -16,24 +31,12 @@
         <td><%= item.quantity %></td>
         <td><%= item.subtotal %></td>
 
-        <td><%= button_to "Mark Item Shipped", order_item_path(item), method: :delete, data: {confirm: "Are you sure you want to remove #{item.product.name} from your cart?"} %></td>
+        <td><%= button_to "Mark Item Shipped", order_item_path(item), method: :patch, data: {confirm: "Are you sure you want to mark #{item.name} shipped?"} %></td>
 
       </tr>
     <% end %>
     </tbody>
   </table>
-
-  <section class="subtotal">
-    <p>
-      Subtotal: <%= order.subtotal %>
-    </p>
-    <p>
-      Shipping:
-    </p>
-    <p>
-      Total:
-    </p>
-  </section>
 
 
 <% end %>
