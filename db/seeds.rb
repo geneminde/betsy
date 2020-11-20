@@ -42,7 +42,7 @@ product_upload_failures = []
   product.price = rand(10..1000)
   product.photo_url = 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/4b0f7269010315.5b71b33089965.jpg'
   product.description = Faker::Movies::HitchhikersGuideToTheGalaxy.quote.to_s
-  product.quantity = rand(1000)
+  product.quantity = rand(100..1000)
   product.available = [true, false].sample
   product.user_id = rand(1..19)
   product.is_retired = [true, false].sample
@@ -74,6 +74,7 @@ status = %w[pending paid complete cancelled]
   order.cc_expiry = (Date.today + 365).strftime('%m/%Y').to_s
   order.ccv = rand(100..999)
   order.billing_zip = rand(10_000..99_999)
+  order.date_placed = Faker::Date.backward
 
   successful = order.save
   if !successful
@@ -93,9 +94,9 @@ order_item_upload_failures = []
 100.times do
   order_item = OrderItem.new
 
-  order_item.quantity = rand(1..10)
+  order_item.quantity = rand(1..5)
   order_item.order_id = rand(1..40)
-  order_item.product_id = rand(10..99)
+  order_item.product_id = rand(1..99)
   order_item.shipped = [true, false].sample
 
   successful = order_item.save
