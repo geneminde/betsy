@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -42,10 +43,10 @@ product_upload_failures = []
   product.price = rand(10..1000)
   product.photo_url = 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/4b0f7269010315.5b71b33089965.jpg'
   product.description = Faker::Movies::HitchhikersGuideToTheGalaxy.quote.to_s
-  product.quantity = rand(100..1000)
-  product.available = [true, false].sample
-  product.user_id = rand(1..19)
+  product.quantity = rand(0..100)
   product.is_retired = [true, false].sample
+  product.available = product.quantity.zero? || product.is_retired ? false : true
+  product.user_id = rand(1..19)
 
   successful = product.save
   if !successful
@@ -74,7 +75,7 @@ status = %w[pending paid complete cancelled]
   order.cc_expiry = (Date.today + 365).strftime('%m/%Y').to_s
   order.ccv = rand(100..999)
   order.billing_zip = rand(10_000..99_999)
-  order.date_placed = Faker::Date.backward
+  order.date_placed = order.status == 'pending' ? nil : Faker::Date.backward
 
   successful = order.save
   if !successful
@@ -120,12 +121,11 @@ puts "Added #{OrderItem.count} order_items records"
 puts "#{order_item_upload_failures.size} order items failed to save"
 
 
-failures = [ user_upload_failures, product_upload_failures, order_upload_failures, order_item_upload_failures ]
+failures = [user_upload_failures, product_upload_failures, order_upload_failures, order_item_upload_failures]
 failures.each do |model_failures|
-  unless model_failures.empty?
-    model_failures.each do |record|
-      puts record.errors.messages
-    end
+  next if model_failures.empty?
+  model_failures.each do |record|
+    puts record.errors.messages
   end
 end
 

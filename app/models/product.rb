@@ -4,8 +4,6 @@ class Product < ApplicationRecord
   has_many :orders, through: :order_items
 
   def in_stock?(order_quantity)
-    self.quantity
-
     inventory_quantity = self.quantity
     return inventory_quantity > order_quantity
   end
@@ -14,12 +12,15 @@ class Product < ApplicationRecord
     self.quantity.positive? ? :available : :unavailable
   end
 
-
   def toggle_retire
     product = self
     product.is_retired = (product.is_retired == true ? false : true)
+
+    unless product.is_retired
+      product.available = true if product.quantity.positive?
+    end
+
+    product.available = false
     product.save
   end
-
-
 end
