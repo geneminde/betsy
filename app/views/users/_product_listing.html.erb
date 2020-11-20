@@ -8,8 +8,10 @@
           <br>
           <%= product.name %>: $<%= product.price %>
           <br>
-          <%= link_to 'Edit', edit_product_path(product) %> |
-          <%= link_to button, path_method %>
+          <% if defined? button %>
+            <%= link_to 'Edit', edit_product_path(product) %> |
+            <%= link_to button, path_method %>
+          <% end %>
         </div>
       </li>
     <% end %>
