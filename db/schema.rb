@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 2020_11_20_015842) do
     t.integer "billing_zip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.datetime "date_placed"
+    t.datetime "date_placed", precision: 6, null: false
   end
 
   create_table "products", force: :cascade do |t|
