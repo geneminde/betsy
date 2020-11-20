@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
   end
 
   def edit
-    @order = session[:order_id]
+    @order = Order.find_by(id: session[:order_id])
     if @order.empty_cart?
       flash[:error] = "You must add an item to your cart.html.erb to checkout"
       redirect_to root_path
@@ -21,12 +21,14 @@ class OrdersController < ApplicationController
   end
 
   def update
+    @order = Order.find_by(id: session[:order_id])
     if @order.nil?
       flash[:warning] = "Cart empty"
     elsif @order.update(order_params)
       session[:order_id] = nil
       @order.mark_paid
-      redirect_to order_confirmaiton_path
+      @order.decrement_inv
+      redirect_to order_confirmation_path(order_id: @order.id)
       return
     else
       flash.now[:error] = "Something went wrong while processing your order"
@@ -36,6 +38,7 @@ class OrdersController < ApplicationController
   end
 
   def confirmation
+    @order = Order.find_by(id: params[:order_id])
     if @order.nil?
       flash[:error] = "Something went wrong while processing your order"
       redirect_to root_path
