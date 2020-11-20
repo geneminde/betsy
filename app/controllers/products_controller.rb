@@ -13,6 +13,22 @@ class ProductsController < ApplicationController
 
   def edit; end
 
+  def new
+    @product = Product.new
+  end
+
+  def create
+    @product = Product.new(product_params)
+
+    if @product.save
+      flash[:success] = "Successfully created new #{@product.name}, \"for $#{@product.price}!\""
+      redirect_to product_path(@product)
+    else
+      flash[:error] = "Product was NOT added"
+      redirect_to new_product_path
+    end
+  end
+  
   def retire
     @product = Product.find_by(id: params[:product_id])
 
@@ -24,6 +40,7 @@ class ProductsController < ApplicationController
 
     redirect_to current_user_path
     return
+
   end
 
   private

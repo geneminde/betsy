@@ -1,5 +1,6 @@
 <h2><%= @product.name %>, $<%= @product.price %></h2>
   <p><%= image_tag @product.photo_url, alt: "Product photo description" %></p>
+
   <p><%= @product.description %></p>
 <p>Sold by: <%= link_to @product.user.username, user_path(@product.user) %></p>
 
