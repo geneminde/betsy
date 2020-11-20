@@ -1,7 +1,23 @@
-<%= render partial: "user_summary",
-           locals: {
-               user: @user,
-               message: "Welcome to #{@user.username}'s store. 👋️",
-               contact: "Questions?  Comments?  Reach me @ #{@user.email}"
-           }
-%>
+<main>
+  <div class="merch-container">
+    <%= render partial: "user_summary",
+               locals: {
+                   user: @user,
+                   message: "Welcome to #{@user.username}'s store. 👋️",
+                   contact: "Questions?  Comments?  Reach me @ #{@user.email}"
+               }
+    %>
+    <%= render partial: "product_listing",
+               locals: {
+                   user: @user,
+                   section_header: 'Items for Sale',
+                   products: @user.products.where("quantity > ?", 0).where(is_retired: false),
+                   item_class: 'not-retired'
+               }
+    %>
+    <div class="separator"></div>
+    <section class="ratings">
+      <h3>Ratings</h3>
+    </section>
+  </div>
+</main>

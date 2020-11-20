@@ -1,24 +1,30 @@
 
-<h1>Planetary Products</h1>
-<ul>
-  <% @products.each do |product| %>
-    <li>
-      <% product_style = product.available? ? 'available' : 'unavailable' %>
-      <div> <%= link_to product.name.capitalize, product_path(product) %> </div>
-      <%= image_tag(product.photo_url) %>
-      <div>
-        Price: $<%= product.price %> |
-        <%= link_to "Details", product_path(product) %> |
-        <% if product.available %>
-          <%= form_with model: @order_item, url: product_order_items_path(product) do |f| %>
-            <%= f.label :quantity %>
-            <%=  f.text_field :quantity %>
-            <%= f.submit "Add to cart" %>
-          <% end %>
-        <% else %>
-          <p>Out of Stock</p>
-        <% end %>
-      </div>
-
-  <% end %>
-</ul>
+<main>
+  <div class="prod-container listings">
+    <h2>Planetary Products</h2>
+    <ul class="listing-items">
+      <% @products.each do |product| %>
+        <li class=<% (product.is_retired || product.quantity == 0) ? "retired" : "not-retired" %>>
+          <div>
+            <% product_style = product.available? ? 'available' : 'unavailable' %>
+            <%= image_tag(product.photo_url) %>
+            <br>
+            <%= link_to product.name.capitalize, product_path(product) %>
+          </div>
+          <div>
+            $<%= product.price %>
+            <br>
+            <% if product.available %>
+              <%= form_with model: @order_item, url: product_order_items_path(product) do |f| %>
+                <%= f.label :quantity %>
+                <%=  f.text_field :quantity %>
+                <%= f.submit "Add to cart" %>
+              <% end %>
+            <% else %>
+              Sold Out
+            <% end %>
+          </div>
+      <% end %>
+    </ul>
+  </div>
+</main>

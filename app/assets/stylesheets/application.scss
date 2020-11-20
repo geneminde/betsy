@@ -32,7 +32,6 @@ main {
   display: block;
 }
 
-
 .flash-msg__section {
   margin: 1rem 0 1rem 0;
 }
@@ -59,9 +58,15 @@ main {
 }
 
 
+//////////////////////////////////////
+
+//Homepage
+
+
+//////////////////////////////////////
 
 //Merch dash and user show views
-.merch-container {
+.merch-container, .prod-container {
   width: 80%;
   display: grid;
   margin-left: auto;
@@ -121,6 +126,38 @@ main {
   margin: 10px 0 5px 0;
 }
 
+.retired img {
+  max-height: 100px;
+  width: auto;
+  margin: 10px 0 5px 0;
+  opacity: 0.5;
+}
+
 .listings ul li .item {
   margin-left: 10px;
+}
+
+//////////////////////////////////////
+
+//Product index page
+.prod-container {
+  justify-content: center;
+  align-items: center;
+}
+
+.prod-container h1, .prod-container h2, .prod-container h3 {
+  text-align: center;
+}
+
+.prod_container listing_items li {
+  list-style: none;
+  flex: 0 0 25% !important;
+}
+
+//////////////////////////////////////
+
+//Product show page
+p img {
+  max-height: 200px;
+  width: auto;
 }

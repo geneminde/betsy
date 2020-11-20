@@ -1,7 +1,48 @@
-<%= render partial: "user_summary",
-           locals: {
-               user: @current_user,
-               message: "Hey, #{@current_user.username}! ✌️",
-               contact: "Contact: #{@current_user.email}"
-           }
-%>
+<main>
+  <div class="merch-container">
+    <%= render partial: "user_summary",
+               locals: {
+                   user: @current_user,
+                   message: "Welcome back, #{@current_user.username}! ✌️",
+                   contact: "Contact: #{@current_user.email}"
+               }
+    %>
+    <%= render partial: "product_listing",
+               locals: {
+                   user: @current_user,
+                   section_header: 'In Stock Items',
+                   products: @current_user.products.where("quantity > ?", 0).where(is_retired: false),
+                   button: 'Retire',
+                   item_class: 'not-retired'
+               }
+    %>
+    <div class="separator"></div>
+    <%= render partial: "product_listing",
+               locals: {
+                   user: @current_user,
+                   section_header: 'Out of Stock Items',
+                   products: @current_user.products.where(quantity: 0),
+                   button: 'Retire',
+                   item_class: 'retired'
+               }
+    %>
+    <div class="separator"></div>
+    <%= render partial: "product_listing",
+               locals: {
+                   user: @current_user,
+                   section_header: 'Retired Items',
+                   products: @current_user.products.where(is_retired: true),
+                   button: 'Return to Stock',
+                   item_class: 'retired'
+               }
+    %>
+    <div class="separator"></div>
+    <section class="ratings">
+      <h3>Ratings</h3>
+    </section>
+    <div class="separator"></div>
+    <section class="orders">
+      <h3>Orders</h3>
+    </section>
+  </div>
+</main>

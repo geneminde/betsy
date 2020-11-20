@@ -1,16 +1,16 @@
-
-
 <h2><%= @product.name %>, $<%= @product.price %></h2>
-  <%= image_tag(@product.photo_url) %>
+  <p><%= image_tag @product.photo_url, alt: "Product photo description" %></p>
+
   <p><%= @product.description %></p>
 <p>Sold by: <%= link_to @product.user.username, user_path(@product.user) %></p>
 
 <% if @product.available %>
   <%= form_with model: @order_item, url: product_order_items_path(@product) do |f| %>
     <%= f.label :"Get it before it's gone!" %>
-    <%=  f.text_field :quantity %>
+    <%=  f.select :quantity, options_for_select(1..@product.quantity) %>
     <%= f.submit "Add to cart" %>
   <% end %>
 <% else %>
   <p>Item is temporarily unavailable</p>
 <% end %>
+

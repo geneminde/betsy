@@ -1,15 +1,14 @@
 class ProductsController < ApplicationController
   skip_before_action :require_login, only: [:index, :show]
-  before_action :current_user, only: [:index]
+  # before_action :current_user, only: [:index]
   before_action :find_product, only: [:show, :edit]
-
 
   def index
     @products = Product.all
   end
 
   def show
-    @user = User.find_by(id: params[:uid])
+    @product = Product.find_by(id: params[:id])
   end
 
   def edit; end
@@ -29,6 +28,20 @@ class ProductsController < ApplicationController
       redirect_to new_product_path
     end
   end
+  
+  def retire
+    @product = Product.find_by(id: params[:product_id])
+
+    if @product.nil?
+      flash[:error] = 'Uh oh! That product could not be found... Please try again.'
+    else
+      @product.toggle_retire
+    end
+
+    redirect_to current_user_path
+    return
+
+  end
 
   private
 
@@ -39,7 +52,7 @@ class ProductsController < ApplicationController
         :photo_url,
         :description,
         :quantity,
-        :available
+        :available,
     )
   end
 

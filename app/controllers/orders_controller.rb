@@ -3,8 +3,11 @@ class OrdersController < ApplicationController
   before_action :find_order, only: [:show, :confirmation]
 
   def show
-    if @order.nil? || Order.empty_cart?(@order)
-      redirect_to root_path
+    @order = Order.find_by(id: params[:id])
+
+    if @order.nil? || @order.empty_cart?
+      redirect_to cart_path
+
     end
   end
 
@@ -39,10 +42,8 @@ class OrdersController < ApplicationController
     end
   end
 
-  def cart
-    session[:user_id] = 1
-  end
-
+  def cart; end
+  
   private
 
   def find_order

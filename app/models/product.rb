@@ -1,7 +1,7 @@
 class Product < ApplicationRecord
   has_many :order_items, dependent: :destroy
   belongs_to :user
-
+  has_many :orders, through: :order_items
 
   def in_stock?(order_quantity)
     self.quantity
@@ -13,5 +13,13 @@ class Product < ApplicationRecord
   def available?
     self.quantity.positive? ? :available : :unavailable
   end
+
+
+  def toggle_retire
+    product = self
+    product.is_retired = (product.is_retired == true ? false : true)
+    product.save
+  end
+
 
 end

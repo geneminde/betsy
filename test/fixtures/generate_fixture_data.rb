@@ -36,15 +36,17 @@ end
   puts "  photo_url: 'https://www.prettyprettypicture.com'"
   puts "  description: '#{Faker::Movies::HitchhikersGuideToTheGalaxy.quote.gsub("'","`")}'"
   puts "  quantity: #{rand(1000)}"
-  puts "  available: '#{[true, false].sample}'"
+  puts "  available: #{[true, false].sample}"
   puts "  user: user#{rand(1..10)}"
+  puts "  is_retired: '#{[true, false].sample}'"
 end
 
 
 # Orderitems
 10.times do |i|
   puts "order_item#{i+1}:"
-  puts "  quantity: #{rand(10)}"
+  puts "  quantity: #{rand(1..10)}"
   puts "  order: order#{rand(1..10)}"
   puts "  product: product#{rand(1..10)}"
+  puts "  shipped: #{[true, false].sample}"
 end
