@@ -41,7 +41,7 @@ class OrdersController < ApplicationController
   end
 
   def cart; end
-
+  
   private
 
   def find_order

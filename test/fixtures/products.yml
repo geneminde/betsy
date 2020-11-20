@@ -6,6 +6,7 @@ product1:
   quantity: 819
   available: 'true'
   user: user10
+  is_retired: true
 product2:
   name: 'Vogsphere'
   price: 944
@@ -14,6 +15,7 @@ product2:
   quantity: 804
   available: 'false'
   user: user4
+  is_retired: false
 product3:
   name: 'Krikkit'
   price: 567
@@ -22,6 +24,7 @@ product3:
   quantity: 164
   available: 'false'
   user: user1
+  is_retired: false
 product4:
   name: 'Traal'
   price: 98
@@ -30,6 +33,7 @@ product4:
   quantity: 492
   available: 'true'
   user: user3
+  is_retired: false
 product5:
   name: 'Frogstar World C'
   price: 589
@@ -38,6 +42,7 @@ product5:
   quantity: 22
   available: 'false'
   user: user6
+  is_retired: false
 product6:
   name: 'Poghril'
   price: 421
@@ -46,6 +51,7 @@ product6:
   quantity: 54
   available: 'false'
   user: user2
+  is_retired: true
 product7:
   name: 'Earth'
   price: 936
@@ -54,6 +60,7 @@ product7:
   quantity: 800
   available: 'true'
   user: user6
+  is_retired: false
 product8:
   name: 'Nano'
   price: 643
@@ -62,6 +69,7 @@ product8:
   quantity: 444
   available: 'false'
   user: user8
+  is_retired: false
 product9:
   name: 'Sesefras Magna'
   price: 258
@@ -70,6 +78,7 @@ product9:
   quantity: 719
   available: 'true'
   user: user8
+  is_retired: false
 product10:
   name: 'Burphon XII'
   price: 888
@@ -78,3 +87,4 @@ product10:
   quantity: 444
   available: 'true'
   user: user9
+  is_retired: false
