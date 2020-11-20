@@ -1,0 +1,21 @@
+<main>
+  <div class="merch-container">
+    <section class="merch-header">
+      <h1>planEtsy Merchants 🪐</h1>
+    </section>
+    <div class="separator"></div>
+    <% User.order(:username).each do |user| %>
+      <div class="merch-summary">
+        <h2>👾</h2>
+        <div class="basic-info">
+          <%= link_to user.username, user_path(user) %>
+          <div class="sub-info">Seller since <%= user.created_at.strftime("%B %-d, %Y") %></div>
+        </div>
+        <div class="contact">
+          <%= user.email %>
+        </div>
+      </div>
+      <div class="separator"></div>
+    <% end %>
+  </div>
+</main>
