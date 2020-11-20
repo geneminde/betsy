@@ -41,4 +41,14 @@ describe Order do
       expect(order.status).must_equal "paid"
     end
   end
+
+  describe 'decrement_inv' do
+    it 'decrements quantity of each order item from product quantity for a paid order' do
+
+    end
+
+    it 'does not change product quantity if the order is not paid' do
+
+    end
+  end
 end

@@ -24,4 +24,14 @@ class Order < ApplicationRecord
       self.save
     end
   end
+
+  def decrement_inv
+    if self.status == "paid"
+      self.order_items.each do |item|
+        product = item.product
+        product.quantity -= item.quantity
+        product.save
+      end
+    end
+  end
 end

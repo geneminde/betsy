@@ -27,6 +27,7 @@ class OrdersController < ApplicationController
     elsif @order.update(order_params)
       session[:order_id] = nil
       @order.mark_paid
+      @order.decrement_inv
       redirect_to order_confirmation_path(order_id: @order.id)
       return
     else
