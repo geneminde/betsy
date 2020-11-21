@@ -47,9 +47,12 @@ class OrderItemsController < ApplicationController
   end
 
   def ship
-    if @order_item.mark_shipped
-      flash[:success] = "#{@order_item.name} shipped"
-      redirect_back(fallback_location: root_path)
+    if @order_item.mark_shipped && @order_item.order.mark_shipped
+      flash[:success] = "Order ##{@order_item.order.id}: #{@order_item.name} shipped"
+      redirect_to current_user_path(@order_item.user)
+    else
+      flash[:error] = "Order ##{@order_item.order.id}: #{@order_item.name} could not be shipped"
+      redirect_to current_user_path(@order_item.user)
     end
   end
 

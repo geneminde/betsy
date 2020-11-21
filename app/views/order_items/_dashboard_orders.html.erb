@@ -4,6 +4,7 @@
     <table class="table order-table">
       <thead>
       <tr>
+        <th>Order Number</th>
         <th>Order Placed</th>
         <th>Order Status</th>
       </tr>
@@ -11,6 +12,7 @@
 
       <tbody>
       <tr>
+        <td><%= order.id %></td>
         <td><%= show_date(order.date_placed) %></td>
         <td><%= order.status.capitalize %></td>
       </tr>

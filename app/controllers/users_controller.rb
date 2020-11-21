@@ -36,7 +36,7 @@ class UsersController < ApplicationController
       return redirect_to root_path
     end
 
-    session[:user_id] = User.find(2).id
+    session[:user_id] = User.find(7).id
     redirect_to root_path
   #
   #   auth_hash = request.env['omniauth.auth']

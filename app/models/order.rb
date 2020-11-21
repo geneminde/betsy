@@ -18,10 +18,10 @@ class Order < ApplicationRecord
   end
 
   def mark_shipped
-    items = self.order_items.where(shipped: true)
+    items = self.order_items.where(shipped: false)
     if items.blank?
       self.status = "complete"
-      self.save
+      return self.save
     end
   end
 
