@@ -43,6 +43,13 @@
     <div class="separator"></div>
     <section class="orders">
       <h3>Orders</h3>
+      <%= render partial: "order_items/dashboard_orders",
+                 locals: {
+                     user: @current_user,
+                     section_header: 'Orders',
+                     orders: Order.user_orders(@current_user)
+                 }
+      %>
     </section>
   </div>
 </main>

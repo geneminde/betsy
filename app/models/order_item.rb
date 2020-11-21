@@ -1,12 +1,14 @@
 class OrderItem < ApplicationRecord
   belongs_to :order
   belongs_to :product
-  has_one :user, through: :products
+  has_one :user, through: :product
 
   validates_presence_of :order, :product
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validate :cant_exceed_inventory
 
+  validates_uniqueness_of :product, scope: :order, message: "Product has already been added to the cart. Items must be consolidated."
+  
   def name
     return self.product.name
   end
