@@ -13,14 +13,14 @@
 
     <tbody>
       <tr>
-        <td><%= item.product.name %></td>
+        <td><%= link_to item.name, product_path(item.product) %></td>
         <td><%= item.quantity %></td>
         <td><%= item.subtotal %></td>
 
         <% if item.shipped %>
           <td>Shipped</td>
         <% else %>
-          <td><%= button_to "Mark Item Shipped", order_item_path(item), method: :patch, data: {confirm: "Are you sure you want to mark #{item.name} shipped?"} %></td>
+          <td><%= button_to "Mark Item Shipped", ship_path(item), method: :patch, data: {confirm: "Are you sure you want to mark #{item.name} shipped?"} %></td>
 
         <% end %>
       </tr>

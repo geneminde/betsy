@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get '/users/current', to: 'users#current_user', as: :current_user
   patch 'users/current/:product_id/retire', to: 'products#retire', as: :retire_product
 
-  post 'order_items/:id/ship', to: 'order_items#ship', as: 'ship'
+  patch 'order_items/:id/ship', to: 'order_items#ship', as: 'ship'
 
   resources :products do
     resources :order_items, only: [:create]
