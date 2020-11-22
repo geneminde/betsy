@@ -10,15 +10,36 @@
 include ActiveSupport::NumberHelper
 require 'faker'
 require 'date'
+require 'csv'
 
+# CATEGORY_FILE = Rails.root.join('db', 'seed_data', 'categories.csv')
+# puts "Loading raw media (category) data from #{CATEGORY_FILE}"
+#
+# category_failures = []
+# CSV.foreach(CATEGORY_FILE, :headers => true) do |row|
+#   category = Category.new
+#   category.category = row['category']
+#   successful = category.save
+#   if !successful
+#     category_failures << category
+#     puts "Failed to save work: #{category.inspect}"
+#   else
+#     puts "Created work: #{category.inspect}"
+#   end
+# end
+#
+# puts "Added #{Category.count} category records"
+# puts "#{category_failures.length} categories failed to save"
+
+USER_FILE = Rails.root.join('db', 'seed_data', 'users.csv')
 user_upload_failures = []
-50.times do |num|
-  user = User.new
 
-  user.username = "user#{num}"
-  user.email = Faker::Internet.email.to_s
-  user.uid = rand(1_111_111..9_999_999)
-  user.provider = 'github'
+CSV.foreach(USER_FILE, :headers => true) do |row|
+  user = User.new
+  user.username = row['username']
+  user.email = row['email']
+  user.uid = row['uid'].to_i
+  user.provider = row['provider']
 
   successful = user.save
   if !successful
@@ -33,20 +54,19 @@ puts "Added #{User.count} user records"
 puts "#{user_upload_failures.size} users failed to save"
 
 #########################################################
-
+PRODUCT_FILE = Rails.root.join('db', 'seed_data', 'products.csv')
 product_upload_failures = []
-200.times do
+
+CSV.foreach(PRODUCT_FILE, :headers => true) do |row|
   product = Product.new
-
-  product.name = Faker::Movies::HitchhikersGuideToTheGalaxy.planet.to_s
-
+  product.name = row['name']
   product.price = rand(10..1000)
   product.photo_url = 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/4b0f7269010315.5b71b33089965.jpg'
-  product.description = Faker::Movies::HitchhikersGuideToTheGalaxy.quote.to_s
+  product.description = row['description']
   product.quantity = rand(0..100)
   product.is_retired = [true, false].sample
   product.available = product.quantity.zero? || product.is_retired ? false : true
-  product.user_id = rand(1..19)
+  product.user_id = row['user_id']
 
   successful = product.save
   if !successful
@@ -97,7 +117,7 @@ order_item_upload_failures = []
 
   order_item.quantity = rand(1..5)
   order_item.order_id = rand(1..40)
-  order_item.product_id = rand(1..99)
+  order_item.product_id = rand(1..44)
   order_item.shipped = [true, false].sample
 
   successful = order_item.save
