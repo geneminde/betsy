@@ -1,55 +1,55 @@
-name,price,description,category, quantity,available,photo_url,user_id
+name,price,description,quantity,available,photo_url,category_id,user_id
 
-Meteor Piece, ,Little pieces from the many meteors that break through the Mercurian atmosphere,terrafirma
-True Stories About Mercury,,A book about the marvel of Mercury,books/tourism,
-Thermometer,,it's better to get your mercury from Mercury,industrials
+Meteor Piece, ,Little pieces from the many meteors that break through the Mercurian atmosphere, , , ,4,1
+True Stories About Mercury,,A book about the marvel of Mercury,,,,1;2,1
+Thermometer,,it's better to get your mercury from Mercury,,,,3,1
 
-It Ain't Easy Being Pretty,,What it means to be named after a goddess of love,books/gag
-I'm Terrestrial Too,,Information about the 2nd planet from the sun,books/tourism
-Sulfuric Acid,,Special Venusian sulfuric acid,industrials
-Volcanic Ash, Special Venusian ash,terrafirma
+It Ain't Easy Being Pretty,,What it means to be named after a goddess of love,,,,1;5,2
+I'm Terrestrial Too,,Information about the 2nd planet from the sun,,,,1;2,2
+Sulfuric Acid,,Special Venusian sulfuric acid,,,,3,2
+Volcanic Ash, Special Venusian ash,,,,4,2
 
-If You Support a Human's Life,,How best to harbor your humans, books
-Oceans,,Supporting different life forms,books
-Humans,,Buy a lifeform to take home!, gag/tourism
-Ocean Water,,Cleansing and Purifying: The Poop Gives It Flavor,terrafirma
-Moon Water,,New & Refreshing,terrafirma
-Moonstones,,Pretty and smooth,terrafirma
+If You Support a Human's Life,,How best to harbor your humans,,,, 1,3
+Oceans,,Supporting different life forms,,,,1,3
+Humans,,Buy a lifeform to take home!,,,,5;2,
+Ocean Water,,Cleansing and Purifying: The Poop Gives It Flavor,,,,4;5,3
+Moon Water,,New & Refreshing,,,,4,3
+Moonstones,,Pretty and smooth,,,,4,3
 
-Iron Oxide,,Special Martian Iron,industrials
-BigRed Dust,,Martian Dust,terrafirma/gag
-BigRed Take-home,,Martian Desert in a Bottle,terrafirma/tourism
+Iron Oxide,,Special Martian Iron,,,,3,4
+BigRed Dust,,Martian Dust,,,,4;5,4
+BigRed Take-home,,Martian Desert in a Bottle,,,,4;2,4
 
-Red Spot,,Some of the Red Spot (bottle),terrafirma/tourism
-Moon,,Buy a moon to take home!,terrafirma/tourism
-Ammonia,,More ammonia to go around,industrials
+Red Spot,,Some of the Red Spot (bottle),,,,2;4,6
+Moon,,Buy a moon to take home!,,,,2;4,6
+Ammonia,,More ammonia to go around,,,,3,6
 
-Put A Ring On It,,What it means to be Saturn,books
-Ring,,Buy a ring to take home!,tourism
-Hydrogen,,Saturnal hydrogen,industrials
-Helium,,Saturnal helium,industrials
-Moon,,A real moon! Bigger than some planets!,terrafirma/tourism
+Put A Ring On It,,What it means to be Saturn,,,,1,7
+Ring,,Buy a ring to take home!,,,,2,7
+Hydrogen,,Saturnal hydrogen,,,,3,7
+Helium,,Saturnal helium,,,,3,7
+Moon,,A real moon! Bigger than some planets!,,,,2;4,7
 
-Fart Spray,,Is that you or Uranus?,gag
-Methane,,True methane straight from Uranus,industrials
-Soft Serve Fudge,,Trust us, it's delicious,tourism
-Ring,,Buy a ring to take home!,tourism
-Moon,,A real moon!,terrafirma
-Dirty Jokes,,We've heard them all, now we've done better!,books
+Fart Spray,,Is that you or Uranus?,,,,5,8
+Methane,,True methane straight from Uranus,,,,3,8
+Soft Serve Fudge,,Trust us, it's delicious,,,,2,8
+Ring,,Buy a ring to take home!,,,,2,8
+Moon,,A real moon!,,,,4,8
+Dirty Jokes,,We've heard them all, now we've done better!,,,,1,8
 
-Trident,,Fish sold separately,gag
-Fish,,Trident sold separately,gag
-Wind,,Get a whirl of Neptune!(bottled),tourism
-Math -- how I was found,,A story of the "discovery" of Neptune,books
-Rock,,Get your rocks!,terrafirma
-Supersonic,,Take your own piece of power,industrials
+Trident,,Fish sold separately,,,,5,9
+Fish,,Trident sold separately,,,,5,9
+Wind,,Get a whirl of Neptune!(bottled),,,,2,9
+Math -- how I was found,,A story of the "discovery" of Neptune,,,,2,9
+Rock,,Get your rocks!,,,,4,9
+Supersonic,,Take your own piece of power,,,,3,9
 
-Ice Lava,,Lava doesn't need to be hot,industrials
-Mountain Ice,,Super-cold & Super-refreshing,terrafirma
-Ice Dunes,,Betcha didn't know sand can be icy,terrafirma
-What's a Status anyway?,,The Story of Pluto: from planet, to not, to dwarf planet,books
+Ice Lava,,Lava doesn't need to be hot,,,,2;4,11
+Mountain Ice,,Super-cold & Super-refreshing,,,,4,11
+Ice Dunes,,Betcha didn't know sand can be icy,,,,4,11
+What's a Status anyway?,,The Story of Pluto: from planet, to not, to dwarf planet,,,,1,11
 
-A Nine or a Ten?,,The story of Planet X a.k.a. Planet Nine,books
+A Nine or a Ten?,,The story of Planet X a.k.a. Planet Nine,,,,1,10
 
-Being forgotten,,I'm a planet too,books
-Who is Ceres?,,The story of the "dwarf" planet between Mars and Jupiter,books
+Being forgotten,,I'm a planet too,,,,1,5
+Who is Ceres?,,The story of the "dwarf" planet between Mars and Jupiter,,,,1,5
