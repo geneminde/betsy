@@ -26,7 +26,12 @@ class Order < ApplicationRecord
   end
 
   def filter_items(user)
-    return OrderItem.where(order: self, product: Product.where(user: user) )
+    return OrderItem.where(order: self, product: Product.where(user: user))
   end
 
+  def shared?
+    order_products = self.products
+    users = order_products.uniq.pluck(:user_id)
+    return users.count > 1
+  end
 end

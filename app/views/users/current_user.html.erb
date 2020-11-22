@@ -47,7 +47,7 @@
                  locals: {
                      user: @current_user,
                      section_header: 'Orders',
-                     orders: Order.user_orders(@current_user)
+                     orders: Order.distinct.user_orders(@current_user)
                  }
       %>
     </section>

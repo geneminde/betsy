@@ -2,18 +2,20 @@
   <div class="orders-container">
   <% orders.each do |order| %>
     <table class="table order-table">
-      <thead>
+      <thead class="thead-dark">
       <tr>
-        <th>Order Number</th>
-        <th>Order Placed</th>
-        <th>Order Status</th>
+        <th scope="col">Order Number</th>
+        <th scope="col">Order Placed</th>
+        <th scope="col">Order Status</th>
+        <th scope="col">Order Status</th>
       </tr>
       </thead>
 
       <tbody>
       <tr>
-        <td><%= order.id %></td>
+        <th scope="row"><%= order.id %></th>
         <td><%= show_date(order.date_placed) %></td>
+        <td><%= order.status.capitalize %></td>
         <td><%= order.status.capitalize %></td>
       </tr>
 

@@ -1,12 +1,12 @@
 <% if order %>
-  <table class="table order-items-table">
+  <table class="table table-striped thead-light"">
     <thead>
     <tr>
-      <th>Product</th>
-      <th></th>
-      <th>Quantity</th>
-      <th>Item Total</th>
-      <th>Shipping Status</th>
+      <th scope="col">Product</th>
+      <th scope="col"></th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Item Total</th>
+      <th scope="col">Shipping Status</th>
 
     </tr>
     </thead>
@@ -14,7 +14,7 @@
     <tbody>
     <% order.filter_items(@current_user).each do |item| %>
       <tr>
-        <td><p><%= image_tag item.product.photo_url, alt: "Product photo description" %></p></td>
+        <th scope="row"><%= image_tag item.product.photo_url, alt: "Product photo description" %></th>
         <td><%= link_to item.name, product_path(item.product) %></td>
         <td><%= item.quantity %></td>
         <td><%= item.subtotal %></td>
@@ -22,13 +22,13 @@
         <% if item.shipped %>
           <td>Shipped</td>
         <% else %>
-          <td><%= button_to "Mark Item Shipped", ship_path(item), method: :patch, data: {confirm: "Are you sure you want to mark #{item.name} shipped?"} %></td>
-
+          <td><%= button_to "Mark Shipped", ship_path(item), method: :patch, data: {confirm: "Are you sure you want to mark #{item.name} shipped?"} %></td>
         <% end %>
       </tr>
+    <% end %>
     </tbody>
 
-    <% end %>
+
   </table>
   <br>
   <br>
