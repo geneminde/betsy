@@ -48,3 +48,39 @@ order_item10:
   order: order8
   product: product7
   shipped: false
+order_item11:
+  quantity: 10
+  order: order11
+  product: product2
+  shipped: false
+order_item12:
+  quantity: 15
+  order: order11
+  product: product5
+  shipped: false
+order_item13:
+  quantity: 2
+  order: order11
+  product: product8
+  shipped: false
+order_item14:
+  quantity: 10
+  order: order12
+  product: product2
+  shipped: true
+order_item15:
+  quantity: 10
+  order: order12
+  product: product5
+  shipped: true
+order_item16:
+  quantity: 10
+  order: order13
+  product: product3
+  shipped: true
+order_item17:
+  quantity: 10
+  order: order13
+  product: product5
+  shipped: false
+

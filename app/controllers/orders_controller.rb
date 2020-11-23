@@ -26,8 +26,7 @@ class OrdersController < ApplicationController
       flash[:warning] = "Cart empty"
     elsif @order.update(order_params)
       session[:order_id] = nil
-      @order.mark_paid
-      @order.decrement_inv
+      @order.complete_order
       redirect_to order_confirmation_path(order_id: @order.id)
       return
     else
