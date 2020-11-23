@@ -17,15 +17,6 @@ class OrderItem < ApplicationRecord
     return self.quantity * self.product.price if self.product
   end
 
-  def sell(order_quantity)
-    inventory_quantity = self.product.quantity
-    if inventory_quantity > order_quantity
-      self.product.quantity = inventory_quantity - order_quantity
-    else
-      return false
-    end
-  end
-
   def cant_exceed_inventory
     if self.product && self.quantity && ( self.quantity > self.product.quantity )
       errors.add(:quantity, "Cannot add #{self.quantity}. Only #{self.product.quantity} in stock")
