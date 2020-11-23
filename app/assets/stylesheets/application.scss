@@ -107,7 +107,7 @@ main {
 }
 
 //Merch dash and user show views
-.merch-container, .prod-container, .prod-show-container {
+.merch-container, .prod-container, .prod-show-container, .review-container {
   width: 80%;
   display: grid;
   margin-left: auto;
@@ -237,4 +237,68 @@ main {
 
 .prod-description {
   width: 40%;
+}
+
+.ratings {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+//////////////////////////////////////
+
+//New review page
+.review-container {
+  width: 60%;
+  display: grid;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+//CSS for star rating
+.rating {
+  margin: 25px 0 25px 0;
+}
+
+.hide {
+  display: none;
+}
+
+.clear {
+  float: none;
+  clear: both;
+}
+
+.rating {
+  width: 90px;
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  text-align: center;
+  position: relative;
+}
+
+.rating > label {
+  float: right;
+  display: inline;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  width: 1.1em;
+  cursor: pointer;
+  color: #000;
+}
+
+.rating > label:hover,
+.rating > label:hover ~ label,
+.rating > input.radio-btn:checked ~ label {
+  color: transparent;
+}
+
+.rating > label:hover:before,
+.rating > label:hover ~ label:before,
+.rating > input.radio-btn:checked ~ label:before,
+.rating > input.radio-btn:checked ~ label:before {
+  content: "\2605";
+  position: absolute;
+  left: 0;
+  color: #FFD700;
 }

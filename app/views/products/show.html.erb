@@ -17,7 +17,7 @@
         <h6>Description:</h6>
         <p><%= @product.description %></p>
         <h6>Seller:</h6>
-        <p><%= link_to @product.user.username, user_path(@product.user) %></p>
+        <p><%= link_to @product.user.username, user_path(@product.user) %> (<%= @product.user.reviews.count %> reviews)</p>
 
         <% if @product.available %>
           <%= form_with model: @order_item, url: product_order_items_path(@product) do |f| %>
@@ -33,7 +33,16 @@
     </section>
     <div class="separator"></div>
     <section class="ratings">
-      <h3><%= @product.reviews.count %> reviews</h3>
+      <% if @product.reviews.count.zero? %>
+        <h3>There are no reviews yet for this product.</h3>
+        <br>
+        <div class="create-button"><%= link_to 'Create a product review', new_product_review_path(@product) %></div>
+      <% else %>
+        <h3><%= @product.reviews.count %> reviews</h3>
+        <% @product.reviews.each do |review| %>
+
+        <% end %>
+      <% end %>
     </section>
   </div>
 </main>
