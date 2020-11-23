@@ -49,4 +49,36 @@ describe CategoriesController do
       must_respond_with :redirect
     end
   end
+
+  describe 'create' do
+    it 'can create a category' do
+      category_hash = {
+          category: {
+              name: 'New Category'
+          }
+      }
+
+      expect {
+        post categories_path, params: category_hash
+      }.must_differ 'Category.count', 1
+
+      must_redirect_to categories_path
+
+      category = Category.find_by(name: "New Category")
+
+      expect(category.name).must_equal "New Category"
+    end
+
+    it 'will not create a category with invalid params' do
+      category_hash = {
+          category: { name: nil}
+      }
+
+      expect {
+        post categories_path, params: category_hash
+      }.wont_change 'Category.count'
+
+      must_respond_with :bad_request
+    end
+  end
 end
