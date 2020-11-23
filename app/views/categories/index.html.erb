@@ -2,7 +2,7 @@
 <% if @categories %>
   <ul>
     <% @categories.each do |category| %>
-    <li><%= category.name.capitalize %></li>
+    <li><%= link_to "#{category.name.capitalize}", category_path(category.id) %></li>
     <% end %>
 </ul>
 <% else %>
