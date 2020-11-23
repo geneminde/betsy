@@ -4,6 +4,7 @@ describe OrderItemsController do
   before do
     @product = products(:product1)
     @order = orders(:order1)
+    @order_item = order_items(:order_item1)
 
     @order_item_data = {
         quantity: 5,
@@ -83,7 +84,6 @@ describe OrderItemsController do
 
   describe "update" do
     before do
-      @order_item = order_items(:order_item1)
       @order_item_hash = {
         order_item: {
           quantity: 5,
@@ -143,10 +143,8 @@ describe OrderItemsController do
 
   describe "destroy" do
     it "destroys an existing order item and redirects" do
-      order_item = order_items(:order_item1)
-
       expect{
-        delete order_item_path(order_item)
+        delete order_item_path(@order_item)
       }.must_change "OrderItem.count", -1
 
       must_respond_with :redirect
@@ -159,5 +157,39 @@ describe OrderItemsController do
 
       must_respond_with :redirect
     end
+  end
+
+  describe "ship" do
+    it "changes order item shipped status if item belongs to logged-in user, and redirects" do
+      perform_login(@order_item.user)
+
+      @order_item.shipped = false
+
+      expect{
+        patch ship_path(@order_item)
+      }.wont_change "OrderItem.count"
+
+      @order_item.reload
+
+      expect(@order_item.shipped).must_equal true
+      must_respond_with :redirect
+    end
+
+    it "doesn't change order item shipped status if item does NOT belong to logged-in user, and redirects" do
+      perform_login()
+
+      @order_item.shipped = false
+
+      expect{
+        patch ship_path(@order_item)
+      }.wont_change "OrderItem.count"
+
+      @order_item.reload
+
+      expect(@order_item.shipped).must_equal false
+      must_respond_with :redirect
+    end
+
+
   end
 end

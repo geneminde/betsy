@@ -11,7 +11,7 @@ order_item2:
 order_item3:
   quantity: 1
   order: order6
-  product: product6
+  product: product1
   shipped: false
 order_item4:
   quantity: 7
@@ -26,7 +26,7 @@ order_item5:
 order_item6:
   quantity: 1
   order: order6
-  product: product6
+  product: product5
   shipped: false
 order_item7:
   quantity: 5

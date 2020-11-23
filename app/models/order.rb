@@ -29,8 +29,17 @@ class Order < ApplicationRecord
     items = self.order_items.where(shipped: false)
     if items.blank?
       self.status = "complete"
-      self.save
+      return self.save
     end
   end
 
+  def filter_items(user)
+    return OrderItem.where(order: self, product: Product.where(user: user))
+  end
+
+  def shared?
+    order_products = self.products
+    users = order_products.distinct.pluck(:user_id)
+    return users.count > 1
+  end
 end

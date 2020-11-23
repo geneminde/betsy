@@ -1,5 +1,5 @@
 class OrderItemsController < ApplicationController
-  skip_before_action :require_login
+  skip_before_action :require_login, except: [:ship]
   before_action :find_order_item, only: [:update, :destroy, :ship]
   before_action :has_cart?, only: [:create, :update]
   before_action :consolidate_cart, only: [:create]
@@ -47,9 +47,19 @@ class OrderItemsController < ApplicationController
   end
 
   def ship
-    if @order_item.mark_shipped
-      flash[:success] = "#{@order_item.name} shipped"
+    if authorized_user
+
+      if @order_item.mark_shipped
+        flash[:success] = "Order ##{@order_item.order.id}: #{@order_item.name} shipped"
+        check_order_completed
+      else
+        flash[:error] = "Order ##{@order_item.order.id}: #{@order_item.name} could not be shipped"
+      end
+
     end
+
+    redirect_to current_user_path(@order_item.user)
+    return
   end
 
   private
@@ -108,6 +118,27 @@ class OrderItemsController < ApplicationController
       flash[:error] = "A problem occurred. Could not update item in cart"
       redirect_back(fallback_location: root_path)
       return
+    end
+  end
+
+  def check_order_completed
+    if @order_item.order.mark_shipped
+      flash[:notice] = "Order ##{@order_item.order.id} is completed"
+    else
+      if @order_item.order.shared?
+        flash[:notice] = "Order ##{@order_item.order.id} is shared with other merchant(s) and has additional items pending shipment"
+      else
+        flash[:notice] = "Order ##{@order_item.order.id} has additional items pending shipment"
+      end
+    end
+  end
+
+  def authorized_user
+    if @current_user == @order_item.user
+      return true
+    else
+      flash[:error] = "You are not authorized to do that"
+      return false
     end
   end
 end
