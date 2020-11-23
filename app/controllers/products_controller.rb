@@ -1,6 +1,5 @@
 class ProductsController < ApplicationController
   skip_before_action :require_login, only: [:index, :show]
-  # before_action :current_user, only: [:index]
   before_action :find_product, only: [:show, :edit, :retire]
 
   def index
@@ -9,7 +8,9 @@ class ProductsController < ApplicationController
 
   def show; end
 
-  def edit; end
+  def edit
+
+  end
 
   def new
     @product = Product.new
@@ -46,7 +47,7 @@ class ProductsController < ApplicationController
   end
 
   def find_product
-    @product = Product.find_by(id: params[:id])
+    @product = Product.find_by(id: params[:id]) || Product.find_by(id: params[:product_id])
     if @product.nil?
       flash[:error] = 'Uh oh! That product could not be found... Please try again.'
       redirect_to products_path
