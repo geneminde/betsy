@@ -1,0 +1,10 @@
+<h2>Categories</h2>
+<% if @categories %>
+  <ul>
+    <% @categories.each do |category| %>
+    <li><%= category.name.capitalize %></li>
+    <% end %>
+</ul>
+<% else %>
+  <p>There are currently no categories</p>
+<% end %>
