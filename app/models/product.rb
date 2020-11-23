@@ -18,6 +18,8 @@ class Product < ApplicationRecord
 
     unless product.is_retired
       product.available = true if product.quantity.positive?
+      product.save
+      return
     end
 
     product.available = false

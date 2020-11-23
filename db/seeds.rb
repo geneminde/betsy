@@ -131,6 +131,9 @@ end
 
 puts 'FINAL SUMMARY:'
 
+puts "Added #{User.count} user records"
+puts "#{user_upload_failures.size} users failed to save"
+
 puts "Added #{Product.count} product records"
 puts "#{product_upload_failures.size} products failed to save"
 

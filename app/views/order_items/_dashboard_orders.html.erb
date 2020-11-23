@@ -1,0 +1,26 @@
+<% if orders %>
+  <div class="orders-container">
+  <% orders.each do |order| %>
+    <table class="table order-table">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">Order Number</th>
+        <th scope="col" >Order Placed</th>
+        <th scope="col" class="text-right">Order Status</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr>
+        <th scope="row"><%= order.id %></th>
+        <td><%= show_date(order.date_placed) %></td>
+        <td class="text-right"><%= order.status.capitalize %></td>
+      </tr>
+
+       <%= render partial: "order_items/dashboard_order_items", locals: { order: order } %>
+
+      </tbody>
+    </table>
+  <% end %>
+  </div>
+<% end %>

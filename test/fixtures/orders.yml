@@ -88,3 +88,33 @@ order10:
   cc_expiry: '11/2021'
   ccv: 491
   billing_zip: 56459
+order11:
+  status: 'pending'
+  customer_name: 'Customer 11'
+  shipping_address: '1234 Anywhere Drive, Anytown, WA 12345'
+  cardholder_name: 'Jane Q. Smith'
+  cc_number: 1234
+  cc_expiry: '12/2022'
+  ccv: 123
+  billing_zip: 12345
+  date_placed: nil
+order12:
+  status: 'paid'
+  customer_name: 'Customer 12'
+  shipping_address: '1235 Anywhere Drive, Anytown, WA 12345'
+  cardholder_name: 'Jon Q. Smith'
+  cc_number: 5678
+  cc_expiry: '12/2022'
+  ccv: 456
+  billing_zip: 56789
+  date_placed: "2020-11-23 00:31:42.264007"
+order13:
+  status: 'paid'
+  customer_name: 'Customer 13'
+  shipping_address: '1235 Anywhere Drive, Anytown, WA 12345'
+  cardholder_name: 'Jon Q. Smith'
+  cc_number: 5678
+  cc_expiry: '12/2022'
+  ccv: 456
+  billing_zip: 56789
+  date_placed: "2020-11-23 00:31:42.264007"

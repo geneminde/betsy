@@ -117,26 +117,6 @@ describe OrderItem do
       end
     end
 
-    describe "sell" do
-      it "removes order item quantity from product inventory" do
-        quantity = order_item.quantity
-        product_inventory = order_item.product.quantity
-
-        expected_inventory_after = product_inventory - quantity
-
-        expect(order_item.sell(quantity)).must_equal expected_inventory_after
-      end
-
-      it "does not change inventory if order item quantity is greater than inventory" do
-        product_inventory = order_item.product.quantity
-        order_item.quantity = product_inventory + 10
-
-        order_item.sell(order_item.quantity)
-
-        expect(order_item.product.quantity).must_equal product_inventory
-      end
-    end
-
     describe "mark_shipped" do
       it "sets shipped status to true" do
         order_item.shipped = false
