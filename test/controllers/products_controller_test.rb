@@ -7,23 +7,23 @@ describe ProductsController do
 
   let (:product_hash) {
     {
-        product: {
-            name: 'new_name',
-            description: 'new_description',
-            price: 29,
-            quantity: 22
-        }
+      product: {
+        name: 'new_name',
+        description: 'new_description',
+        price: 29,
+        quantity: 22
+      }
     }
   }
 
   let (:invalid_product_hash) {
     {
-        product: {
-            name: nil,
-            description: 'new_description',
-            price: -29,
-            quantity: 22
-        }
+      product: {
+        name: nil,
+        description: 'new_description',
+        price: -29,
+        quantity: 22
+      }
     }
   }
 
