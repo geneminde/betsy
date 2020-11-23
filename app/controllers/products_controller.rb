@@ -54,12 +54,4 @@ class ProductsController < ApplicationController
         :available,
     )
   end
-
-  def find_product
-    @product = Product.find_by(id: params[:id]) || Product.find_by(id: params[:product_id])
-    if @product.nil?
-      flash[:error] = 'Uh oh! That product could not be found... Please try again.'
-      redirect_to products_path
-    end
-  end
 end

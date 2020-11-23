@@ -16,4 +16,16 @@ class ApplicationController < ActionController::Base
     return @cart = Order.find_by(id: session[:order_id])
   end
 
+  def find_product
+    @product = Product.find_by(id: params[:id]) || Product.find_by(id: params[:product_id])
+
+    if @product.nil?
+      flash[:error] = 'Uh oh! That product could not be found... Please try again.'
+      redirect_back(fallback_location: products_path)
+      return
+    end
+
+    return @product
+  end
+
 end
