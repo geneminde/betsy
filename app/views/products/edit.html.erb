@@ -1,9 +1,9 @@
 <main>
   <div class="prod-container listings">
-    <h2>Add Product to Inventory</h2>
+    <h2>Edit Product: <%= @product.name %></h2>
     <%= render partial: "form",
                locals: {
-                   action: 'Create Product'
+                   action: 'Edit Product'
                }
     %>
   </div>

@@ -72,7 +72,7 @@ describe ProductsController do
       it 'will flash an error message and redirect to current_user_path if product is nil' do
         patch retire_product_path(-1)
         must_respond_with :redirect
-        must_redirect_to current_user_path
+        must_redirect_to products_path
       end
 
       it 'will redirect if product is successfully changed retirement status' do
