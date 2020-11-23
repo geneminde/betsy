@@ -12,9 +12,17 @@ class Order < ApplicationRecord
     self.order_items.blank? ? true : false
   end
 
-  def mark_paid
-    self.status = "paid"
-    self.save
+  def complete_order
+    if self.status == "pending"
+      self.status = "paid"
+      self.order_items.each do |item|
+        product = item.product
+        product.quantity -= item.quantity
+        product.save
+      end
+      self.date_placed = DateTime.now
+      self.save
+    end
   end
 
   def mark_shipped
@@ -22,16 +30,6 @@ class Order < ApplicationRecord
     if items.blank?
       self.status = "complete"
       return self.save
-    end
-  end
-
-  def decrement_inv
-    if self.status == "paid"
-      self.order_items.each do |item|
-        product = item.product
-        product.quantity -= item.quantity
-        product.save
-      end
     end
   end
 
