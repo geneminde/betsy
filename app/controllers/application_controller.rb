@@ -16,4 +16,14 @@ class ApplicationController < ActionController::Base
     return @cart = Order.find_by(id: session[:order_id])
   end
 
+  def flash_validation_errors(model)
+    if model.errors.messages
+      model.errors.messages.each do |field, messages|
+        messages.each do |message|
+          flash[field] = "#{field.capitalize}: #{message}"
+        end
+      end
+    end
+  end
+
 end
