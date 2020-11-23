@@ -40,7 +40,6 @@ class ProductsController < ApplicationController
 
     redirect_to current_user_path
     return
-
   end
 
   private

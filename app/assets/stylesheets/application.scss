@@ -17,7 +17,7 @@
 
 @import "**/*";
 
-//To visualize - can delete this before submission:
+////To visualize - can delete this before submission:
 //* {
 //  border: black 1px solid;
 //}
@@ -31,6 +31,20 @@ body {
 main {
   display: block;
 }
+
+//.navbar-nav > li {
+//  float: left;
+//  position: relative;
+//}
+//
+//.navbar-dark .navbar-nav .nav-item .active a::after {
+//  border-bottom: 5px solid rgba(255, 255, 255, 0.75);
+//  bottom: -10px;
+//  content: " ";
+//  left: 0;
+//  position: absolute;
+//  right: 0;
+//}
 
 .flash-msg__section {
   margin: 1rem 0 1rem 0;
@@ -64,6 +78,33 @@ main {
 
 
 //////////////////////////////////////
+
+//Merch index view (all merchants)
+.merch-summary {
+  display: grid;
+  grid-template-columns: 10% 30% auto;
+  width: 100%;
+  margin: 15px 0 25px 0;
+  align-items: center;
+}
+
+.merch_summary h2 {
+  grid-column: 1;
+}
+
+.merch_summary .basic-info {
+  grid-column: 2 / span 2;
+}
+
+.merch_summary .contact {
+  grid-column: -1;
+  font-size: 0.9rem;
+}
+
+.basic-info .sub-info {
+  color: grey;
+  font-size: 0.8rem;
+}
 
 //Merch dash and user show views
 .merch-container, .prod-container {
@@ -135,6 +176,39 @@ main {
 
 .listings ul li .item {
   margin-left: 10px;
+}
+
+.create-button {
+  cursor: pointer;
+  display: inline-block;
+  margin: 0px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  width: auto;
+  touch-action: manipulation;
+  font-weight: 600;
+  border-radius: 8px;
+  border-width: 2px !important;
+  border-style: solid;
+  outline: none;
+  padding: 7px 15px;
+  transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
+  border-color: #5e60ce;
+  background: transparent;
+}
+
+.create-button a {
+  color: #5e60ce !important;
+}
+
+.create-button a:hover {
+  text-decoration: none;
+}
+
+.create-button a.incomplete:link, .create-button a.incomplete:visited, .create-button a.complete:link, .create-button a.complete:visited {
+  color: #5e60ce !important;
+  text-decoration: none;
 }
 
 //////////////////////////////////////

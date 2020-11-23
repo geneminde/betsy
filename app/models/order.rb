@@ -25,6 +25,16 @@ class Order < ApplicationRecord
     end
   end
 
+  def decrement_inv
+    if self.status == "paid"
+      self.order_items.each do |item|
+        product = item.product
+        product.quantity -= item.quantity
+        product.save
+      end
+    end
+  end
+
   def filter_items(user)
     return OrderItem.where(order: self, product: Product.where(user: user))
   end

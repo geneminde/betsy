@@ -3,12 +3,20 @@
   <div>Seller since <%= user.created_at.strftime("%B %-d, %Y") %></div>
   <div class="merch-stats">
     <ul>
-      <li><%= user.products.count %> products currently listed | </li>
-      <li><%= user.order_items.count %> items sold | </li>
-      <li>TO:DO: Average rating or num ratings</li>
+      <% if defined? num_items %>
+        <li><%= user.products.where(is_retired: false).count %> products currently listed | </li>
+        <li><%= user.order_items.count %> items sold | </li>
+        <li>TO:DO: Average rating or num ratings</li>
+      <% else %>
+        <li><%= user.products.where(is_retired: false).count %> products currently listed | </li>
+        <li>TO:DO: Average rating or num ratings</li>
+      <% end %>
     </ul>
   </div>
   <br>
   <div><%= contact %></div>
+  <% if defined? num_items %>
+    <div class="create-button"><%= link_to 'Create a new product', new_product_path %></div>
+  <% end %>
 </section>
 <div class="separator"></div>

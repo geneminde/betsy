@@ -10,7 +10,7 @@
     <%=  f.select :quantity, options_for_select(1..@product.quantity) %>
     <%= f.submit "Add to cart" %>
   <% end %>
-<% else %>
+<% elsif @product.quantity.zero? && !@product.is_retired %>
   <p>Item is temporarily unavailable</p>
 <% end %>
 
