@@ -1,21 +1,37 @@
 <main>
-  <div class="prod-container listings">
-    <h2><%= @product.name %>, $<%= @product.price %></h2>
-    <p class=<%= @product.available ? "not-retired" : "retired" %>>
-      <%= image_tag @product.photo_url, alt: "Product photo description" %>
-    </p>
-    <p><%= @product.description %></p>
-    <p>Sold by: <%= link_to @product.user.username, user_path(@product.user) %></p>
+  <div class="prod-show-container">
+    <section class="prod-main">
+      <div class=<%= @product.available ? "not-retired" : "retired" %>>
+        <%= image_tag @product.photo_url, alt: "Product photo description" %>
+      </div>
+      <div class="prod-description">
+        <h2><%= @product.name %></h2>
+        <h4>$<%= @product.price %></h4>
+        <p>
+          <% if @product.quantity.zero? %>
+            Sold Out
+          <% else %>
+            ✔️ In-Stock
+          <% end %>
+        </p>
+        <h6>Description:</h6>
+        <p><%= @product.description %></p>
+        <h6>Seller:</h6>
+        <p><%= link_to @product.user.username, user_path(@product.user) %></p>
 
-    <% if @product.available %>
-      <%= form_with model: @order_item, url: product_order_items_path(@product) do |f| %>
-        <%= f.label :"Get it before it's gone!" %>
-        <%=  f.select :quantity, options_for_select(1..@product.quantity) %>
-        <%= f.submit "Add to cart" %>
-      <% end %>
-    <% elsif @product.quantity.zero? && !@product.is_retired %>
-      <p>Item is temporarily unavailable</p>
-    <% end %>
+        <% if @product.available %>
+          <%= form_with model: @order_item, url: product_order_items_path(@product) do |f| %>
+            <%= f.label :"Get it before it's gone!" %>
+            <%=  f.select :quantity, options_for_select(1..@product.quantity) %>
+            <br>
+            <%= f.submit "Add to cart" %>
+          <% end %>
+        <% elsif @product.quantity.zero? && !@product.is_retired %>
+          <p>Item is temporarily unavailable</p>
+        <% end %>
+      </div>
+    </section>
+    <div class="separator"></div>
     <section class="ratings">
       <h3><%= @product.reviews.count %> reviews</h3>
     </section>

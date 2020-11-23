@@ -107,7 +107,7 @@ main {
 }
 
 //Merch dash and user show views
-.merch-container, .prod-container {
+.merch-container, .prod-container, .prod-show-container {
   width: 80%;
   display: grid;
   margin-left: auto;
@@ -175,7 +175,7 @@ main {
   margin-left: 10px;
 }
 
-.create-button {
+.create-button, input[type=submit] {
   cursor: pointer;
   display: inline-block;
   margin: 0px;
@@ -195,7 +195,7 @@ main {
   background: transparent;
 }
 
-.create-button a {
+.create-button a, input[type=submit] {
   color: #5e60ce !important;
 }
 
@@ -211,11 +211,6 @@ main {
 //////////////////////////////////////
 
 //Product index page
-.prod-container {
-  justify-content: center;
-  align-items: center;
-}
-
 .prod-container h1, .prod-container h2, .prod-container h3 {
   text-align: center;
 }
@@ -228,7 +223,18 @@ main {
 //////////////////////////////////////
 
 //Product show page
-p img {
-  max-height: 200px;
+.prod-main {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.prod-show-container img {
+  max-height: 300px;
   width: auto;
+}
+
+.prod-description {
+  width: 40%;
 }
