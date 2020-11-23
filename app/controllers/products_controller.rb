@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   skip_before_action :require_login, only: [:index, :show]
-  before_action :find_product, only: [:show, :edit, :retire]
+  before_action :find_product, only: [:show, :edit, :retire, :update]
 
   def index
     @products = Product.all
@@ -9,6 +9,17 @@ class ProductsController < ApplicationController
   def show; end
 
   def edit; end
+
+  def update
+    if @product.update(product_params)
+      redirect_to current_user_path
+      return
+    else
+      flash.now[:error] = "A problem occurred: Could not update #{@work.name}"
+      render :edit
+      return
+    end
+  end
 
   def new
     @product = Product.new
