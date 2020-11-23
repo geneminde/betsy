@@ -1,11 +1,12 @@
 <% if orders %>
-  <div class="orders-container">
+  <div class="orders container">
   <% orders.each do |order| %>
+
     <table class="table order-table">
       <thead class="thead-dark">
       <tr>
         <th scope="col">Order Number</th>
-        <th scope="col" >Order Placed</th>
+        <th scope="col">Order Placed</th>
         <th scope="col" class="text-right">Order Status</th>
       </tr>
       </thead>
@@ -18,9 +19,10 @@
       </tr>
 
        <%= render partial: "order_items/dashboard_order_items", locals: { order: order } %>
-
       </tbody>
     </table>
   <% end %>
   </div>
+  <% else %>
+  <p>out loop</p>
 <% end %>

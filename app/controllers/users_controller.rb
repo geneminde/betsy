@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     end
 
     # # BELOW IS FOR TESTING PURPOSES ONLY - TO DELETE BEFORE FINAL SUBMISSION
-    session[:user_id] = User.find(4).id
+    session[:user_id] = User.find(10).id
     redirect_to root_path
 
     # auth_hash = request.env['omniauth.auth']

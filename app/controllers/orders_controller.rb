@@ -1,9 +1,10 @@
 class OrdersController < ApplicationController
-  skip_before_action :require_login
+  skip_before_action :require_login, except: [:index]
   before_action :find_order, only: [:show, :confirmation]
 
+
   def index
-    orders = Order.distinct.user_orders(@current_user)
+    @orders_by_status = Order.to_status_hash(@current_user)
   end
 
   def show

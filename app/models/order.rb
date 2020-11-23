@@ -1,4 +1,5 @@
 class Order < ApplicationRecord
+  STATUS = %w[pending paid complete cancelled]
   has_many :order_items
   has_many :products, through: :order_items
 
@@ -41,4 +42,17 @@ class Order < ApplicationRecord
     users = order_products.distinct.pluck(:user_id)
     return users.count > 1
   end
+
+  def self.to_status_hash(user)
+    orders_by_status_hash = {}
+
+    STATUS.each do |status|
+      unless status == "pending"
+        orders_by_status_hash[status] = self.user_orders(user).where(status: status).order(date_placed: :desc)
+      end
+    end
+
+    return orders_by_status_hash
+  end
+
 end
