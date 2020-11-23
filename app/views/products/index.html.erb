@@ -2,10 +2,10 @@
   <div class="prod-container listings">
     <h2>Planetary Products</h2>
     <ul class="listing-items">
-      <% @products.each do |product| %>
-        <li class=<% product.available ? "retired" : "not-retired" %>>
+      <% Product.where(is_retired: false).each do |product| %>
+          <li class=<%= product.available ? "not-retired" : "retired" %>>
           <div>
-            <% product_style = product.available? ? 'available' : 'unavailable' %>
+            <%# product_style = product.available? ? 'available' : 'unavailable' %>
             <%= image_tag product.photo_url, alt: "Product image" %>
             <br>
             <%= link_to product.name.capitalize, product_path(product) %>

@@ -18,9 +18,9 @@
 @import "**/*";
 
 ////To visualize - can delete this before submission:
-//* {
-//  border: black 1px solid;
-//}
+* {
+  border: black 1px solid;
+}
 
 
 //All pages
@@ -168,9 +168,6 @@ main {
 }
 
 .retired img {
-  max-height: 100px;
-  width: auto;
-  margin: 10px 0 5px 0;
   opacity: 0.5;
 }
 
