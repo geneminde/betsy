@@ -4,6 +4,13 @@ describe ProductsController do
 
   let (:user) { User.first }
   let (:product) { Product.first }
+  let (:product_hash) {
+    {
+        product: {
+            name: 'new_name'
+        }
+    }
+  }
 
   describe "index" do
     it "can get the index path" do
@@ -38,10 +45,47 @@ describe ProductsController do
 
   ##################################################
 
+  # Guest user tests
+  describe 'guest user' do
+    describe 'edit' do
+      it 'products#edit: will not allow a guest user to edit and will redirect' do
+        get edit_product_path(product.id)
+        expect(flash[:error]).must_equal 'Please log in to perform this action.'
+        must_redirect_to root_path
+      end
+    end
+
+    describe 'update' do
+      it 'products#update: will not allow a guest user to update and will redirect' do
+        expect { patch product_path(product.id), params: product_hash }.wont_change 'Product.count'
+        expect(flash[:error]).must_equal 'Please log in to perform this action.'
+        must_redirect_to root_path
+      end
+    end
+
+    describe 'retire' do
+      it 'products#retire: will not allow a guest user to retire a product and will redirect' do
+        patch retire_product_path(product)
+        expect(flash[:error]).must_equal 'Please log in to perform this action.'
+        must_redirect_to root_path
+      end
+    end
+  end
+
+  ##################################################
+
   # Logged-in user tests
   describe 'logged-in merchant user' do
     before do
       perform_login(user)
+    end
+
+    describe 'edit' do
+
+    end
+
+    describe 'update' do
+
     end
 
     describe 'retire' do
