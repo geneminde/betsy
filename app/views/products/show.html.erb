@@ -16,5 +16,8 @@
     <% elsif @product.quantity.zero? && !@product.is_retired %>
       <p>Item is temporarily unavailable</p>
     <% end %>
+    <section class="ratings">
+      <h3><%= @product.reviews.count %> reviews</h3>
+    </section>
   </div>
 </main>
