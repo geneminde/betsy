@@ -1,0 +1,20 @@
+<table class="table order-table">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col">Order # <%= order.id %></th>
+    <th scope="col">Order Placed</th>
+    <th scope="col" class="text-right">Order Status</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr>
+    <th scope="row"><%= link_to "Order Details", merchant_order_path(order) %></th>
+    <td><%= show_date(order.date_placed) %></td>
+    <td class="text-right"><%= order.status.capitalize %></td>
+  </tr>
+
+  <%= render partial: "order_items/merchant_order_items", locals: {order: order } %>
+
+  </tbody>
+</table>

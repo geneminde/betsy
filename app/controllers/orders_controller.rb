@@ -1,11 +1,13 @@
 class OrdersController < ApplicationController
-  skip_before_action :require_login, except: [:index]
-  before_action :find_order, only: [:show, :confirmation]
+  skip_before_action :require_login, except: [:index, :merchant_order]
+  before_action :find_order, only: [:merchant_order, :show, :confirmation]
 
 
   def index
     @orders_by_status = Order.to_status_hash(@current_user)
   end
+
+  def merchant_order; end
 
   def show
     @order = Order.find_by(id: params[:id])

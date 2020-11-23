@@ -14,10 +14,10 @@
     <tbody>
     <% order.filter_items(@current_user).each do |item| %>
       <tr>
-        <th scope="row"><%= image_tag item.product.photo_url, alt: "Product photo description" %></th>
+        <th scope="row"><%= link_to image_tag(item.product.photo_url, alt: "Product photo description"), product_path(item.product)  %></th>
         <td><%= link_to item.name, product_path(item.product) %></td>
         <td><%= item.quantity %></td>
-        <td><%= item.subtotal %></td>
+        <td>$<%= item.subtotal %></td>
 
         <% if item.shipped %>
           <td>Shipped</td>
