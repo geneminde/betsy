@@ -2,6 +2,9 @@ require "test_helper"
 
 describe ProductsController do
 
+  let (:user) { User.first }
+  let (:product) { Product.first }
+
   describe "index" do
     it "can get the index path" do
       # Act
@@ -19,7 +22,6 @@ describe ProductsController do
   end
 
   describe 'show' do
-
     it "will redirect for an invalid path" do
       # Act
       get product_path(-1)
@@ -31,6 +33,29 @@ describe ProductsController do
       product = products(:product1)
       get product_path(product)
       must_respond_with :success
+    end
+  end
+
+  ##################################################
+
+  # Logged-in user tests
+  describe 'logged-in merchant user' do
+    before do
+      perform_login(user)
+    end
+
+    describe 'retire' do
+      it 'will flash an error message and redirect to current_user_path if product is nil' do
+        patch retire_product_path(-1)
+        must_respond_with :redirect
+        must_redirect_to current_user_path
+      end
+
+      it 'will redirect if product is successfully changed retirement status' do
+        patch retire_product_path(product)
+        must_respond_with :redirect
+        must_redirect_to current_user_path
+      end
     end
   end
 

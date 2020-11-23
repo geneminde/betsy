@@ -31,8 +31,6 @@ describe User do
     end
 
     it 'has many order items through products' do
-
-
       expect(user.order_items.count).must_equal 2
 
       user.order_items.each do |order_item|
