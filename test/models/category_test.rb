@@ -42,4 +42,16 @@ describe Category do
       expect(category.products.find_by(id: product_id)).must_equal product
     end
   end
+
+  describe 'active_products' do
+    it 'returns a collection of products that are active' do
+      category = categories(:category1)
+      actives = category.active_products
+
+      expect(actives.count).must_equal 3
+      actives.each do |product|
+        expect(product.is_retired?).must_equal false
+      end
+    end
+  end
 end
