@@ -16,9 +16,7 @@ class Order < ApplicationRecord
     if self.status == "pending"
       self.status = "paid"
       self.order_items.each do |item|
-        product = item.product
-        product.quantity -= item.quantity
-        product.save
+        item.product.decrement("quantity", item.quantity)
       end
       self.date_placed = DateTime.now
       self.save
@@ -32,6 +30,7 @@ class Order < ApplicationRecord
       return self.save
     end
   end
+
 
   def filter_items(user)
     return OrderItem.where(order: self, product: Product.where(user: user))
