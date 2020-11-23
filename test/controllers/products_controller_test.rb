@@ -139,12 +139,10 @@ describe ProductsController do
         original_price = product.price
         original_description = product.description
         original_quantity = product.quantity
-        p product
+
         expect {
           patch product_path(product.id), params: invalid_product_hash
         }.wont_change 'Product.count'
-        p product
-        expect(flash.now[:error]).must_equal "A problem occurred: Could not update product: #{original_name}"
 
         product.reload
 
