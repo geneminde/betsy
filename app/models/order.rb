@@ -31,7 +31,7 @@ class Order < ApplicationRecord
 
   def shared?
     order_products = self.products
-    users = order_products.uniq.pluck(:user_id)
+    users = order_products.distinct.pluck(:user_id)
     return users.count > 1
   end
 end
