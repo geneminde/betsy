@@ -43,4 +43,21 @@ class ActiveSupport::TestCase
     user = User.find_by(uid: user.uid)
     return user
   end
+
+  def create_cart(product = nil)
+    product ||= products(:product3)
+
+    product_id = product.id
+    item_quantity = 10
+
+    product_info = {
+      "product_id": product_id,
+      "quantity": item_quantity
+    }
+
+    post order_items_path, params: product_info
+
+    active_cart = Order.find_by(id: session[:order_id])
+    return active_cart
+  end
 end

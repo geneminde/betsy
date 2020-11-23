@@ -83,7 +83,7 @@ class OrderItemsController < ApplicationController
       order_item.order_id = @cart.id
     else  # If order has been created with items in cart
 
-      order = Order.create()
+      order = Order.create(status: "pending")
       order.order_items << order_item
       session[:order_id] = order.id
     end
