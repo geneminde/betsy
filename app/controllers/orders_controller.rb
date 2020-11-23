@@ -2,6 +2,10 @@ class OrdersController < ApplicationController
   skip_before_action :require_login
   before_action :find_order, only: [:show, :confirmation]
 
+  def index
+    orders = Order.distinct.user_orders(@current_user)
+  end
+
   def show
     @order = Order.find_by(id: params[:id])
 
