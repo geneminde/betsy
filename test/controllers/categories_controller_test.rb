@@ -81,4 +81,35 @@ describe CategoriesController do
       must_respond_with :bad_request
     end
   end
+
+  describe 'edit' do
+    it 'gets the edit page for when a user is logged-in' do
+      perform_login
+
+      category = categories(:category1)
+      id = category.id
+
+      get edit_category_path(id)
+
+      must_respond_with :success
+    end
+
+    it 'redirects to categories_path if a user is not logged-in' do
+      category = categories(:category1)
+      id = category.id
+
+      get edit_category_path(id)
+
+      must_respond_with :redirect
+    end
+
+    it 'will respond with redirect for an invalid id' do
+      perform_login
+
+      id = -1
+
+      get edit_category_path(id)
+      must_respond_with :redirect
+    end
+  end
 end

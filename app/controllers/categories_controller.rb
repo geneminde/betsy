@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  skip_before_action :require_login, except: [:new]
+  skip_before_action :require_login, except: [:new, :create, :edit]
 
   def index
     @categories = Category.all
@@ -30,6 +30,17 @@ class CategoriesController < ApplicationController
       return
     end
   end
+
+  def edit
+    @category = Category.find_by(id: params[:id])
+
+    if @category.nil?
+      flash[:error] = "Category does not exist"
+      redirect_to categories_path
+      return
+    end
+  end
+
 
   private
 
