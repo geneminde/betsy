@@ -2,8 +2,8 @@ require "test_helper"
 
 describe ProductsController do
 
-  let (:user) { User.first }
-  let (:product) { Product.first }
+  let(:user) { User.first }
+  let(:product) { Product.first }
 
   describe "index" do
     it "can get the index path" do
@@ -32,6 +32,30 @@ describe ProductsController do
     it 'can get a valid product' do
       product = products(:product1)
       get product_path(product)
+      must_respond_with :success
+    end
+  end
+
+  describe 'edit' do
+    it 'can get the products path' do
+      get edit_product_path(product)
+
+      must_respond_with :found
+    end
+
+    it 'shows an error for invalid product path' do
+      get edit_product_path(-1)
+
+      must_respond_with :redirect
+    end
+  end
+
+  describe 'new' do
+    it 'works' do
+
+
+      get new_product_path
+
       must_respond_with :success
     end
   end
