@@ -4,8 +4,11 @@ class Product < ApplicationRecord
   has_many :orders, through: :order_items
 
   validates :name, :description,
-            presence: true,
-            uniqueness: true
+            uniqueness: true,
+            on: :create
+
+  validates :name, :description,
+            presence: true
 
   validates :price, :quantity,
             presence: true,
