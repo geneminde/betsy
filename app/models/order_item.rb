@@ -32,14 +32,6 @@ class OrderItem < ApplicationRecord
     end
   end
 
-  def already_in_cart?
-    @cart = Order.find_by(id: session[:order_id])
-
-    if @cart
-      return @cart.products.include?(self.product)
-    end
-  end
-
   def mark_shipped
     self.shipped = true
     return self.save
