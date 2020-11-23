@@ -7,14 +7,13 @@ class OrdersController < ApplicationController
 
     if @order.nil? || @order.empty_cart?
       redirect_to cart_path
-
     end
   end
 
   def edit
     @order = Order.find_by(id: session[:order_id])
-    if @order.empty_cart?
-      flash[:error] = "You must add an item to your cart.html.erb to checkout"
+    if @order.nil?
+      flash[:error] = "You must add an item to your cart to checkout"
       redirect_to root_path
       return
     end
@@ -24,8 +23,9 @@ class OrdersController < ApplicationController
     @order = Order.find_by(id: session[:order_id])
     if @order.nil?
       flash[:warning] = "Cart empty"
+      redirect_to cart_path
+      return
     elsif @order.update(order_params)
-      session[:order_id] = nil
       @order.complete_order
       redirect_to order_confirmation_path(order_id: @order.id)
       return
@@ -37,10 +37,15 @@ class OrdersController < ApplicationController
   end
 
   def confirmation
-    @order = Order.find_by(id: params[:order_id])
+    @order = Order.find_by(id: session[:order_id])
     if @order.nil?
-      flash[:error] = "Something went wrong while processing your order"
+      flash[:error] = "You cannot view this order"
       redirect_to root_path
+    elsif @order.status != "paid"
+      flash[:error] = "This order has not been completed"
+      redirect_to root_path
+    else
+      session[:order_id] = nil
     end
   end
 
