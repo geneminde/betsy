@@ -33,4 +33,20 @@ describe CategoriesController do
       must_redirect_to root_path
     end
   end
+
+  describe 'new' do
+    it 'can get the form to create a new category if logged-in' do
+      perform_login
+
+      get new_category_path
+
+      must_respond_with :success
+    end
+
+    it 'redirects to root_path if a user is not logged in' do
+      get new_category_path
+
+      must_respond_with :redirect
+    end
+  end
 end

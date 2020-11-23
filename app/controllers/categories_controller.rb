@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  skip_before_action :require_login
+  skip_before_action :require_login, except: [:new]
 
   def index
     @categories = Category.all
@@ -13,5 +13,7 @@ class CategoriesController < ApplicationController
     end
   end
 
-
+  def new
+    @category = Category.new
+  end
 end
