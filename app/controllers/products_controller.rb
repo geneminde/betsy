@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
       redirect_to current_user_path
       return
     else
-      flash.now[:error] = "A problem occurred: Could not update #{@work.name}"
+      flash.now[:error] = "A problem occurred: Could not update product: #{@product.name}"
       render :edit
       return
     end

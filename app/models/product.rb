@@ -3,6 +3,14 @@ class Product < ApplicationRecord
   belongs_to :user
   has_many :orders, through: :order_items
 
+  validates :name, :description,
+            presence: true,
+            uniqueness: true
+
+  validates :price, :quantity,
+            presence: true,
+            numericality: { greater_than_or_equal_to: 0 }
+
   def in_stock?(order_quantity)
     inventory_quantity = self.quantity
     return inventory_quantity > order_quantity

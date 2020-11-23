@@ -4,14 +4,32 @@ describe ProductsController do
 
   let (:user) { User.first }
   let (:product) { Product.first }
+
   let (:product_hash) {
     {
         product: {
-            name: 'new_name'
+            name: 'new_name',
+            description: 'new_description',
+            price: 29,
+            quantity: 22
         }
     }
   }
 
+  let (:invalid_product_hash) {
+    {
+        product: {
+            name: nil,
+            description: 'new_description',
+            price: -29,
+            quantity: 22
+        }
+    }
+  }
+
+  ##################################################
+
+  # General functionality outside of auth
   describe "index" do
     it "can get the index path" do
       # Act
@@ -81,11 +99,60 @@ describe ProductsController do
     end
 
     describe 'edit' do
+      it 'responds with success when getting the edit page for an existing, valid product' do
+        get edit_product_path(product.id)
+        must_respond_with :success
+      end
 
+      it 'responds with redirect when getting the edit page for a non-existing product' do
+        get edit_product_path(-1)
+        must_respond_with :redirect
+        must_redirect_to products_path
+      end
     end
 
     describe 'update' do
+      it 'can update an existing product with valid information and redirect' do
+        expect {
+          patch product_path(product.id), params: product_hash
+        }.wont_change 'Product.count'
 
+        product.save
+        product.reload
+
+        expect(product.name).must_equal product_hash[:product][:name]
+
+        must_respond_with :redirect
+        must_redirect_to current_user_path
+      end
+
+      it 'does not update product if given an invalid id and redirects' do
+        expect {
+          patch product_path(-1), params: product_hash
+        }.wont_change 'Product.count'
+
+        expect(flash.now[:error]).must_equal 'Uh oh! That product could not be found... Please try again.'
+      end
+
+      it 'does not patch product if the form data violates Product validations' do
+        original_name = product.name
+        original_price = product.price
+        original_description = product.description
+        original_quantity = product.quantity
+
+        expect {
+          patch product_path(product.id), params: invalid_product_hash
+        }.wont_change 'Product.count'
+
+        expect(flash.now[:error]).must_equal "A problem occurred: Could not update product: #{original_name}"
+
+        product.reload
+
+        expect(product.name).must_equal original_name
+        expect(product.price).must_equal original_price
+        expect(product.description).must_equal original_description
+        expect(product.quantity).must_equal original_quantity
+      end
     end
 
     describe 'retire' do
