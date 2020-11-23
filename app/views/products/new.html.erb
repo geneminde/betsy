@@ -1,6 +1,10 @@
 <main>
   <div class="prod-container listings">
     <h2>Add Product to Inventory</h2>
-    <%= render partial: "form" %>
+    <%= render partial: "form",
+               locals: {
+                   action: 'Create Product'
+               }
+    %>
   </div>
 </main>
