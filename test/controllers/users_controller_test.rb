@@ -30,7 +30,7 @@ describe UsersController do
         uid: 123
       )
 
-      expect{
+      expect {
         perform_login(new_user)
       }.must_change 'User.count', 1
 
@@ -55,7 +55,7 @@ describe UsersController do
         uid: 123
       )
 
-      expect{
+      expect {
         perform_login(new_user)
       }.wont_change 'User.count'
 
