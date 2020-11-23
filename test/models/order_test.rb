@@ -7,6 +7,44 @@ describe Order do
         status: 'pending'
     )
   }
+  describe 'initialize' do
+
+    it 'can be initialized' do
+      order = Order.new
+      expect(order.valid?).must_equal true
+    end
+
+    it 'will have the required fields' do
+
+      order_fields = [:status, :customer_name, :shipping_address, :cardholder_name,
+                      :cc_number, :cc_expiry, :ccv, :billing_zip, :date_placed]
+
+      order_fields.each do |field|
+        expect(empty_order).must_respond_to field
+      end
+    end
+
+  end
+
+  describe 'validations' do
+
+  end
+
+  describe 'relations' do
+    it 'has many order_items' do
+      order = orders(:order11)
+      order.order_items.each do |item|
+        expect(item).must_be_instance_of OrderItem
+      end
+    end
+
+    it 'has many products through order_items' do
+      order = orders(:order11)
+      order.products.each do |product|
+        expect(product).must_be_instance_of Product
+      end
+    end
+  end
 
   describe 'subtotal' do
     it 'returns the sum of the product prices in the cart.html.erb' do

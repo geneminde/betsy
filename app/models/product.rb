@@ -16,13 +16,13 @@ class Product < ApplicationRecord
     product = self
     product.is_retired = (product.is_retired == true ? false : true)
 
-
     unless product.is_retired
       product.available = true if product.quantity.positive?
+      product.save
+      return
     end
 
     product.available = false
-
     product.save
   end
 end
