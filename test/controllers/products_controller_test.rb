@@ -187,11 +187,11 @@ describe ProductsController do
     describe 'create' do
       it "creates a product with valid data" do
 
-        new_product = {product: {name: "oxygen", price: '50', quantity: '10'}}
+        new_product = { product: { name: "oxygen", price: '50', quantity: '10'}}
 
         expect {
           post products_path, params: new_product
-        }.must_change "Product.count", 1
+        }.must_change 'Product.count', 1
 
         new_product_id = Product.find_by(name: "oxygen").id
 
