@@ -1,12 +1,12 @@
 class CategoriesController < ApplicationController
   skip_before_action :require_login, except: [:new, :create, :edit, :update]
+  before_action :find_category, only: [:show, :edit, :update]
 
   def index
     @categories = Category.all
   end
 
   def show
-    @category = Category.find_by(id: params[:id])
     if @category.nil?
       flash[:warning] = "Invalid category"
       redirect_to root_path
@@ -32,8 +32,6 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    @category = Category.find_by(id: params[:id])
-
     if @category.nil?
       flash[:error] = "Category does not exist"
       redirect_back(fallback_location: current_user_path)
@@ -42,8 +40,6 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    @category = Category.find_by(id: params[:id])
-
     if @category.nil?
       flash[:error] = "Category does not exist"
       redirect_back(fallback_location: current_user_path)
@@ -64,5 +60,9 @@ class CategoriesController < ApplicationController
 
   def category_params
     return params.require(:category).permit(:name)
+  end
+
+  def find_category
+    @category = Category.find_by(id: params[:id])
   end
 end
