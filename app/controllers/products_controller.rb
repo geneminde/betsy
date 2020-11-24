@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   skip_before_action :require_login, only: [:index, :show]
   before_action :find_product, only: [:show, :edit, :retire, :update]
-  before_action :verify_authorized, except: [:index, :new, :create]
+  before_action :verify_authorized, only: [:edit, :update, :retire]
 
   def index
     @products = Product.all

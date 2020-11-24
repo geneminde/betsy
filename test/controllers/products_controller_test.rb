@@ -2,8 +2,8 @@ require 'test_helper'
 
 describe ProductsController do
 
-  let(:user) { User.first }
-  let(:product) { Product.first }
+  let (:product) { Product.where(is_retired: false).first }
+  let (:user) { User.find_by(id: product.user_id) }
 
   let (:product_hash) {
     {
@@ -57,7 +57,7 @@ describe ProductsController do
     end
 
     it 'can get a valid product' do
-      product = products(:product1)
+      product
       get product_path(product)
       must_respond_with :success
     end
