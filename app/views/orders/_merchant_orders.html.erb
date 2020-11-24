@@ -1,0 +1,9 @@
+<% if orders %>
+  <div class="orders container">
+  <% orders.each do |order| %>
+
+    <%= render partial: "orders/merchant_show_order", locals: {order: order } %>
+
+  <% end %>
+  </div>
+<% end %>

@@ -2,7 +2,7 @@ class OrderItemsController < ApplicationController
   skip_before_action :require_login, except: [:ship]
   before_action :find_order_item, only: [:update, :destroy, :ship]
   before_action :has_cart?, only: [:create, :update]
-  before_action :consolidate_cart, only: [:create]
+  before_action :consolidate_cart, only: [:create, :update]
 
   # Add item to order/cart.html.erb
   def create
@@ -20,7 +20,7 @@ class OrderItemsController < ApplicationController
       return
     else
       flash[:error] = "A problem occurred. Could not add item to cart"
-      flash[:validation_error] = @order_item.errors.messages
+      flash_validation_errors(@order_item)
       redirect_back(fallback_location: root_path)
       return
     end
@@ -40,7 +40,7 @@ class OrderItemsController < ApplicationController
       return
     else
       flash[:error] = "A problem occurred. Could not remove item from cart"
-      flash[:validation_error] = @order_item.errors.messages
+      flash_validation_errors(@order_item)
       redirect_back(fallback_location: root_path)
       return
     end
@@ -93,7 +93,7 @@ class OrderItemsController < ApplicationController
     @product = Product.find_by(id: params[:product_id])
 
     if @cart && @cart.products.include?(@product)
-      existing_order_item = OrderItem.where(product: @product, order: @cart)
+      existing_order_item = OrderItem.find_by(product: @product, order: @cart)
 
       # Modify the params hash to work with create and update actions
       params[:order_item] = { quantity: params[:quantity] }
@@ -106,11 +106,12 @@ class OrderItemsController < ApplicationController
     if @cart && order_item
       if order_item.update(quantity: params[:order_item][:quantity].to_i)
         flash[:success] = "Successfully updated order cart"
+        puts "in save update"
         redirect_to order_path(@cart.id)
         return
       else
         flash[:error] = "A problem occurred. Could not update item in cart"
-        flash[:validation_error] = order_item.errors.messages
+        flash_validation_errors(order_item)
         redirect_back(fallback_location: root_path)
         return
       end
