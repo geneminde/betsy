@@ -18,14 +18,14 @@ class Product < ApplicationRecord
             presence: true,
             numericality: { greater_than_or_equal_to: 0 }
   
-  def in_stock?(order_quantity)
-    inventory_quantity = quantity
-    return inventory_quantity > order_quantity
-  end
+  # def in_stock?(order_quantity)
+  #   inventory_quantity = quantity
+  #   return inventory_quantity > order_quantity
+  # end
 
-  def available?
-    quantity.positive? ? :available : :unavailable
-  end
+  # def available?
+  #   quantity.positive? ? :available : :unavailable
+  # end
 
   def toggle_retire
     product = self
