@@ -17,7 +17,7 @@ class Order < ApplicationRecord
     if self.status == "pending"
       self.status = "paid"
       self.order_items.each do |item|
-        item.product.decrement("quantity", item.quantity)
+        item.product.decrement!("quantity", item.quantity)
       end
       self.date_placed = DateTime.now
       self.save
@@ -63,7 +63,10 @@ class Order < ApplicationRecord
     return self.filter_items(user).sum { |item| item.subtotal }
   end
 
-  # def self.total_revenue(user)
-  # end
+  def self.total_revenue(user)
+    orders = self.user_orders(user)
+
+    return orders.sum { |order| order.items_subtotal(user) }
+  end
 
 end

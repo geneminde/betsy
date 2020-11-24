@@ -7,6 +7,11 @@ describe Order do
         status: 'pending'
     )
   }
+
+  let(:order) {
+    orders(:order1) # order1 fixture includes multiple order items fixtures (1 and 8) and user fixtures (users 6 and 3, respectively)
+  }
+
   describe 'initialize' do
 
     it 'can be initialized' do
@@ -124,9 +129,6 @@ describe Order do
   end
 
   describe "filter_items(user)" do
-    let(:order) {
-      orders(:order1) # order1 fixture includes multiple order items fixtures (1 and 8) and user fixtures (users 6 and 3, respectively)
-    }
     it "returns order items of one user from a shared order" do
       expect(order.order_items).must_include order_items(:order_item1) # user 6
       expect(order.order_items).must_include order_items(:order_item8) # user 3
@@ -146,7 +148,7 @@ describe Order do
 
   describe "shared?" do
     it "returns true if an order is shared among multiple merchants" do
-      order = orders(:order1) # order1 fixture includes multiple order items fixtures (1 and 8) and user fixtures (users 6 and 3, respectively)
+      # order1 fixture includes multiple order items fixtures (1 and 8) and user fixtures (users 6 and 3, respectively)
 
       expect(order.shared?).must_equal true
     end
@@ -178,5 +180,48 @@ describe Order do
       end
     end
   end
+
+  describe "items_subtotal(user)" do
+    it "returns the subtotal for user's items in a shared order" do
+      # order1 fixture includes multiple order items fixtures (1 and 8) and user fixtures (users 6 and 3, respectively)
+
+
+      order_item1 = order_items(:order_item1)
+      user_in_order_item1 = users(:user6)
+      expected_subtotal = order_item1.quantity * order_item1.product.price
+
+      expect(order.items_subtotal(user_in_order_item1)).must_equal expected_subtotal
+    end
+
+    it "returns 0 if order doesn't include users's product" do
+      user_not_in_order = users(:user1)
+
+      expect(order.items_subtotal(user_not_in_order)).must_equal 0
+    end
+  end
+
+  describe "self.total_revenue(user)" do
+    it "returns the total price of all of user's product included in a shared order" do
+      # user1 has product3 and product8
+      # product3 was included in order4 and order13
+      # product8 was included in order10 and order11
+
+      user = users(:user1)
+      order4_item_subtotal = products(:product3).price * 9
+      order13_item_subtotal = products(:product3).price * 10
+      order10_item_subtotal = products(:product8).price * 7
+      order11_item_subtotal = products(:product8).price * 2
+
+      expected_revenue = order4_item_subtotal + order13_item_subtotal + order10_item_subtotal + order11_item_subtotal
+
+      expect(Order.total_revenue(user)).must_equal expected_revenue
+    end
+
+    it "returns 0 if user product is not included in any orders" do
+      user_wo_orders = users(:user10)
+
+      expect(Order.total_revenue(user_wo_orders)).must_equal 0
+    end
+   end
 end
 

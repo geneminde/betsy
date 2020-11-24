@@ -57,6 +57,7 @@ class ProductsController < ApplicationController
         :description,
         :quantity,
         :available,
+        category_ids: [],
         :user_id
       )
   end
