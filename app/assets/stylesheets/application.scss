@@ -246,13 +246,14 @@ input[type=submit].complete:visited, {
   flex: 0 0 25% !important;
 }
 
-.prod-container .prod_section {
+section.prod-section {
   display: grid;
   justify-items: center;
 }
 
-.prod_section .create-button {
-  justify-self: center;
+section.prod_section div.create-button {
+  padding: 0;
+  font-size: 0.8rem;
 }
 
 //////////////////////////////////////
