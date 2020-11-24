@@ -4,10 +4,15 @@
 <% else %>
   <br>
   <h5>
-    <%= subject.reviews.count %> <%= subject.reviews.count > 1 ? 'reviews' : 'review' %> (TO:DO: DISPLAY AVG REVIEW)
+    Average Rating:
     <% subject.average_rating.to_i.times do %>
       <span class="star-rating">☆</span>
     <% end %>
+    (<%= subject.average_rating %>)
+    <br><br>
+    <div class="sub-info">
+      <%= subject.reviews.count %> <%= subject == @product ? 'product' : 'store' %> <%= subject.reviews.count > 1 ? 'reviews' : 'review' %>
+    </div>
   </h5>
   <br>
   <% subject.reviews.order(updated_at: :desc).each.with_index do |review, index| %>

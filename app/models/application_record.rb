@@ -7,8 +7,8 @@ class ApplicationRecord < ActiveRecord::Base
 
     return nil if total_ratings.blank? || total_items.blank?
 
-    avg_rating = total_ratings / total_items
+    avg_rating = total_ratings.to_f / total_items
 
-    return avg_rating
+    return avg_rating.round(1)
   end
 end
