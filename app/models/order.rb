@@ -48,11 +48,22 @@ class Order < ApplicationRecord
 
     STATUS.each do |status|
       unless status == "pending"
-        orders_by_status_hash[status] = self.user_orders(user).where(status: status).order(date_placed: :desc)
+        orders_by_status_hash[status] = self.user_orders(user).by_status(status)
       end
     end
 
     return orders_by_status_hash
   end
+
+  def self.by_status(status)
+    return self.where(status: status).order(date_placed: :desc)
+  end
+
+  def items_subtotal(user)
+    return self.filter_items(user).sum { |item| item.subtotal }
+  end
+
+  # def self.total_revenue(user)
+  # end
 
 end
