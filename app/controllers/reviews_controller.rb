@@ -20,11 +20,8 @@ class ReviewsController < ApplicationController
       redirect_to product_path(@review.product)
       return
     else
-      # binding.pry
       review_error
       render :new
-      # binding.pry
-      # raise
       return
     end
   end
