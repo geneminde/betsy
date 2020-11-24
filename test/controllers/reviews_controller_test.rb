@@ -126,5 +126,15 @@ describe ReviewsController do
         }.wont_change 'Review.count'
       end
     end
+
+    describe 'verify_auth_review' do
+      it 'will redirect and flash error if a merchant tries to review their own product' do
+        post product_reviews_path(new_product), params: review_hash
+
+        must_respond_with :redirect
+        must_redirect_to product_path(new_product.id)
+        expect(flash[:error]).must_equal 'You cannot review your own product.'
+      end
+    end
   end
 end
