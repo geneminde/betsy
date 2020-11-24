@@ -52,6 +52,7 @@ describe CategoriesController do
 
   describe 'create' do
     it 'can create a category' do
+      perform_login
       category_hash = {
           category: {
               name: 'New Category'
@@ -62,14 +63,13 @@ describe CategoriesController do
         post categories_path, params: category_hash
       }.must_differ 'Category.count', 1
 
-      must_redirect_to categories_path
-
       category = Category.find_by(name: "New Category")
 
       expect(category.name).must_equal "New Category"
     end
 
     it 'will not create a category with invalid params' do
+      perform_login
       category_hash = {
           category: { name: nil}
       }
