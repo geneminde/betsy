@@ -63,7 +63,10 @@ class Order < ApplicationRecord
     return self.filter_items(user).sum { |item| item.subtotal }
   end
 
-  # def self.total_revenue(user)
-  # end
+  def self.total_revenue(user)
+    orders = self.user_orders(user)
+
+    return orders.sum { |order| order.items_subtotal(user) }
+  end
 
 end

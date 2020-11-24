@@ -27,4 +27,7 @@ class OrderItem < ApplicationRecord
     self.shipped = true
     return self.save
   end
+
+
+
 end
