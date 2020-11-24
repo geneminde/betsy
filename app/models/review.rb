@@ -1,5 +1,4 @@
 class Review < ApplicationRecord
-  # belongs_to :user, through: :products
   belongs_to :product
 
   validates :rating,
