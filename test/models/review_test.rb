@@ -5,8 +5,8 @@ describe Review do
 
   let (:review) {
     Review.create!(
-        rating: 5,
-        product_id: product.id
+      rating: 5,
+      product_id: product.id
     )
   }
 

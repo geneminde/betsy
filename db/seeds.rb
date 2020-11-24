@@ -109,6 +109,26 @@ order_item_upload_failures = []
   end
 end
 
+########################################################
+
+review_upload_failures = []
+100.times do
+  review = Review.new
+
+  review.rating = rand(1..5)
+  review.author_name = [Faker::Name.name.to_s, nil].sample
+  review.product_id = rand(1..199)
+  review.review_text = ["#{Product.find_by(id: review.product_id).name} is super rad", nil].sample
+
+  successful = review.save
+  if !successful
+    review_upload_failures << review
+    puts "Failed to save review: #{review.inspect}"
+  else
+    puts "Created review: #{review.inspect}"
+  end
+end
+
 puts 'FINAL SUMMARY:'
 
 puts "Added #{User.count} user records"
