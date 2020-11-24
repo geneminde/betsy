@@ -28,14 +28,15 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @product = Product.new
+    user = User.find_by(id: session[:user_id])
+    @product = user.products.new
   end
 
   def create
     @product = Product.new(product_params)
 
     if @product.save
-      flash[:success] = "Successfully created new #{@product.name}, \"for $#{@product.price}!\""
+      flash[:success] = "Successfully created #{@product.name}"
       redirect_to product_path(@product)
     else
       flash.now[:error] = "Product was NOT added"
