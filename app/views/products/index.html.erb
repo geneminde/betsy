@@ -3,33 +3,60 @@
     <%= render partial: "product_section",
                locals: {
                    section_name: 'Weekly Spotlight 🌟',
-                   button_id: 'weekly-spotlight-button'
+                   button_id: 'weekly-spotlight-button',
+                   button_text: 'See All',
+                   button_link: '#all_items'
                }
     %>
-<!--    <h2>Planetary Products</h2>-->
-<!--    <ul class="listing-items">-->
-      <%# Product.where(is_retired: false).each do |product| %>
-<!--          <li class=<%#= product.available ? "not-retired" : "retired" %>>-->
-<!--            <div>-->
-              <%#= image_tag product.photo_url, alt: "Product image" %>
-<!--              <br>-->
-              <%#= link_to product.name.capitalize, product_path(product) %>
-<!--            </div>-->
-<!--            <div>-->
-<!--              $<%#= product.price %>-->
-<!--              <br>-->
-              <%# if product.available %>
-                <%#= form_with model: @order_item, url: product_order_items_path(product) do |f| %>
-                  <%#= f.label :quantity %>
-                  <%#=  f.text_field :quantity %>
-                  <%#= f.submit "Add to cart" %>
-                <%# end %>
-              <%# elsif product.quantity.zero? && !product.is_retired %>
-<!--                Sold Out-->
-              <%# end %>
-<!--            </div>-->
-<!--          </li>-->
-      <%# end %>
-<!--    </ul>-->
+    <div class="separator"></div>
+    <%= render partial: "product_section",
+               locals: {
+                   section_name: 'Books 📚',
+                   button_id: 'weekly-spotlight-button',
+                   category: 'book',
+                   button_text: 'All Books',
+                   button_link: category_path(Category.find_by(name: 'book').id)
+               }
+    %>
+    <div class="separator"></div>
+    <%= render partial: "product_section",
+               locals: {
+                   section_name: 'Tourism 🔭',
+                   button_id: 'weekly-spotlight-button',
+                   category: 'tourism',
+                   button_text: 'All Tourism',
+                   button_link: category_path(Category.find_by(name: 'tourism').id)
+               }
+    %>
+    <div class="separator"></div>
+    <%= render partial: "product_section",
+               locals: {
+                   section_name: 'Industrials 🪨',
+                   button_id: 'weekly-spotlight-button',
+                   category: 'industrials',
+                   button_text: 'All Industrials',
+                   button_link: category_path(Category.find_by(name: 'industrials').id)
+               }
+    %>
+    <div class="separator"></div>
+    <%= render partial: "product_section",
+               locals: {
+                   section_name: 'Terrafirma 🌋',
+                   button_id: 'weekly-spotlight-button',
+                   category: 'terrafirma',
+                   button_text: 'All Terrafirma',
+                   button_link: category_path(Category.find_by(name: 'terrafirma').id)
+               }
+    %>
+    <div class="separator"></div>
+    <%= render partial: "product_section",
+               locals: {
+                   section_name: 'Gag 🤪',
+                   button_id: 'weekly-spotlight-button',
+                   category: 'gag',
+                   button_text: 'All Gags',
+                   button_link: category_path(Category.find_by(name: 'gag').id)
+               }
+    %>
   </div>
 </main>
