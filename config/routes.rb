@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   get '/users/current/orders', to: 'orders#index'
 
   resources :order_items, only: [:create, :update, :destroy]
-  resources :users
+  resources :users do
+    resources :products, only: [:new]
+  end
 
 end
