@@ -12,7 +12,16 @@ describe Product do
   }
 
   describe 'relationships' do
+    it 'has many reviews' do
+      review1
+      review2
 
+      expect(product.reviews.count).must_equal 2
+
+      product.reviews.each do |review|
+        expect(review).must_be_instance_of Review
+      end
+    end
   end
 
   describe 'validations' do
