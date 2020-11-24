@@ -58,5 +58,15 @@
                    button_link: category_path(Category.find_by(name: 'gag').id)
                }
     %>
+    <div class="separator"></div>
+    <%= render partial: "product_section",
+               locals: {
+                   section_name: 'All Products',
+                   section_id: 'all_items',
+                   category: 'gag',
+                   button_text: 'All Gags',
+                   button_link: category_path(Category.find_by(name: 'gag').id)
+               }
+    %>
   </div>
 </main>

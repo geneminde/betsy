@@ -1,6 +1,11 @@
 <section class="prod-section">
+  <% if defined? section_id %>
+    <a name="<%= section_id %>"></a>
+  <% end %>
   <h3><%= section_name %></h3>
-  <div class="create-button" id=<%= button_id %>><%= link_to button_text, button_link %></div>
+  <% if defined? button_id %>
+    <div class="create-button" id=<%= button_id %>><%= link_to button_text, button_link %></div>
+  <% end %>
   <div class="prod-highlights">
     <% if defined? category %>
       <% Product.joins(:categories_products).where(is_retired: false).where('categories_products.category_id': Category.find_by(name: category)).limit(4).each do |product| %>
