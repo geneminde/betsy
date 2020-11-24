@@ -6,7 +6,7 @@
       </div>
       <div class="prod-description">
         <h2><%= @product.name %></h2>
-        <h4>$<%= @product.price %></h4>
+        <h4>$<%= number_with_delimiter(@product.price) %></h4>
         <p>
           <% if @product.is_retired %>
             🚫 Retired

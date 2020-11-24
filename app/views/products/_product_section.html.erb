@@ -15,6 +15,16 @@
                    }
         %>
       <% end %>
+    <% elsif defined? section_id %>
+      <div class="all-items">
+        <% Product.where(is_retired: false).each do |product| %>
+          <%= render partial: "prod_carousel",
+                     locals: {
+                         product: product
+                     }
+          %>
+        <% end %>
+      </div>
     <% else %>
       <% Product.where(is_retired: false).limit(4).each do |product| %>
         <%= render partial: "prod_carousel",

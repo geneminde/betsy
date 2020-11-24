@@ -3,7 +3,7 @@
     <%= image_tag product.photo_url, alt: "Product image" %>
   </div>
   <h6><%= link_to product.name, product_path(product) %></h6>
-  $<%= product.price %>
+  $<%= number_with_delimiter(product.price) %>
   <% if product.quantity == 0 %>
     <div class="sold-out">Sold Out</div>
   <% else %>

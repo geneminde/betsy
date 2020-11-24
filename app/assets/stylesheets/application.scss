@@ -108,6 +108,8 @@ main {
   font-size: 0.8rem;
 }
 
+//////////////////////////////////////
+
 //Merch dash and user show views
 .merch-container, .prod-container, .prod-show-container, .review-container {
   width: 80%;
@@ -246,11 +248,6 @@ input[type=submit].complete:visited, {
   text-align: center;
 }
 
-.prod_container listing_items li {
-  list-style: none;
-  flex: 0 0 25% !important;
-}
-
 section.prod-section {
   display: grid;
   justify-items: center;
@@ -304,7 +301,6 @@ section.prod-section {
 }
 
 .sold-out {
-  cursor: pointer;
   display: inline-block;
   margin: 0px;
   margin-top: 10px;
@@ -318,6 +314,12 @@ section.prod-section {
   padding: 3px 9px;
   border-color: #414F62;
   background: transparent;
+}
+
+.all-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 //////////////////////////////////////
