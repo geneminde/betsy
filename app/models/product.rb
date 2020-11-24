@@ -1,4 +1,6 @@
 class Product < ApplicationRecord
+  before_save :set_availability
+
   has_many :order_items, dependent: :destroy
   belongs_to :user
   has_many :orders, through: :order_items
@@ -37,5 +39,10 @@ class Product < ApplicationRecord
 
     product.available = false
     product.save
+  end
+
+  def set_availability
+    product = self
+    product.available = false if product.quantity.zero?
   end
 end

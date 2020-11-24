@@ -11,7 +11,7 @@
           <% if @product.is_retired %>
             🚫 Retired
           <% elsif @product.quantity.zero? %>
-            Sold Out
+            🛸 Sold Out
           <% else %>
             ✔️ In-Stock
           <% end %>
