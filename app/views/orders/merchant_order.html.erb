@@ -2,7 +2,7 @@
   <div class="order-summary-heading">
     <h2>Order Summary</h2>
     <p>Order# <%= @order.id %></p>
-    <p>Ordered on <%= show_date(@order.date_placed) %></p>
+    <p>Ordered on <%= readable_date(@order.date_placed) %></p>
   </div>
 
   <div class="back-to-order">

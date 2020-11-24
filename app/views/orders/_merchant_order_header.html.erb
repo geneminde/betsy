@@ -10,7 +10,7 @@
   <tbody>
   <tr>
     <td scope="row"><%= link_to "Order Details", merchant_order_path(order) %></td>
-    <td><%= show_date(order.date_placed) %></td>
+    <td><%= readable_date(order.date_placed) %></td>
     <td class="text-right"><%= order.status.capitalize %></td>
   </tr>
 
