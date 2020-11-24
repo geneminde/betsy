@@ -7,7 +7,7 @@ h1, h2 {
 }
 
 .orders, .order-container {
-  margin-top: 64px;
+  margin-top: 48px;
   margin-bottom: 48px;
 }
 
@@ -27,7 +27,7 @@ h1, h2 {
   padding: 20px;
   text-align: center;
   color: white;
-  background-color: #918ddd;
+  background-color: #600da1;
   border-radius: 10px;
   margin-right: 10px
 }
@@ -44,6 +44,10 @@ h1, h2 {
   margin-right: 10px
 }
 
+.revenue {
+  font-size: 50px
+}
+
 i {
   margin-bottom: 20px;
   opacity: 50%
@@ -54,25 +58,55 @@ i {
 }
 
 
-/// Merchant Order Show Page
+/// Merchant Order Summary Page
 .order-container {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 150px auto 200px auto;
+  grid-template-areas:
+  "h h h b"
+  "i i i i"
+  "s s d p"
+  "c c d p"
+
 }
 
 .order-summary-heading {
-  grid-column: 1 / -1;
+  //align-self: end;
+  //grid-column: 1 / -2;
+  //grid-row: 1;
+  grid-area: h
+}
+
+.back-to-order {
+  justify-self: right;
+  //grid-row: 1
+  grid-area: b
 }
 
 .items-container {
-  grid-column: 1 / -1;
+  //grid-column: 1 / -1;
+  grid-area: i;
+}
+
+.spacer {
+  height: 100px;
+  grid-area: s;
+}
+
+.price-description-container {
+ //grid-column: -3 / -2;
+  grid-area: d;
 }
 
 .price-container {
- grid-column: -3 / -1;
+  //grid-column: -3 / -2;
+  grid-area: p;
 }
 
 .customer-container {
-  grid-column: 1 / -1;
+  //grid-column: 1 / -1;
+  grid-area: c;
+
 }
 

@@ -1,10 +1,10 @@
 <section class="orders container">
-  <h1><%= @current_user.username %>'s Order Fulfillment</h1>
+  <h1>My Order Fulfillment 💰</h1>
 
   <div class="merchant-container container">
     <div class="all-orders container">
       <h3>Total Revenue</h3>
-      <h3>$<%= Order.total_revenue(@current_user) %></h3>
+      <p class="revenue">$<%= Order.total_revenue(@current_user) %></p>
     </div>
 
     <%= link_to "#paid", class: "paid-orders container" do %>
@@ -25,12 +25,13 @@
   </div>
 
 
-
-
   <% @orders_by_status.each do |status, orders| %>
 
       <% if orders.count > 0 %>
-      <div id="<%= status %>" class="container"><h3><%= status.capitalize %> Orders: <%= orders.count %></h3></div>
+      <div id="<%= status %>" class="container">
+        <h3><%= status.capitalize %> Orders (<%= orders.count %>)</h3>
+        <p>Total Revenue: $<%= Order.by_status(status).total_revenue(@current_user) %></p>
+      </div>
 
       <%= render partial: "merchant_orders", locals: {orders: orders } %>
     <% end %>

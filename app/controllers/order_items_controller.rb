@@ -58,7 +58,7 @@ class OrderItemsController < ApplicationController
 
     end
 
-    redirect_to current_user_path(@order_item.user)
+    redirect_back(fallback_location: root_path)
     return
   end
 
