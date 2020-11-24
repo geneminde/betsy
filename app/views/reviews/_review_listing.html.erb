@@ -32,9 +32,11 @@
         </div>
       <% end %>
       <br>
-      <%= review.review_text %>
-      <br>
-      <br>
+      <% if review.review_text.present? %>
+        <%= review.review_text %>
+        <br>
+        <br>
+      <% end %>
       <% if subject != @product %>
         <div class="sub-info">Purchased item:</div>
         <div class="reviewed-product">
