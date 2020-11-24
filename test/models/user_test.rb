@@ -129,5 +129,24 @@ describe User do
         assert_nil(user.average_rating)
       end
     end
+
+    describe 'check_own_product' do
+      it 'will return true if the product belongs to the user' do
+        product
+        expect(user.check_own_product(product)).must_equal true
+      end
+
+      it 'will return false if the product does not belong to the user' do
+        other_product = Product.create!(
+            name: 'new_name',
+            description: 'new_description',
+            price: 29,
+            quantity: 22,
+            user_id: User.last.id
+        )
+
+        expect(user.check_own_product(other_product)).must_equal false
+      end
+    end
   end
 end
