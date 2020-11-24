@@ -12,24 +12,24 @@ require 'faker'
 require 'date'
 require 'csv'
 
-# CATEGORY_FILE = Rails.root.join('db', 'seed_data', 'categories.csv')
-# puts "Loading raw media (category) data from #{CATEGORY_FILE}"
-#
-# category_failures = []
-# CSV.foreach(CATEGORY_FILE, :headers => true) do |row|
-#   category = Category.new
-#   category.category = row['category']
-#   successful = category.save
-#   if !successful
-#     category_failures << category
-#     puts "Failed to save work: #{category.inspect}"
-#   else
-#     puts "Created work: #{category.inspect}"
-#   end
-# end
-#
-# puts "Added #{Category.count} category records"
-# puts "#{category_failures.length} categories failed to save"
+CATEGORY_FILE = Rails.root.join('db', 'seed_data', 'categories.csv')
+puts "Loading raw media (category) data from #{CATEGORY_FILE}"
+
+category_failures = []
+CSV.foreach(CATEGORY_FILE, :headers => true) do |row|
+  category = Category.new
+  category.name = row['name']
+  successful = category.save
+  if !successful
+    category_failures << category
+    puts "Failed to save work: #{category.inspect}"
+  else
+    puts "Created work: #{category.inspect}"
+  end
+end
+
+puts "Added #{Category.count} category records"
+puts "#{category_failures.length} categories failed to save"
 
 USER_FILE = Rails.root.join('db', 'seed_data', 'users.csv')
 user_upload_failures = []
@@ -67,6 +67,7 @@ CSV.foreach(PRODUCT_FILE, :headers => true) do |row|
   product.is_retired = [true, false].sample
   product.available = product.quantity.zero? || product.is_retired ? false : true
   product.user_id = row['user_id']
+  product.category_ids = row['category_id'].split(';')
 
   successful = product.save
   if !successful
@@ -130,6 +131,9 @@ order_item_upload_failures = []
 end
 
 puts 'FINAL SUMMARY:'
+
+puts "Added #{Category.count} category records"
+puts "#{category_failures.length} categories failed to save"
 
 puts "Added #{User.count} user records"
 puts "#{user_upload_failures.size} users failed to save"
