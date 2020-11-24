@@ -138,7 +138,7 @@ review_upload_failures = []
 
   review.rating = rand(1..5)
   review.author_name = [Faker::Name.name.to_s, nil].sample
-  review.product_id = rand(1..199)
+  review.product_id = rand(1..40)
   review.review_text = ["#{Product.find_by(id: review.product_id).name} is super rad", nil].sample
 
   successful = review.save

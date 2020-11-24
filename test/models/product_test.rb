@@ -65,23 +65,6 @@ describe Product do
       expect(product.errors.messages).must_include :description
     end
 
-    it 'must have a unique description on create' do
-      product = Product.new(name: 'test name',
-                            description: Product.last.description,
-                            price: 10,
-                            quantity: 10
-      )
-
-      expect(product.valid?).must_equal false
-      expect(product.errors.messages).must_include :description
-      expect(product.errors.messages[:description]).must_equal ['has already been taken']
-    end
-
-    it 'does not need a unique description on update' do
-      product.name = Product.last.description
-      expect(product.valid?).must_equal true
-    end
-
     it 'must have a price' do
       product.price = nil
       expect(product.valid?).must_equal false
