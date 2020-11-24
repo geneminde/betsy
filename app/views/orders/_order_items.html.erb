@@ -39,7 +39,12 @@
       </p>
     </section>
 
-    <%= link_to "Checkout", edit_order_path %>
+    <section class="checkout-button end">
+      <div class="create-button"><%= link_to "Checkout", edit_order_path %></div>
+      <div class="create-button"><%= link_to "Continue Shopping", root_path %></div>
+    </section>
+
+
   </section>
 
 <% end %>
