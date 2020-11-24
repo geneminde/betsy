@@ -1,20 +1,71 @@
 <main>
-  <div class="prod-container listings">
-    <h2><%= @product.name %>, $<%= @product.price %></h2>
-    <p class=<%= @product.available ? "not-retired" : "retired" %>>
-      <%= image_tag @product.photo_url, alt: "Product photo description" %>
-    </p>
-    <p><%= @product.description %></p>
-    <p>Sold by: <%= link_to @product.user.username, user_path(@product.user) %></p>
+  <div class="prod-show-container">
+    <section class="prod-main">
+      <div class=<%= @product.available ? "not-retired" : "retired" %>>
+        <%= image_tag @product.photo_url, alt: "Product photo description" %>
+      </div>
+      <div class="prod-description">
+        <h2><%= @product.name %></h2>
+        <h4>$<%= @product.price %></h4>
+        <p>
+          <% if @product.quantity.zero? %>
+            Sold Out
+          <% else %>
+            ✔️ In-Stock
+          <% end %>
+        </p>
+        <h6>Description:</h6>
+        <p><%= @product.description %></p>
+        <h6>Seller:</h6>
+        <p><%= link_to @product.user.username, user_path(@product.user) %> (<%= @product.user.reviews.count %> reviews)</p>
 
-    <% if @product.available %>
-      <%= form_with model: @order_item, url: product_order_items_path(@product) do |f| %>
-        <%= f.label :"Get it before it's gone!" %>
-        <%=  f.select :quantity, options_for_select(1..@product.quantity) %>
-        <%= f.submit "Add to cart" %>
+        <% if @product.available %>
+          <%= form_with model: @order_item, url: product_order_items_path(@product) do |f| %>
+            <%= f.label :"Get it before it's gone!" %>
+            <%=  f.select :quantity, options_for_select(1..@product.quantity) %>
+            <br>
+            <br>
+            <%= f.submit "Add to cart" %>
+          <% end %>
+        <% elsif @product.quantity.zero? && !@product.is_retired %>
+          <p>Item is temporarily unavailable</p>
+        <% end %>
+      </div>
+    </section>
+    <div class="separator"></div>
+    <section class="ratings">
+      <% if @product.reviews.count.zero? %>
+        <h3>There are no reviews yet for this product.</h3>
+        <br>
+        <div class="create-button"><%= link_to 'Create a product review', new_product_review_path(@product) %></div>
+      <% else %>
+        <h3>
+          <%= @product.reviews.count %> <%= @product.reviews.count > 1 ? 'reviews' : 'review' %> (TO:DO: DISPLAY AVG REVIEW)
+        </h3>
+        <br>
+        <% @product.reviews.order(:rating).each do |review| %>
+          <% review.rating.to_i.times do %>
+            <span class="star-rating">☆</span>
+          <% end %>
+          <br>
+          <div class="one-rating">
+            <% if review.user %>
+              <div class="sub-info">
+                Author: <%= link_to user.username, user_path(user) %> on <%= review.updated_at.strftime("%B %-d, %Y") %>
+              </div>
+              <div class="sub-info">Seller since <%= user.created_at.strftime("%B %-d, %Y") %></div>
+            <% else %>
+              <div class="sub-info">
+                Author: Anonymous Alien 👾 on <%= review.updated_at.strftime("%B %-d, %Y") %>
+              </div>
+            <% end %>
+            <br>
+            <%= review.review_text %>
+          </div>
+          <div class="separator"></div>
+        <% end %>
+        <div class="separator"></div>
       <% end %>
-    <% elsif @product.quantity.zero? && !@product.is_retired %>
-      <p>Item is temporarily unavailable</p>
-    <% end %>
+    </section>
   </div>
 </main>

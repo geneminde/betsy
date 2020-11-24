@@ -1,0 +1,26 @@
+<div class="order-container container">
+  <div class="order-summary-heading">
+    <h2>Order Summary</h2>
+  </div>
+
+
+  <div class="items-container">
+    <%= render partial: "order_items/merchant_order_items", locals: { order: @order  } %>
+  </div>
+
+  <div class="price-container">
+    <p>Subtotal: TODO</p>
+    <p>Shipping: Free</p>
+    <p>Total: TODO</p>
+  </div>
+
+  <div class="customer-container">
+    <h3>Customer Information</h3>
+    <p>Customer Name: <%= @order.customer_name %></p>
+    <p>Customer Email: TODO </p>
+    <p>Shipping Address: <%= @order.shipping_address %></p>
+    <p>Payment Method: **** <%= @order.cc_number.to_s[-4..-1] %></p>
+    <p>Credit Card Expiration Date: <%= @order.cc_expiry %></p>
+  </div>
+
+</div>

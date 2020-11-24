@@ -43,14 +43,15 @@
     </section>
     <div class="separator"></div>
     <section class="orders">
-      <h3>Orders</h3>
-      <%= render partial: "order_items/dashboard_orders",
+      <h3>Orders to Ship</h3>
+      <%= render partial: "orders/merchant_orders",
                  locals: {
                      user: @current_user,
                      section_header: 'Orders',
-                     orders: Order.distinct.user_orders(@current_user)
+                     orders: Order.user_orders(@current_user).where( order_items: { shipped: false } )
                  }
       %>
+
     </section>
   </div>
 </main>

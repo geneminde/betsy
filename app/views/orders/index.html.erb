@@ -1,0 +1,17 @@
+<section class="orders container">
+<h2><%= @current_user.username %>'s Order Fulfillment</h2>
+  <p>Total Revenue TODO</p>
+
+<%= link_to "Paid", "#paid", class: "btn btn-warning" %>
+<%= link_to "Complete", "#complete", class: "btn btn-success"  %>
+<%= link_to "Cancelled", "#cancelled", class: "btn btn-danger"  %>
+
+  <% @orders_by_status.each do |status, orders| %>
+
+    <div id="<%= status %>"><h3><%= status.capitalize %> Orders: <%= orders.count %></h3></div>
+
+      <%= render partial: "merchant_orders", locals: {orders: orders } %>
+  <% end %>
+
+
+</section>

@@ -1,6 +1,23 @@
 require "test_helper"
 
 describe OrdersController do
+  describe "index" do
+    it "responds with success if user is logged in" do
+      user = perform_login()
+
+      get orders_path
+
+      must_respond_with :success
+    end
+
+    it "responds with redirect if user is not logged in" do
+      get orders_path
+
+      expect(flash[:error]).must_include "Please log in to perform this action."
+      must_redirect_to root_path
+    end
+  end
+
   describe 'show' do
     it 'it gets the cart page when an active cart exists' do
       order = create_cart
