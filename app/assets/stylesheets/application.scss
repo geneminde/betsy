@@ -218,6 +218,16 @@ input[type=submit].complete:visited, {
   background-color: transparent;
 }
 
+.one-rating img {
+  width: 80px;
+  margin-right: 15px;
+}
+
+.reviewed-product {
+  display: flex;
+  align-items: center;
+}
+
 //////////////////////////////////////
 
 //Product index page

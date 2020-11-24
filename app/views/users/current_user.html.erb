@@ -39,7 +39,12 @@
     %>
     <div class="separator"></div>
     <section class="ratings">
-      <h3>Ratings</h3>
+      <h3>Reviews</h3>
+      <%= render partial: "reviews/review_listing",
+                 locals: {
+                     subject: @current_user
+                 }
+      %>
     </section>
     <div class="separator"></div>
     <section class="orders">
@@ -51,7 +56,6 @@
                      orders: Order.user_orders(@current_user).where( order_items: { shipped: false } )
                  }
       %>
-
     </section>
   </div>
 </main>

@@ -17,7 +17,12 @@
     %>
     <div class="separator"></div>
     <section class="ratings">
-      <h3>Ratings</h3>
+      <h3>Reviews</h3>
+      <%= render partial: "reviews/review_listing",
+                 locals: {
+                     subject: @user
+                 }
+      %>
     </section>
   </div>
 </main>

@@ -34,35 +34,11 @@
     </section>
     <div class="separator"></div>
     <section class="ratings">
-      <% if @product.reviews.count.zero? %>
-        <h3>There are no reviews yet for this product.</h3>
-      <% else %>
-        <h3>
-          <%= @product.reviews.count %> <%= @product.reviews.count > 1 ? 'reviews' : 'review' %> (TO:DO: DISPLAY AVG REVIEW)
-        </h3>
-        <br>
-        <% @product.reviews.order(:rating).each do |review| %>
-          <% review.rating.to_i.times do %>
-            <span class="star-rating">☆</span>
-          <% end %>
-          <br>
-          <div class="one-rating">
-            <% if review.author_name.present? %>
-              <div class="sub-info">
-                Author: <%= review.author_name %> on <%= review.updated_at.strftime("%B %-d, %Y") %>
-              </div>
-            <% else %>
-              <div class="sub-info">
-                Author: Anonymous Alien 👾 on <%= review.updated_at.strftime("%B %-d, %Y") %>
-              </div>
-            <% end %>
-            <br>
-            <%= review.review_text %>
-          </div>
-          <br>
-          <div class="separator"></div>
-        <% end %>
-      <% end %>
+      <%= render partial: "reviews/review_listing",
+                 locals: {
+                     subject: @product
+                 }
+      %>
       <br>
       <div class="create-button"><%= link_to 'Leave a product review', new_product_review_path(@product) %></div>
     </section>
