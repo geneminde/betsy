@@ -30,7 +30,8 @@
             <%= f.submit "Add to cart" %>
           <% end %>
         <% elsif @product.quantity.zero? && !@product.is_retired %>
-          <p>Item is temporarily unavailable</p>
+          <div>This item is so out-of-this-world! ☄️</div>
+          <div>Check back later to see if it's returned, or contact the seller to get on a waitlist.</div>
         <% end %>
       </div>
     </section>

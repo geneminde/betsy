@@ -1,4 +1,23 @@
 <section class="prod-section">
   <h3><%= section_name %></h3>
-  <div class="create-button"><%= link_to 'See All', '#all_items' %></div>
+  <div class="create-button" id=<%= button_id %>><%= link_to 'See All', '#all_items' %></div>
+  <div class="prod-highlights">
+    <% if defined? category %>
+      <% Product.where(is_retired: false).where(categories: [category]).each do |product| %>
+      <% end %>
+    <% else %>
+      <% Product.where(is_retired: false).limit(4).each do |product| %>
+        <div class="prod-item">
+          <div class="prod-img"><%= image_tag product.photo_url, alt: "Product image" %></div>
+          <h6><%= link_to product.name, product_path(product) %></h6>
+          $<%= product.price %>
+          <% if product.quantity == 0 %>
+            <div class="sold-out">Sold Out</div>
+          <% else %>
+            <div class></div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </section>
