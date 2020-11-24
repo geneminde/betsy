@@ -2,13 +2,55 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-h2 {
+h1, h2 {
   padding-bottom: 30px;
 }
 
-.container  {
-  margin-top: 48px;
+.orders, .order-container {
+  margin-top: 64px;
   margin-bottom: 48px;
+}
+
+
+/// Merchant Order Fulfillment Page
+.merchant-container {
+  display: flex;
+  margin-bottom: 50px;
+}
+
+.merchant-container > .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  height: 200px;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  background-color: #918ddd;
+  border-radius: 10px;
+  margin-right: 10px
+}
+
+.merchant-container * {
+  font-weight: lighter;
+}
+
+.merchant-container > a:hover {
+  text-decoration: none;
+}
+
+.merchant-container div:first-child {
+  margin-right: 10px
+}
+
+i {
+  margin-bottom: 20px;
+  opacity: 50%
+}
+
+.merchant-container a {
+  color: #2e3339
 }
 
 

@@ -3,6 +3,7 @@
     <h2>Order Summary</h2>
   </div>
 
+  <div class="create-button"><%= link_to 'Back to Orders', orders_path %></div>
 
   <div class="items-container">
     <%= render partial: "order_items/merchant_order_items", locals: { order: @order  } %>
@@ -22,5 +23,8 @@
     <p>Payment Method: **** <%= @order.cc_number.to_s[-4..-1] %></p>
     <p>Credit Card Expiration Date: <%= @order.cc_expiry %></p>
   </div>
+<br>
+
+
 
 </div>

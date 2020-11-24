@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
         end
       end
     end
+  end
 
     
   def find_product
