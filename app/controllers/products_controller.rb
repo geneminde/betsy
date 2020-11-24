@@ -52,6 +52,7 @@ class ProductsController < ApplicationController
         :description,
         :quantity,
         :available,
+        :user_id
     )
   end
 end

@@ -16,7 +16,6 @@ class ApplicationController < ActionController::Base
     return @cart = Order.find_by(id: session[:order_id])
   end
 
-
   def flash_validation_errors(model)
     if model.errors.messages
       model.errors.messages.each do |field, messages|
@@ -25,8 +24,8 @@ class ApplicationController < ActionController::Base
         end
       end
     end
+  end
 
-    
   def find_product
     @product = Product.find_by(id: params[:id]) || Product.find_by(id: params[:product_id])
 
@@ -37,7 +36,5 @@ class ApplicationController < ActionController::Base
     end
 
     return @product
-
   end
-
 end

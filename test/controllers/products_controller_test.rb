@@ -11,7 +11,8 @@ describe ProductsController do
         name: 'new_name',
         description: 'new_description',
         price: 29,
-        quantity: 22
+        quantity: 22,
+        user_id: User.first.id
       }
     }
   }
@@ -22,7 +23,8 @@ describe ProductsController do
         name: nil,
         description: 'new_description',
         price: -29,
-        quantity: 22
+        quantity: 22,
+        user_id: User.first.id
       }
     }
   }
@@ -185,15 +187,22 @@ describe ProductsController do
     end
 
     describe 'create' do
-      it "creates a product with valid data" do
-
-        new_product = {product: {name: "oxygen", price: '50', quantity: '10'}}
+      it 'creates a product with valid data' do
+        new_product = {
+          product: {
+            name: 'oxygen',
+            description: 'delicious',
+            price: 50,
+            quantity: 10,
+            user_id: User.first.id
+          }
+        }
 
         expect {
           post products_path, params: new_product
-        }.must_change "Product.count", 1
+        }.must_change 'Product.count', 1
 
-        new_product_id = Product.find_by(name: "oxygen").id
+        new_product_id = Product.find_by(name: 'oxygen').id
 
         must_respond_with :redirect
         must_redirect_to product_path(new_product_id)
@@ -223,8 +232,8 @@ describe ProductsController do
 
         expect(flash[:error])
         assert 'Uh oh! That product could not be found... Please try again.'
-
       end
+
       it 'redirects for incorrect ID' do
         bogus_id = product.id
         product.destroy
@@ -232,9 +241,7 @@ describe ProductsController do
         put product_path(bogus_id)
 
         must_redirect_to products_path
-
       end
     end
   end
-
 end
