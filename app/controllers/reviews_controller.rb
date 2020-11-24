@@ -2,6 +2,7 @@ class ReviewsController < ApplicationController
   skip_before_action :require_login, except: [:edit, :update, :destroy]
   before_action :find_product, only: [:new, :create, :update]
   before_action :find_product_review, except: [:new, :create]
+  before_action :verify_auth_review, except: [:show]
 
   def review_error
     flash.now[:error] = 'Uh oh! That review did not save. Please try again.'
@@ -26,28 +27,11 @@ class ReviewsController < ApplicationController
     end
   end
 
-  # def edit; end
-  #
-  # def update
-  #   if @review.update(review_params)
-  #     flash[:success] = 'Review successfully updated.'
-  #     redirect_to product_path(@review.product)
-  #   else
-  #     review_error
-  #     render :edit
-  #   end
-  # end
-  #
-  # def destroy
-  #   if @review.destroy
-  #     flash[:success] = 'Review successfully removed.'
-  #     redirect_to product_path(@product)
-  #   else
-  #     flash[:error] = 'Uh oh! That review did not get removed. Please try again.'
-  #   end
-  # end
-
   private
+
+  def review_params
+    return params.require(:review).permit(:rating, :review_text, :author_name, :user_id, :product_id)
+  end
 
   def find_product_review
     @review = Review.find(params[:id])
@@ -60,8 +44,14 @@ class ReviewsController < ApplicationController
     @product = @review.product
   end
 
-  def review_params
-    return params.require(:review).permit(:rating, :review_text, :author_name, :user_id, :product_id)
+  def verify_auth_review
+    if session[:user_id]
+      user = User.find_by(id: session[:user_id])
+      if user.check_own_product(@product)
+        flash[:error] = 'You cannot review your own product.'
+        redirect_back(fallback_location: product_path(@product.id))
+      end
+    end
   end
 
 end

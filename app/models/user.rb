@@ -21,4 +21,9 @@ class User < ApplicationRecord
     user.email = auth_hash[:info][:email]
     return user
   end
+
+  def check_own_product(product)
+    user = self
+    return user.products.include?(product)
+  end
 end
