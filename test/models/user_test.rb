@@ -13,6 +13,24 @@ describe User do
     }
   }
 
+  let (:product) {
+    Product.create!(
+      name: 'new_name',
+      description: 'new_description',
+      price: 29,
+      quantity: 22,
+      user_id: user.id
+    )
+  }
+
+  let (:review1) {
+    Review.create!(rating: 5, product_id: product.id)
+  }
+
+  let (:review2) {
+    Review.create!(rating: 3, product_id: product.id)
+  }
+
   it 'can be instantiated with the required fields' do
     expect(user.valid?).must_equal true
 
@@ -88,13 +106,28 @@ describe User do
   end
 
   describe 'custom methods' do
-    it 'build_from_github: returns a user given a hash' do
-      new_user = User.build_from_github(auth_hash)
+    describe 'build_from_github' do
+      it 'build_from_github: returns a user given a hash' do
+        new_user = User.build_from_github(auth_hash)
 
-      expect(new_user.username).must_equal auth_hash[:info][:name]
-      expect(new_user.email).must_equal auth_hash[:info][:email]
-      expect(new_user.uid).must_equal auth_hash[:uid]
-      expect(new_user.provider).must_equal auth_hash[:provider]
+        expect(new_user.username).must_equal auth_hash[:info][:name]
+        expect(new_user.email).must_equal auth_hash[:info][:email]
+        expect(new_user.uid).must_equal auth_hash[:uid]
+        expect(new_user.provider).must_equal auth_hash[:provider]
+      end
+    end
+
+    describe 'average_rating' do
+      it 'can calculate the average rating for user products reviews' do
+        review1
+        review2
+
+        expect(user.average_rating).must_equal 4
+      end
+
+      it 'will return nil if there are no user products reviews' do
+        assert_nil(user.average_rating)
+      end
     end
   end
 end
