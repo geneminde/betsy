@@ -1,6 +1,6 @@
 class Review < ApplicationRecord
-  belongs_to :user, counter_cache: true, optional: true
-  belongs_to :product, counter_cache: true
+  belongs_to :user, optional: true
+  belongs_to :product
 
   validates :rating,
             presence: true,
