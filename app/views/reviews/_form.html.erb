@@ -1,17 +1,21 @@
 <section>
-  <%= form_with model: @review do |f| %>
+  <%= form_with model: [@product, @review] do |f| %>
 
     <div class="rating">
-      <input id="star5" name="star" type="radio" value="5" class="radio-btn hide" />
-      <label for="star5">☆</label>
-      <input id="star4" name="star" type="radio" value="4" class="radio-btn hide" />
-      <label for="star4">☆</label>
-      <input id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
-      <label for="star3">☆</label>
-      <input id="star2" name="star" type="radio" value="2" class="radio-btn hide" />
-      <label for="star2">☆</label>
-      <input id="star1" name="star" type="radio" value="1" class="radio-btn hide" />
-      <label for="star1">☆</label>
+      <%= f.radio_button :rating, '5', class: "radio-btn hide" %>
+      <%= f.label(:rating.to_s + '_5', '☆') %>
+
+      <%= f.radio_button :rating, '4', class: "radio-btn hide" %>
+      <%= f.label(:rating.to_s + '_4', '☆') %>
+
+      <%= f.radio_button :rating, '3', class: "radio-btn hide" %>
+      <%= f.label(:rating.to_s + '_3', '☆') %>
+
+      <%= f.radio_button :rating, '2', class: "radio-btn hide" %>
+      <%= f.label(:rating.to_s + '_2', '☆') %>
+
+      <%= f.radio_button :rating, '1', class: "radio-btn hide" %>
+      <%= f.label(:rating.to_s + '_1', '☆') %>
       <div class="clear"></div>
     </div>
 
