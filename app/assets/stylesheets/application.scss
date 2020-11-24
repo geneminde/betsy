@@ -88,8 +88,10 @@ main {
   align-items: center;
 }
 
-.merch_summary h2 {
+.merch-container .merch_summary h2 {
   grid-column: 1;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .merch_summary .basic-info {
@@ -226,6 +228,10 @@ input[type=submit].complete:visited, {
 .reviewed-product {
   display: flex;
   align-items: center;
+}
+
+.reviewed-product a {
+  font-size: 0.8rem;
 }
 
 //////////////////////////////////////
