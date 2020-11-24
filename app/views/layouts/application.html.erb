@@ -51,7 +51,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <% if session[:user_id] %>
-              <li><%= link_to "#{ User.find_by(id: session[:user_id]).username }", current_user_path(session[:user_id]), class: 'nav-link text-nowrap' %></li>
+              <li><%= link_to "#{ User.find_by(id: session[:user_id]).username }", current_user_path, class: 'nav-link text-nowrap' %></li>
               <li><%= link_to 'Log out', logout_path, method: :delete, class: 'nav-link text-nowrap' %></li>
             <% else %>
               <li class="nav-item">
