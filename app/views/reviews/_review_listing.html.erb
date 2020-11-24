@@ -7,7 +7,7 @@
     <%= subject.reviews.count %> <%= subject.reviews.count > 1 ? 'reviews' : 'review' %> (TO:DO: DISPLAY AVG REVIEW)
   </h5>
   <br>
-  <% subject.reviews.order(updated_at: :desc).each do |review| %>
+  <% subject.reviews.order(updated_at: :desc).each.with_index do |review, index| %>
     <br>
     <% review.rating.to_i.times do %>
       <span class="star-rating">☆</span>
@@ -36,6 +36,8 @@
       <% end %>
     </div>
     <br>
-    <div class="separator"></div>
+    <% unless index == subject.reviews.count - 1 %>
+      <div class="separator"></div>
+    <% end %>
   <% end %>
 <% end %>

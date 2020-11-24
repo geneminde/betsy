@@ -26,26 +26,26 @@ class ReviewsController < ApplicationController
     end
   end
 
-  def edit; end
-
-  def update
-    if @review.update(review_params)
-      flash[:success] = 'Review successfully updated.'
-      redirect_to product_path(@review.product)
-    else
-      review_error
-      render :edit
-    end
-  end
-
-  def destroy
-    if @review.destroy
-      flash[:success] = 'Review successfully removed.'
-      redirect_to product_path(@product)
-    else
-      flash[:error] = 'Uh oh! That review did not get removed. Please try again.'
-    end
-  end
+  # def edit; end
+  #
+  # def update
+  #   if @review.update(review_params)
+  #     flash[:success] = 'Review successfully updated.'
+  #     redirect_to product_path(@review.product)
+  #   else
+  #     review_error
+  #     render :edit
+  #   end
+  # end
+  #
+  # def destroy
+  #   if @review.destroy
+  #     flash[:success] = 'Review successfully removed.'
+  #     redirect_to product_path(@product)
+  #   else
+  #     flash[:error] = 'Uh oh! That review did not get removed. Please try again.'
+  #   end
+  # end
 
   private
 
