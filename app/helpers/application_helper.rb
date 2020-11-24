@@ -8,4 +8,9 @@ module ApplicationHelper
     return "[unknown]" unless date
     return content_tag(:span, "#{date.strftime("%I:%M:%S %p")}")
   end
+
+  def has_order_items?
+    order = Order.find_by(session[:order_id])
+    return order.order_items.blank? ? false : true
+  end
 end

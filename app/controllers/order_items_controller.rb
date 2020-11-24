@@ -16,7 +16,7 @@ class OrderItemsController < ApplicationController
 
     if @order_item.save
       flash[:success] = "#{@order_item.product.name} added to the shopping cart"
-      redirect_to order_path(@order_item.order)
+      redirect_to cart_path
       return
     else
       flash[:error] = "A problem occurred. Could not add item to cart"
@@ -107,7 +107,7 @@ class OrderItemsController < ApplicationController
       if order_item.update(quantity: params[:order_item][:quantity].to_i)
         flash[:success] = "Successfully updated order cart"
         puts "in save update"
-        redirect_to order_path(@cart.id)
+        redirect_to cart_path
         return
       else
         flash[:error] = "A problem occurred. Could not update item in cart"
