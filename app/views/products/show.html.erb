@@ -36,8 +36,6 @@
     <section class="ratings">
       <% if @product.reviews.count.zero? %>
         <h3>There are no reviews yet for this product.</h3>
-        <br>
-        <div class="create-button"><%= link_to 'Create a product review', new_product_review_path(@product) %></div>
       <% else %>
         <h3>
           <%= @product.reviews.count %> <%= @product.reviews.count > 1 ? 'reviews' : 'review' %> (TO:DO: DISPLAY AVG REVIEW)
@@ -49,11 +47,10 @@
           <% end %>
           <br>
           <div class="one-rating">
-            <% if review.user %>
+            <% if review.author_name.present? %>
               <div class="sub-info">
-                Author: <%= link_to user.username, user_path(user) %> on <%= review.updated_at.strftime("%B %-d, %Y") %>
+                Author: <%= review.author_name %> on <%= review.updated_at.strftime("%B %-d, %Y") %>
               </div>
-              <div class="sub-info">Seller since <%= user.created_at.strftime("%B %-d, %Y") %></div>
             <% else %>
               <div class="sub-info">
                 Author: Anonymous Alien 👾 on <%= review.updated_at.strftime("%B %-d, %Y") %>
@@ -62,10 +59,12 @@
             <br>
             <%= review.review_text %>
           </div>
+          <br>
           <div class="separator"></div>
         <% end %>
-        <div class="separator"></div>
       <% end %>
+      <br>
+      <div class="create-button"><%= link_to 'Leave a product review', new_product_review_path(@product) %></div>
     </section>
   </div>
 </main>

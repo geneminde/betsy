@@ -35,18 +35,18 @@ puts "#{user_upload_failures.size} users failed to save"
 #########################################################
 
 product_upload_failures = []
-200.times do
+200.times do |num|
   product = Product.new
 
-  product.name = Faker::Movies::HitchhikersGuideToTheGalaxy.planet.to_s
+  product.name = "Planet Item #{num}"
 
   product.price = rand(10..1000)
   product.photo_url = 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/4b0f7269010315.5b71b33089965.jpg'
-  product.description = Faker::Movies::HitchhikersGuideToTheGalaxy.quote.to_s
+  product.description = "Planet Item #{num} is super cool!"
   product.quantity = rand(0..100)
   product.is_retired = [true, false].sample
   product.available = product.quantity.zero? || product.is_retired ? false : true
-  product.user_id = rand(1..19)
+  product.user_id = rand(1..49)
 
   successful = product.save
   if !successful
@@ -96,8 +96,8 @@ order_item_upload_failures = []
   order_item = OrderItem.new
 
   order_item.quantity = rand(1..5)
-  order_item.order_id = rand(1..40)
-  order_item.product_id = rand(1..99)
+  order_item.order_id = rand(1..49)
+  order_item.product_id = rand(1..199)
   order_item.shipped = [true, false].sample
 
   successful = order_item.save
@@ -124,12 +124,12 @@ puts "Added #{OrderItem.count} order_items records"
 puts "#{order_item_upload_failures.size} order items failed to save"
 
 
-failures = [user_upload_failures, product_upload_failures, order_upload_failures, order_item_upload_failures]
-failures.each do |model_failures|
-  next if model_failures.empty?
-  model_failures.each do |record|
-    puts record.errors.messages
-  end
-end
+# failures = [user_upload_failures, product_upload_failures, order_upload_failures, order_item_upload_failures]
+# failures.each do |model_failures|
+#   next if model_failures.empty?
+#   model_failures.each do |record|
+#     puts record.errors.messages
+#   end
+# end
 
 puts 'done'
