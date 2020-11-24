@@ -17,14 +17,14 @@ class Product < ApplicationRecord
   validates :price, :quantity,
             presence: true,
             numericality: { greater_than_or_equal_to: 0 }
-
+  
   def in_stock?(order_quantity)
-    inventory_quantity = self.quantity
+    inventory_quantity = quantity
     return inventory_quantity > order_quantity
   end
 
   def available?
-    self.quantity.positive? ? :available : :unavailable
+    quantity.positive? ? :available : :unavailable
   end
 
   def toggle_retire
@@ -43,6 +43,7 @@ class Product < ApplicationRecord
 
   def set_availability
     product = self
-    product.available = false if product.quantity.zero?
+    product.available = product.quantity.zero? || product.is_retired ? false : true
+    product.is_retired = false unless product.is_retired
   end
 end

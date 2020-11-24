@@ -2,6 +2,7 @@ require "test_helper"
 
 describe Product do
   let (:product) { Product.first }
+  let (:user) { User.first }
 
   let (:review1) {
     Review.create!(rating: 5, product_id: product.id)
@@ -9,6 +10,16 @@ describe Product do
 
   let (:review2) {
     Review.create!(rating: 3, product_id: product.id)
+  }
+
+  let (:product2) {
+    Product.create!(
+      name: 'new_name',
+      description: 'new_description',
+      price: 29,
+      quantity: 22,
+      user_id: user.id
+    )
   }
 
   describe 'relationships' do
@@ -132,7 +143,7 @@ describe Product do
         product.toggle_retire
 
         expect(product.is_retired).must_equal false
-        expect(product.available).must_equal true
+        expect(product.available).must_equal false
       end
     end
   end
@@ -147,6 +158,54 @@ describe Product do
 
     it 'will return nil if there are no product reviews' do
       assert_nil(product.average_rating)
+    end
+  end
+
+  describe 'set_availability, which is completed upon save' do
+    it 'will set available to false if quantity is 0 before save' do
+      expect(product2.available).must_equal true
+      expect(product2.is_retired).must_equal false
+
+      product2.quantity = 0
+      product2.save
+
+      expect(product2.available).must_equal false
+      expect(product2.is_retired).must_equal false
+    end
+
+    it 'will not set available to false if quantity is greater than 0 before save and is_retired is false' do
+      expect(product2.is_retired).must_equal false
+
+      product2.quantity = 32
+      product2.save
+
+      expect(product2.available).must_equal true
+      expect(product2.is_retired).must_equal false
+    end
+
+    it 'will set available to false if quantity > 0 but is_retired true' do
+      expect(product2.is_retired).must_equal false
+
+      product2.quantity = 32
+      product2.is_retired = true
+      product2.save
+
+      expect(product2.quantity.positive?).must_equal true
+      expect(product2.available).must_equal false
+      expect(product2.is_retired).must_equal true
+    end
+
+    it 'will set is_retired to false at product creation' do
+      expect(product2.is_retired).must_equal false
+    end
+
+    it 'will not set is_retired to false upon save if is_retired is true' do
+      expect(product2.is_retired).must_equal false
+
+      product2.is_retired = true
+      product2.save
+
+      expect(product2.is_retired).must_equal true
     end
   end
 end
