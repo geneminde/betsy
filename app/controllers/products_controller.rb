@@ -17,6 +17,7 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
+      flash[:success] = "#{@product.name} updated successfully"
       redirect_to current_user_path
       return
     else
@@ -37,8 +38,8 @@ class ProductsController < ApplicationController
       flash[:success] = "Successfully created new #{@product.name}, \"for $#{@product.price}!\""
       redirect_to product_path(@product)
     else
-      flash[:error] = "Product was NOT added"
-      redirect_to new_product_path
+      flash.now[:error] = "Product was NOT added"
+      render :new
     end
   end
   
