@@ -3,6 +3,14 @@ require "test_helper"
 describe Product do
   let (:product) { Product.first }
 
+  let (:review1) {
+    Review.create!(rating: 5, product_id: product.id)
+  }
+
+  let (:review2) {
+    Review.create!(rating: 3, product_id: product.id)
+  }
+
   describe 'relationships' do
 
   end
@@ -122,11 +130,14 @@ describe Product do
 
   describe 'average_rating' do
     it 'can calculate the average rating for product reviews' do
+      review1
+      review2
 
+      expect(product.average_rating).must_equal 4
     end
 
     it 'will return nil if there are no product reviews' do
-
+      assert_nil(product.average_rating)
     end
   end
 end
