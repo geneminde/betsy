@@ -112,4 +112,56 @@ describe CategoriesController do
       must_respond_with :redirect
     end
   end
+
+  describe 'update' do
+    let(:category_hash) {
+      {
+          category: { name: "New Name" }
+      }
+    }
+
+    it 'updates an existing category if a user is logged in' do
+      perform_login
+      category = categories(:category1)
+      id = category.id
+
+      expect {
+        patch category_path(id), params: category_hash
+      }.wont_change "Category.count"
+
+      edited_category = Category.find_by(id: id)
+
+      expect(edited_category.name).must_equal category_hash[:category][:name]
+    end
+
+    it 'does not update if the params are invalid' do
+      perform_login
+      category = categories(:category1)
+      id = category.id
+
+      invalid_category_hash = {
+          category: {
+              name: nil
+          }
+      }
+
+      expect {
+        patch category_path(id), params: invalid_category_hash
+      }.wont_change "Category.count"
+
+      category.reload
+      must_respond_with :bad_request
+      expect(category.name).wont_be_nil
+    end
+
+    it 'responds with redirect for invalid ids' do
+      id = -1
+
+      expect {
+        patch category_path(id), params: category_hash
+      }.wont_change 'Category.count'
+
+      must_respond_with :redirect
+    end
+  end
 end

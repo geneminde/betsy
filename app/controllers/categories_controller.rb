@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  skip_before_action :require_login, except: [:new, :create, :edit]
+  skip_before_action :require_login, except: [:new, :create, :edit, :update]
 
   def index
     @categories = Category.all
@@ -22,7 +22,7 @@ class CategoriesController < ApplicationController
 
     if @category.save
       flash[:success] = "Category successfully created"
-      redirect_to categories_path #Placeholder - we'll want to redirect somewhere more salient to the user
+      redirect_to current_user_path
       return
     else
       flash.now[:error] = "Category not added"
@@ -36,7 +36,25 @@ class CategoriesController < ApplicationController
 
     if @category.nil?
       flash[:error] = "Category does not exist"
-      redirect_to categories_path
+      redirect_back(fallback_location: current_user_path)
+      return
+    end
+  end
+
+  def update
+    @category = Category.find_by(id: params[:id])
+
+    if @category.nil?
+      flash[:error] = "Category does not exist"
+      redirect_back(fallback_location: current_user_path)
+      return
+    elsif @category.update(category_params)
+      flash[:success] = "#{@category.name.capitalize} updated successfully"
+      redirect_to current_user_path
+      return
+    else
+      flash.now[:error] = "Category not updated"
+      render :edit, status: :bad_request
       return
     end
   end
