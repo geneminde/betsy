@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
     return @cart = Order.find_by(id: session[:order_id])
   end
 
+
   def flash_validation_errors(model)
     if model.errors.messages
       model.errors.messages.each do |field, messages|
@@ -24,6 +25,19 @@ class ApplicationController < ActionController::Base
         end
       end
     end
+
+    
+  def find_product
+    @product = Product.find_by(id: params[:id]) || Product.find_by(id: params[:product_id])
+
+    if @product.nil?
+      flash[:error] = 'Uh oh! That product could not be found... Please try again.'
+      redirect_back(fallback_location: products_path)
+      return
+    end
+
+    return @product
+
   end
 
 end

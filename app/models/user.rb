@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :order_items, through: :products, dependent: :destroy
   has_many :categories, through: :products
   has_many :orders
+  has_many :reviews
 
   validates :uid,
             presence: true,
