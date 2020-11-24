@@ -1,16 +1,13 @@
 class ReviewsController < ApplicationController
-  skip_before_action :require_login, except: [:edit, :update, :destroy]
-  before_action :find_product, only: [:new, :create, :update]
-  before_action :find_product_review, except: [:new, :create]
-  before_action :verify_auth_review, except: [:show]
+  skip_before_action :require_login
+  before_action :find_product
+  before_action :verify_auth_review
 
   def review_error
     flash.now[:error] = 'Uh oh! That review did not save. Please try again.'
   end
 
   ##################################################
-
-  def show; end
 
   def new
     @review = @product.reviews.new
@@ -21,9 +18,14 @@ class ReviewsController < ApplicationController
 
     if @review.save
       redirect_to product_path(@review.product)
+      return
     else
+      # binding.pry
       review_error
       render :new
+      # binding.pry
+      # raise
+      return
     end
   end
 
@@ -31,17 +33,6 @@ class ReviewsController < ApplicationController
 
   def review_params
     return params.require(:review).permit(:rating, :review_text, :author_name, :user_id, :product_id)
-  end
-
-  def find_product_review
-    @review = Review.find(params[:id])
-
-    if @review.nil?
-      flash[:error] = 'Uh oh! That review could not be found... Please try again.'
-      redirect_back(fallback_location: products_path)
-    end
-
-    @product = @review.product
   end
 
   def verify_auth_review

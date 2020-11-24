@@ -12,5 +12,17 @@ describe ReviewsController do
     Review.create!(rating: 3, product_id: product.id)
   }
 
+  describe 'signed-in user' do
+    before do
+      perform_login(user)
+    end
 
+    describe 'new' do
+      it ''
+    end
+
+    describe 'create' do
+
+    end
+  end
 end
