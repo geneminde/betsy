@@ -1,0 +1,53 @@
+<% if subject.reviews.count.zero? %>
+  There are no reviews yet for this <%= subject == @product ? 'product' : 'merchant' %>.
+  <br>
+<% else %>
+  <br>
+  <h5>
+    Average Rating:
+    <% subject.average_rating.to_i.times do %>
+      <span class="star-rating">☆</span>
+    <% end %>
+    (<%= subject.average_rating %>)
+    <br><br>
+    <div class="sub-info">
+      <%= subject.reviews.count %> <%= subject == @product ? 'product' : 'store' %> <%= subject.reviews.count > 1 ? 'reviews' : 'review' %>
+    </div>
+  </h5>
+  <br>
+  <% subject.reviews.order(updated_at: :desc).each.with_index do |review, index| %>
+    <br>
+    <% review.rating.to_i.times do %>
+      <span class="star-rating">☆</span>
+    <% end %>
+    <br>
+    <div class="one-rating">
+      <% if review.author_name.present? %>
+        <div class="sub-info">
+          Author: <%= review.author_name %> on <%= review.updated_at.strftime("%B %-d, %Y") %>
+        </div>
+      <% else %>
+        <div class="sub-info">
+          Author: Anonymous Alien 👾 on <%= review.updated_at.strftime("%B %-d, %Y") %>
+        </div>
+      <% end %>
+      <br>
+      <% if review.review_text.present? %>
+        <%= review.review_text %>
+        <br>
+        <br>
+      <% end %>
+      <% if subject != @product %>
+        <div class="sub-info">Purchased item:</div>
+        <div class="reviewed-product">
+          <%= image_tag review.product.photo_url, alt: "Product image" %>
+          <%= link_to review.product.name, product_path(review.product) %>
+        </div>
+      <% end %>
+    </div>
+    <br>
+    <% unless index == subject.reviews.count - 1 %>
+      <div class="separator"></div>
+    <% end %>
+  <% end %>
+<% end %>

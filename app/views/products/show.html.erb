@@ -8,8 +8,10 @@
         <h2><%= @product.name %></h2>
         <h4>$<%= @product.price %></h4>
         <p>
-          <% if @product.quantity.zero? %>
-            Sold Out
+          <% if @product.is_retired %>
+            🚫 Retired
+          <% elsif @product.quantity.zero? %>
+            🛸 Sold Out
           <% else %>
             ✔️ In-Stock
           <% end %>
@@ -34,38 +36,13 @@
     </section>
     <div class="separator"></div>
     <section class="ratings">
-      <% if @product.reviews.count.zero? %>
-        <h3>There are no reviews yet for this product.</h3>
-        <br>
-        <div class="create-button"><%= link_to 'Create a product review', new_product_review_path(@product) %></div>
-      <% else %>
-        <h3>
-          <%= @product.reviews.count %> <%= @product.reviews.count > 1 ? 'reviews' : 'review' %> (TO:DO: DISPLAY AVG REVIEW)
-        </h3>
-        <br>
-        <% @product.reviews.order(:rating).each do |review| %>
-          <% review.rating.to_i.times do %>
-            <span class="star-rating">☆</span>
-          <% end %>
-          <br>
-          <div class="one-rating">
-            <% if review.user %>
-              <div class="sub-info">
-                Author: <%= link_to user.username, user_path(user) %> on <%= review.updated_at.strftime("%B %-d, %Y") %>
-              </div>
-              <div class="sub-info">Seller since <%= user.created_at.strftime("%B %-d, %Y") %></div>
-            <% else %>
-              <div class="sub-info">
-                Author: Anonymous Alien 👾 on <%= review.updated_at.strftime("%B %-d, %Y") %>
-              </div>
-            <% end %>
-            <br>
-            <%= review.review_text %>
-          </div>
-          <div class="separator"></div>
-        <% end %>
-        <div class="separator"></div>
-      <% end %>
+      <%= render partial: "reviews/review_listing",
+                 locals: {
+                     subject: @product
+                 }
+      %>
+      <br>
+      <div class="create-button"><%= link_to 'Leave a product review', new_product_review_path(@product) %></div>
     </section>
   </div>
 </main>

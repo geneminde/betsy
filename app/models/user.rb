@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_many :order_items, through: :products, dependent: :destroy
   has_many :categories, through: :products
   has_many :orders
-  has_many :reviews
+  has_many :reviews, through: :products, dependent: :destroy
 
   validates :uid,
             presence: true,
@@ -20,5 +20,10 @@ class User < ApplicationRecord
     user.username = auth_hash[:info][:name] || auth_hash[:info][:nickname]
     user.email = auth_hash[:info][:email]
     return user
+  end
+
+  def check_own_product(product)
+    user = self
+    return user.products.include?(product)
   end
 end

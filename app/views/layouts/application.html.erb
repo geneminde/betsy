@@ -75,13 +75,15 @@
           <%= message %>
       <% end %>
       <% if @product %>
-        <% if @product.errors.any? %>
-          <ul>
-            <% @product.errors.each do |column, message| %>
-              <li><strong><%= column.capitalize %></strong>: <%= message %></li>
-            <% end %>
-          </ul>
-        <% end %>
+        <%= render partial: "products/error_display", locals: { model: @product } %>
+      <% elsif @review %>
+        <%= render partial: "products/error_display", locals: { model: @review } %>
+      <% elsif @order_item %>
+        <%= render partial: "products/error_display", locals: { model: @order_item } %>
+      <% elsif @order %>
+        <%= render partial: "products/error_display", locals: { model: @order } %>
+      <% elsif @user %>
+        <%= render partial: "products/error_display", locals: { model: @user } %>
       <% end %>
         </div>
     </section>

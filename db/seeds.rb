@@ -130,6 +130,26 @@ order_item_upload_failures = []
   end
 end
 
+########################################################
+
+review_upload_failures = []
+100.times do
+  review = Review.new
+
+  review.rating = rand(1..5)
+  review.author_name = [Faker::Name.name.to_s, nil].sample
+  review.product_id = rand(1..199)
+  review.review_text = ["#{Product.find_by(id: review.product_id).name} is super rad", nil].sample
+
+  successful = review.save
+  if !successful
+    review_upload_failures << review
+    puts "Failed to save review: #{review.inspect}"
+  else
+    puts "Created review: #{review.inspect}"
+  end
+end
+
 puts 'FINAL SUMMARY:'
 
 puts "Added #{Category.count} category records"
@@ -148,12 +168,12 @@ puts "Added #{OrderItem.count} order_items records"
 puts "#{order_item_upload_failures.size} order items failed to save"
 
 
-failures = [user_upload_failures, product_upload_failures, order_upload_failures, order_item_upload_failures]
-failures.each do |model_failures|
-  next if model_failures.empty?
-  model_failures.each do |record|
-    puts record.errors.messages
-  end
-end
+# failures = [user_upload_failures, product_upload_failures, order_upload_failures, order_item_upload_failures]
+# failures.each do |model_failures|
+#   next if model_failures.empty?
+#   model_failures.each do |record|
+#     puts record.errors.messages
+#   end
+# end
 
 puts 'done'
