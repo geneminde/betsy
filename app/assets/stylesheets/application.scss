@@ -101,13 +101,13 @@ main {
   font-size: 0.9rem;
 }
 
-.basic-info .sub-info {
+.sub-info {
   color: grey;
   font-size: 0.8rem;
 }
 
 //Merch dash and user show views
-.merch-container, .prod-container {
+.merch-container, .prod-container, .prod-show-container, .review-container {
   width: 80%;
   display: grid;
   margin-left: auto;
@@ -175,7 +175,7 @@ main {
   margin-left: 10px;
 }
 
-.create-button {
+.create-button, input[type=submit] {
   cursor: pointer;
   display: inline-block;
   margin: 0px;
@@ -195,27 +195,32 @@ main {
   background: transparent;
 }
 
-.create-button a {
+.create-button a, input[type=submit] {
   color: #5e60ce !important;
 }
 
-.create-button a:hover {
+.create-button a:hover, input[type=submit]:hover {
   text-decoration: none;
+  border-color: #5e60ce;
+  background-color: transparent;
 }
 
-.create-button a.incomplete:link, .create-button a.incomplete:visited, .create-button a.complete:link, .create-button a.complete:visited {
+.create-button a.incomplete:link,
+.create-button a.incomplete:visited,
+.create-button a.complete:link,
+.create-button a.complete:visited,
+input[type=submit].incomplete:link,
+input[type=submit].incomplete:visited,
+input[type=submit].complete:link,
+input[type=submit].complete:visited, {
   color: #5e60ce !important;
   text-decoration: none;
+  background-color: transparent;
 }
 
 //////////////////////////////////////
 
 //Product index page
-.prod-container {
-  justify-content: center;
-  align-items: center;
-}
-
 .prod-container h1, .prod-container h2, .prod-container h3 {
   text-align: center;
 }
@@ -228,7 +233,91 @@ main {
 //////////////////////////////////////
 
 //Product show page
-p img {
-  max-height: 200px;
+.prod-main {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.prod-show-container img {
+  max-height: 300px;
   width: auto;
+}
+
+.prod-description {
+  width: 40%;
+}
+
+.ratings {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.one-rating {
+  display: flex;
+  flex-direction: column;
+}
+
+.star-rating {
+  color: #5e60ce;
+}
+
+//////////////////////////////////////
+
+//New review page
+.review-container {
+  width: 60%;
+  display: grid;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+//CSS for star rating
+.rating {
+  margin: 25px 0 25px 0;
+}
+
+.hide {
+  display: none;
+}
+
+.clear {
+  float: none;
+  clear: both;
+}
+
+.rating {
+  width: 90px;
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  text-align: center;
+  position: relative;
+}
+
+.rating > label {
+  float: right;
+  display: inline;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  width: 1.1em;
+  cursor: pointer;
+  color: #000;
+}
+
+.rating > label:hover,
+.rating > label:hover ~ label,
+.rating > input.radio-btn:checked ~ label {
+  color: transparent;
+}
+
+.rating > label:hover:before,
+.rating > label:hover ~ label:before,
+.rating > input.radio-btn:checked ~ label:before,
+.rating > input.radio-btn:checked ~ label:before {
+  content: "\2605";
+  position: absolute;
+  left: 0;
+  color: #FFD700;
 }

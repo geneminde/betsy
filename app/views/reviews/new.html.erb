@@ -1,0 +1,10 @@
+<main>
+  <div class="review-container listings">
+    <h2>Leave a Review for <%= @product.name %></h2>
+    <%= render partial: "form",
+               locals: {
+                   action: 'Create Review'
+               }
+    %>
+  </div>
+</main>

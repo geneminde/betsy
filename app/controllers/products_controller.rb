@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
       redirect_to current_user_path
       return
     else
-      flash.now[:error] = "A problem occurred: Could not update #{@product.name}"
+      flash.now[:error] = "A problem occurred: Could not update product: #{@product.name}"
       render :edit
       return
     end
@@ -53,13 +53,5 @@ class ProductsController < ApplicationController
         :quantity,
         :available,
     )
-  end
-
-  def find_product
-    @product = Product.find_by(id: params[:id]) || Product.find_by(id: params[:product_id])
-    if @product.nil?
-      flash[:error] = 'Uh oh! That product could not be found... Please try again.'
-      redirect_to products_path
-    end
   end
 end
