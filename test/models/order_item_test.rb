@@ -18,7 +18,7 @@ describe OrderItem do
       expect(order_item.errors.messages[:product]).must_include "can't be blank"
     end
 
-    it "is not valid without a product" do
+    it "is not valid without an order" do
       order_item.order = nil
 
       expect(order_item.valid?).must_equal false
@@ -67,14 +67,12 @@ describe OrderItem do
       product = products(:product1)
       order_item.product = product
 
-
       expect(order_item.product_id).must_equal product.id
     end
 
     it "it can set product through 'product_id'" do
       product = products(:product1)
       order_item.product_id = product.id
-
 
       expect(order_item.product).must_equal product
     end
@@ -83,7 +81,6 @@ describe OrderItem do
       order = orders(:order7)
       order_item.order_id = order.id
 
-
       expect(order_item.order).must_equal order
     end
 
@@ -91,8 +88,14 @@ describe OrderItem do
       order = orders(:order7)
       order_item.order = order
 
-
       expect(order_item.order_id).must_equal order.id
+    end
+
+    it "can set order through 'user'" do
+      user = users(:user1)
+      order_item.user = user
+
+      expect(order_item.user).must_equal user
     end
   end
 

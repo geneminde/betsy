@@ -160,10 +160,12 @@ describe OrderItemsController do
   end
 
   describe "ship" do
+    before do
+      @order_item.shipped = false
+    end
+
     it "changes order item shipped status if item belongs to logged-in user, and redirects" do
       perform_login(@order_item.user)
-
-      @order_item.shipped = false
 
       expect{
         patch ship_path(@order_item)
@@ -178,8 +180,6 @@ describe OrderItemsController do
     it "doesn't change order item shipped status if item does NOT belong to logged-in user, and redirects" do
       perform_login()
 
-      @order_item.shipped = false
-
       expect{
         patch ship_path(@order_item)
       }.wont_change "OrderItem.count"
@@ -187,9 +187,54 @@ describe OrderItemsController do
       @order_item.reload
 
       expect(@order_item.shipped).must_equal false
+      expect(flash[:error]).must_equal "You are not authorized to do that"
       must_respond_with :redirect
     end
 
+    it "guest user (not logged in) can't ship an item and is redirected" do
+      patch ship_path(@order_item)
 
+      expect(flash[:error]).must_equal "Please log in to perform this action."
+      must_respond_with :redirect
+    end
+
+    describe "check_order_complete" do
+      before do
+        # Initiate an order by adding an order item
+        post product_order_items_path(@product), params: @order_item_data
+
+        @created_order_item = OrderItem.order(created_at: :desc).first
+        @created_order = Order.order(created_at: :desc).first
+
+        user = @product.user # user 2
+
+        perform_login(user)
+      end
+      it "returns flash message if order is complete (all items shipped)" do
+        patch ship_path(@created_order_item)
+
+        expect(flash[:notice]).must_equal "Order ##{@created_order.id} is completed"
+      end
+
+      it "returns flash message if order is not shared and is not complete" do
+        # user 2 has product1 and product5
+        OrderItem.create(quantity: 1, order: @created_order, product: products(:product5))
+
+        patch ship_path(@created_order_item)
+
+        expect(flash[:notice]).must_equal "Order ##{@created_order.id} has additional items pending shipment"
+      end
+
+      it "returns flash message if order is shared and is not complete" do
+        # product2 is a different user
+        OrderItem.create(quantity: 1, order: @created_order, product: products(:product2))
+
+        patch ship_path(@created_order_item)
+
+        expect(flash[:notice]).must_equal "Order ##{@created_order.id} is shared with other merchant(s) and has additional items pending shipment"
+      end
+    end
   end
+
+
 end

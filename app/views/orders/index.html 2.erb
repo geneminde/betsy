@@ -1,0 +1,41 @@
+<section class="orders container">
+  <h1>My Order Fulfillment 💰</h1>
+
+  <div class="merchant-container container">
+    <div class="all-orders container">
+      <h3>Total Revenue</h3>
+      <p class="revenue">$<%= Order.total_revenue(@current_user) %></p>
+    </div>
+
+    <%= link_to "#paid", class: "paid-orders container" do %>
+      <i class="fas fa-file-invoice-dollar fa-3x"></i>
+      <h3>Paid: <%= @orders_by_status["paid"].count %></h3>
+    <% end %>
+
+    <%= link_to "#complete", class: "complete-orders container" do %>
+      <i class="fas fa-shipping-fast fa-3x"></i>
+      <h3>Completed: <%= @orders_by_status["complete"].count %></h3>
+    <% end %>
+
+    <%= link_to "#cancelled", class: "cancelled-orders container" do %>
+      <i class="far fa-window-close fa-3x"></i>
+      <h3>Cancelled: <%= @orders_by_status["cancelled"].count %></h3>
+    <% end %>
+
+  </div>
+
+
+  <% @orders_by_status.each do |status, orders| %>
+
+      <% if orders.count > 0 %>
+      <div id="<%= status %>" class="container">
+        <h3><%= status.capitalize %> Orders (<%= orders.count %>)</h3>
+        <p>Total Revenue: $<%= Order.by_status(status).total_revenue(@current_user) %></p>
+      </div>
+
+      <%= render partial: "merchant_orders", locals: {orders: orders } %>
+    <% end %>
+  <% end %>
+
+
+</section>
