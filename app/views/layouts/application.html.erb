@@ -25,13 +25,13 @@
                     <% @categories.each do |category| %>
                       <a class="dropdown-item" href="<%= category_path(category.id) %>"><%= "#{category.name.capitalize}" %></a>
                     <% end %>
-                    <% if @current_user %>
+                    <% if session[:user_id] %>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="<%= new_category_path %>">Add new category</a>
                     <% end %>
                   <% else %>
                     <a class="dropdown-item disabled" href="#">No Categories</a>
-                    <% if @current_user %>
+                    <% if session[:user_id] %>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="<%= new_category_path %>">Add new category</a>
                     <% end %>

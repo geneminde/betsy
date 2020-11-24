@@ -49,8 +49,4 @@ class ApplicationController < ActionController::Base
     @categories = Category.all
   end
 
-  def logged_in_user?
-    @logged_in_user = User.find_by(id: session[:user_id])
-  end
-
 end
