@@ -1,0 +1,5 @@
+category1:
+  name: "category1"
+  products: product1, product2, product3, product4
+category2:
+  name: "category2"

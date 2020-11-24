@@ -2,6 +2,20 @@ class Product < ApplicationRecord
   has_many :order_items, dependent: :destroy
   belongs_to :user
   has_many :orders, through: :order_items
+  has_and_belongs_to_many :categories
+
+  has_many :reviews
+
+  validates :name, :description,
+            uniqueness: true,
+            on: :create
+
+  validates :name, :description,
+            presence: true
+
+  validates :price, :quantity,
+            presence: true,
+            numericality: { greater_than_or_equal_to: 0 }
 
   def in_stock?(order_quantity)
     inventory_quantity = self.quantity

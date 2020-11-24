@@ -1,0 +1,8 @@
+<%= form_with model: @category do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <%= f.submit "#{action_name} Category" %>
+<% end %>

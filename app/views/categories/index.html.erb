@@ -1,0 +1,10 @@
+<h2>Categories</h2>
+<% if @categories %>
+  <ul>
+    <% @categories.each do |category| %>
+    <li><%= link_to "#{category.name.capitalize}", category_path(category.id) %></li>
+    <% end %>
+</ul>
+<% else %>
+  <p>There are currently no categories</p>
+<% end %>

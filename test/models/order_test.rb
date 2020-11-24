@@ -123,39 +123,60 @@ describe Order do
     end
   end
 
-    describe "filter_items(user)" do
-      let(:order) {
-        orders(:order1) # order1 fixture includes multiple order items fixtures (1 and 8) and user fixtures (users 6 and 3, respectively)
-      }
-      it "returns order items of one user from a shared order" do
-        expect(order.order_items).must_include order_items(:order_item1) # user 6
-        expect(order.order_items).must_include order_items(:order_item8) # user 3
+  describe "filter_items(user)" do
+    let(:order) {
+      orders(:order1) # order1 fixture includes multiple order items fixtures (1 and 8) and user fixtures (users 6 and 3, respectively)
+    }
+    it "returns order items of one user from a shared order" do
+      expect(order.order_items).must_include order_items(:order_item1) # user 6
+      expect(order.order_items).must_include order_items(:order_item8) # user 3
 
-        user6_items = order.filter_items(users(:user6))
+      user6_items = order.filter_items(users(:user6))
 
-        expect(user6_items).must_include order_items(:order_item1)
-        expect(user6_items.count).must_equal 1
-      end
-
-      it "returns empty if there are no items from given user in an order" do
-        user_items = order.filter_items(users(:user1))
-
-        expect(user_items).must_be_empty
-      end
+      expect(user6_items).must_include order_items(:order_item1)
+      expect(user6_items.count).must_equal 1
     end
 
-    describe "shared?" do
-      it "returns true if an order is shared among multiple merchants" do
-        order = orders(:order1) # order1 fixture includes multiple order items fixtures (1 and 8) and user fixtures (users 6 and 3, respectively)
+    it "returns empty if there are no items from given user in an order" do
+      user_items = order.filter_items(users(:user1))
 
-        expect(order.shared?).must_equal true
-      end
+      expect(user_items).must_be_empty
+    end
+  end
 
-      it "returns false if an order only has products from one merchant" do
-        order = orders(:order6) # order6 has order items (3 and 6) from same user
+  describe "shared?" do
+    it "returns true if an order is shared among multiple merchants" do
+      order = orders(:order1) # order1 fixture includes multiple order items fixtures (1 and 8) and user fixtures (users 6 and 3, respectively)
 
-        expect(order.shared?).must_equal false
+      expect(order.shared?).must_equal true
+    end
+
+    it "returns false if an order only has products from one merchant" do
+      order = orders(:order6) # order6 has order items (3 and 6) from same user
+
+      expect(order.shared?).must_equal false
+    end
+  end
+
+  describe "self.to_status_hash(user)" do
+    it "returns a hash of user's orders grouped by status" do
+      user = users(:user1)
+      orders = Order.to_status_hash(user)
+
+      expect(Order.to_status_hash(user)).must_be_kind_of Hash
+
+      valid_status = %w[pending paid complete cancelled]
+
+
+      orders.each do |status, orders|
+        expect(valid_status).must_include status
+
+        orders.each do |order|
+          expect(order).must_be_kind_of Order
+          expect(order.products.pluck(:user_id)).must_include user.id
+        end
       end
     end
+  end
 end
 

@@ -1,3 +1,36 @@
 // Place all the styles related to the orders controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+h2 {
+  padding-bottom: 30px;
+}
+
+.container  {
+  margin-top: 48px;
+  margin-bottom: 48px;
+}
+
+
+/// Merchant Order Show Page
+.order-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.order-summary-heading {
+  grid-column: 1 / -1;
+}
+
+.items-container {
+  grid-column: 1 / -1;
+}
+
+.price-container {
+ grid-column: -3 / -1;
+}
+
+.customer-container {
+  grid-column: 1 / -1;
+}
+

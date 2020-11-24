@@ -4,7 +4,7 @@ product1:
   photo_url: 'https://www.prettyprettypicture.com'
   description: 'Will you open up the exit hatch, please, computer?'
   quantity: 572
-  available: true
+  available: false
   user: user2
   is_retired: true
 product2:
@@ -51,7 +51,7 @@ product6:
   quantity: 687
   available: true
   user: user10
-  is_retired: true
+  is_retired: false
 product7:
   name: 'Traal'
   price: 783
