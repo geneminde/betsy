@@ -1,11 +1,11 @@
-id,username,email,uid,provider
+id,username,email,uid,provider,avatar
 1,Mercury,nextdoortobigSun@planetsy.site,30318858,github
 2,Venus,beautyisinthename@planetsy.site,752122524,github
-3,Earth,oceanicmarvel@planetsy.site,792636523,github
+3,Earth,oceanicmarvel@planetsy.site,792636523,github,🌍
 4,Mars,morethanamoniker@planetsy.site,421768724,github
-5,Ceres,forgottendwarfplanet@planetsy.site,56543243,github
+5,Ceres,forgottendwarfplanet@planetsy.site,56543243,github,🌑
 6,Jupiter,bigdeal@planetsy.site,86881119,github
-7,Saturn,singlelady@planetsy.site,749002910,github
+7,Saturn,singlelady@planetsy.site,749002910,github,🪐
 8,Uranus,Ihavealreadyheardthatjoke@planetsy.site,317638418,github
 9,Neptune,sidewaysandlovingit@planetsy.site,307751651,github
 10,PlanetX,itsplanetnine@planetsy.site,87967543,github
