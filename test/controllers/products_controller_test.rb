@@ -1,9 +1,9 @@
-require "test_helper"
+require 'test_helper'
 
 describe ProductsController do
 
-  let (:user) { User.first }
-  let (:product) { Product.first }
+  let(:user) { User.first }
+  let(:product) { Product.first }
 
   let (:product_hash) {
     {
@@ -30,15 +30,15 @@ describe ProductsController do
   ##################################################
 
   # General functionality outside of auth
-  describe "index" do
-    it "can get the index path" do
+  describe 'index' do
+    it 'can get the index path' do
       # Act
       get products_path
       # Assert
       must_respond_with :success
     end
 
-    it "can get the root path" do
+    it 'can get the root path' do
       # Act
       get root_path
       # Assert
@@ -47,7 +47,7 @@ describe ProductsController do
   end
 
   describe 'show' do
-    it "will redirect for an invalid path" do
+    it 'will redirect for an invalid path' do
       # Act
       get product_path(-1)
       # Assert
@@ -60,7 +60,6 @@ describe ProductsController do
       must_respond_with :success
     end
   end
-
   ##################################################
 
   # Guest user tests
@@ -99,13 +98,15 @@ describe ProductsController do
     end
 
     describe 'edit' do
-      it 'responds with success when getting the edit page for an existing, valid product' do
-        get edit_product_path(product.id)
+      it 'can get the products path' do
+        get edit_product_path(product)
+
         must_respond_with :success
       end
 
-      it 'responds with redirect when getting the edit page for a non-existing product' do
+      it 'shows an error for invalid product path' do
         get edit_product_path(-1)
+
         must_respond_with :redirect
         must_redirect_to products_path
       end
@@ -151,6 +152,52 @@ describe ProductsController do
         expect(product.description).must_equal original_description
         expect(product.quantity).must_equal original_quantity
       end
+
+      it 'shows flash message for products not updated' do
+        updates = {product: {name: nil}}
+
+        expect {
+          put product_path(product), params: updates
+        }.wont_change 'Product.count'
+
+        expect(flash[:error])
+        assert(:error, "A problem occurred: Could not update #{product.name}")
+      end
+
+      it 'renders edit form for incomplete data' do
+        updates = {product: {name: nil}}
+
+        expect {
+          put product_path(product), params: updates
+        }.wont_change 'Product.count'
+
+        expect(flash[:error])
+        assert :edit
+      end
+    end
+
+    describe 'new' do
+      it 'works' do
+        get new_product_path
+
+        must_respond_with :success
+      end
+    end
+
+    describe 'create' do
+      it "creates a product with valid data" do
+
+        new_product = {product: {name: "oxygen", price: '50', quantity: '10'}}
+
+        expect {
+          post products_path, params: new_product
+        }.must_change "Product.count", 1
+
+        new_product_id = Product.find_by(name: "oxygen").id
+
+        must_respond_with :redirect
+        must_redirect_to product_path(new_product_id)
+      end
     end
 
     describe 'retire' do
@@ -164,6 +211,28 @@ describe ProductsController do
         patch retire_product_path(product)
         must_respond_with :redirect
         must_redirect_to current_user_path
+      end
+    end
+
+    describe 'find_product' do
+      it 'has flash message for incorrect ID' do
+        bogus_id = product.id
+        product.destroy
+
+        put product_path(bogus_id)
+
+        expect(flash[:error])
+        assert 'Uh oh! That product could not be found... Please try again.'
+
+      end
+      it 'redirects for incorrect ID' do
+        bogus_id = product.id
+        product.destroy
+
+        put product_path(bogus_id)
+
+        must_redirect_to products_path
+
       end
     end
   end
