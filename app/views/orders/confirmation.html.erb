@@ -1,5 +1,5 @@
 <h2>Order Confirmation</h2>
-<h3>Order Placed: <%= @order.updated_at.strftime('%c') %></h3>
+<h3>Order Placed: <%= readable_date(@order.updated_at) %> <%= readable_time(@order.updated_at) %></h3>
 <h3>Order Status: <%= @order.status %></h3>
 <section class="summary">
   <table class="table">
