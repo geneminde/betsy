@@ -1,44 +1,43 @@
-name,description,category_id,user_id
-Meteor Piece,Little pieces from the many meteors that break through the Mercurian atmosphere,4,1
-True Stories About Mercury,A book about the marvel of Mercury,1;2,1
-Thermometer,it's better to get your mercury from Mercury,3,1
-It Ain't Easy Being Pretty,What it means to be named after a goddess of love,1;5,2
-I'm Terrestrial Too,Information about the 2nd planet from the sun,1;2,2
-Sulfuric Acid,Special Venusian sulfuric acid,3,2
-Volcanic Ash,Special Venusian ash,4,2
-If You Support a Human's Life,How best to harbor your humans,1,3
-Oceans,Supporting different life forms,1,3
-Humans,Buy a life-form to take home!,5;2,3
-Ocean Water,Cleansing and Purifying: The Poop Gives It Flavor,4;5,3
-Moon Water,New & Refreshing,4,3
-Moonstones,Pretty and smooth,4,3
-Iron Oxide,Special Martian Iron,3,4
-BigRed Dust,Martian Dust,4;5,4
-BigRed Take-home,Martian Desert in a Bottle,4;2,4
-Being forgotten,I'm a planet too,1,5
-Who is Ceres?,The story of the 'dwarf' planet between Mars and Jupiter,1,5
-Red Spot,Some of the Red Spot (bottle),2;4,6
-Moon,Buy a moon to take home!,2;4,6
-Ammonia,More ammonia to go around,3,6
-Put A Ring On It,What it means to be Saturn,1,7
-Ring,Buy a ring to take home!,2,7
-Hydrogen,Saturnal hydrogen,3,7
-Helium,Saturnal helium,3,7
-Moon,A real moon! Bigger than some planets!,2;4,7
-Fart Spray,Is that you or Uranus?,5,8
-Methane,True methane straight from Uranus,3,8
-Soft Serve Fudge,Trust us -- it's delicious,2,8
-Ring,Buy a ring to take home!,2,8
-Moon,A real moon!,4,8
-Dirty Jokes,We've heard them all; now we've done better!,1,8
-Trident,Fish sold separately,5,9
-Fish,Trident sold separately,5,9
-Wind,Get a whirl of Neptune!(bottled),2,9
-Math -- how I was found,A story of the 'discovery' of Neptune,2,9
-Rock,Get your rocks!,4,9
-Supersonic,Take your own piece of power,3,9
-A Nine or a Ten?,The story of Planet X a.k.a. Planet Nine,1,10
-Ice Lava,Lava doesn't need to be hot,2;4,11
-Mountain Ice,Super-cold & Super-refreshing,4,11
-Ice Dunes,Betcha didn't know sand can be icy,4,11
-What's a Status anyway?,The Story of Pluto: from planet--to not--to dwarf planet,1,11
+name,description,category_id,user_id,photo
+Meteor Piece,Little pieces from the many meteors that break through the Mercurian atmosphere,4,1,https://solarsystem.nasa.gov/system/feature_items/images/72_mercury_carousel_4.jpg
+True Stories About Mercury,A book about the marvel of Mercury,1;2,1,https://solarsystem.nasa.gov/system/feature_items/images/73_carousel_mercury_2.jpg
+Thermometer,it's better to get your mercury from Mercury,3,1,https://solarsystem.nasa.gov/system/resources/detail_files/525_PIA19242.jpg
+It Ain't Easy Being Pretty,What it means to be named after a goddess of love,1;5,2,https://solarsystem.nasa.gov/system/feature_items/images/147_venus_carousel_2.jpg
+I'm Terrestrial Too,Information about the 2nd planet from the sun,1;2,2,https://solarsystem.nasa.gov/system/resources/detail_files/2524_PIA23791.jpg
+Sulfuric Acid,Special Venusian sulfuric acid,3,2,https://solarsystem.nasa.gov/system/resources/detail_files/575_PIA00072.jpg
+Volcanic Ash,Special Venusian ash,4,2,https://solarsystem.nasa.gov/system/resources/detail_files/480_VenusMaatMons1200w.jpg
+If You Support a Human's Life,How best to harbor your humans,1,3,https://asset-manager.bbcchannels.com/i/2fb8v0k80001000
+Oceans,Supporting different life forms,1,3,https://solarsystem.nasa.gov/system/resources/detail_files/459_EarthRise1000w.jpg
+Humans,Buy a life-form to take home!,5;2,3,https://memegenerator.net/img/instances/60798226.jpg
+Ocean Water,Cleansing and Purifying: The Poop Gives It Flavor,4;5,3,https://solarsystem.nasa.gov/system/resources/detail_files/835_a_phyto_bloom_iceland.jpg
+Moon Water,New & Refreshing,4,3,https://wp.technologyreview.com/wp-content/uploads/2020/10/Water_under_the_surface_of_the_Moon.jpg?w=1919
+Moonstones,Pretty and smooth,4,3,https://solarsystem.nasa.gov/system/resources/detail_files/2448_Blue_Moon_Airplane_1280.jpg
+Iron Oxide,Special Martian Iron,3,4,https://solarsystem.nasa.gov/system/resources/detail_files/2268_PIA23019_1280.jpg
+BigRed Dust,Martian Dust,4;5,4,https://solarsystem.nasa.gov/system/feature_items/images/80_mars_carousel_5.jpg
+BigRed Take-home,Martian Desert in a Bottle,4;2,4,https://solarsystem.nasa.gov/system/resources/detail_files/2429_PIA00567.jpg
+Being forgotten,I'm a planet too,1,5,https://solarsystem.nasa.gov/system/resources/detail_files/846_PIA20182.jpg
+Who is Ceres?,The story of the 'dwarf' planet between Mars and Jupiter,1,5,https://solarsystem.nasa.gov/system/resources/detail_files/1376_PIA20353_hires.jpg
+Red Spot,Some of the Red Spot (bottle),2;4,6,https://solarsystem.nasa.gov/system/feature_items/images/13_PIA22335-800.jpg
+Moon,Buy a moon to take home!,2;4,6,https://solarsystem.nasa.gov/system/feature_items/images/10_PIA02879_800.jpg
+Ammonia,More ammonia to go around,3,6,https://solarsystem.nasa.gov/system/feature_items/images/12_P44430Ac_800.jpg
+Put A Ring On It,What it means to be Saturn,1,7,https://solarsystem.nasa.gov/system/resources/detail_files/867_PIA08235.jpg
+Ring,Buy a ring to take home!,2,7,https://solarsystem.nasa.gov/system/resources/detail_files/17849_PIA14943-800w.jpg
+Hydrogen,Saturnal hydrogen,3,7,https://solarsystem.nasa.gov/system/resources/detail_files/2490_stsci-h-p1943a-f_1200.jpg
+Helium,Saturnal helium,3,7,https://solarsystem.nasa.gov/system/resources/detail_files/17822_PIA21903_FigA_unlabeled_MAIN.jpg
+Moon,A real moon! Bigger than some planets!,2;4,7,https://solarsystem.nasa.gov/system/resources/detail_files/17848_PIA12797-full.jpg
+Methane,True methane straight from Uranus,3,8,https://solarsystem.nasa.gov/system/resources/detail_files/445_PIA02963.jpg
+Soft Serve Fudge,Trust us -- it's delicious,2,8,https://i.imgur.com/TVu4qVl.jpg
+Ring,Buy a ring to take home!,2,8,https://solarsystem.nasa.gov/system/resources/detail_files/605_PIA17306.jpg
+Moon,A real moon!,4,8,https://shawnuranus.weebly.com/uploads/6/7/0/7/67077761/425853114.png
+Dirty Jokes,We've heard them all; now we've done better!,1,8,https://m.media-amazon.com/images/I/41amnPvGVmL.jpg
+Triton,Fish sold separately,5,9,https://solarsystem.nasa.gov/system/resources/detail_files/221_PIA00340.jpg
+Fish,Trident sold separately,5,9,https://solarsystem.nasa.gov/system/feature_items/images/82_carousel_neptune_1.jpg
+Wind,Get a whirl of Neptune!(bottled),2,9,https://solarsystem.nasa.gov/system/resources/detail_files/607_PIA00058.jpg
+Math -- how I was found,A story of the 'discovery' of Neptune,2,9,https://solarsystem.nasa.gov/system/feature_items/images/87_neptune_carousel_5.jpg
+Rock,Get your rocks!,4,9,https://solarsystem.nasa.gov/system/resources/detail_files/237_PIA12186.jpg
+Supersonic,Take your own piece of power,3,9,https://solarsystem.nasa.gov/system/resources/detail_files/842_31101484000_02c1a70913_o.jpg
+A Nine or a Ten?,The story of Planet X a.k.a. Planet Nine,1,10,https://solarsystem.nasa.gov/system/content_pages/main_images/383_planet_9_art_1_1400.jpg
+Ice Lava,Lava doesn't need to be hot,2;4,11,https://solarsystem.nasa.gov/system/resources/detail_files/639_PIA20473.jpg
+Mountain Ice,Super-cold & Super-refreshing,4,11,https://solarsystem.nasa.gov/system/resources/detail_files/652_PIA19948.jpg
+Ice Dunes,Betcha didn't know sand can be icy,4,11,https://solarsystem.nasa.gov/system/resources/detail_files/796_nh-apluto-mountains-plains-9-17-15_0.jpg
+What's a Status anyway?,The Story of Pluto: from planet--to not--to dwarf planet,1,11,https://solarsystem.nasa.gov/system/resources/detail_files/697_nh-pluto-charon-v2-10-1-15_1600.jpg
