@@ -59,6 +59,17 @@ describe User do
     it 'has many categories through products' do
 
     end
+
+    it 'has many reviews through products' do
+      review1
+      review2
+
+      expect(user.reviews.count).must_equal 2
+
+      user.reviews.each do |review|
+        expect(review).must_be_instance_of Review
+      end
+    end
   end
 
   describe 'validations' do
@@ -138,11 +149,11 @@ describe User do
 
       it 'will return false if the product does not belong to the user' do
         other_product = Product.create!(
-            name: 'new_name',
-            description: 'new_description',
-            price: 29,
-            quantity: 22,
-            user_id: User.last.id
+          name: 'new_name',
+          description: 'new_description',
+          price: 29,
+          quantity: 22,
+          user_id: User.last.id
         )
 
         expect(user.check_own_product(other_product)).must_equal false
