@@ -246,6 +246,15 @@ input[type=submit].complete:visited, {
   flex: 0 0 25% !important;
 }
 
+.prod-container .prod_section {
+  display: grid;
+  justify-items: center;
+}
+
+.prod_section .create-button {
+  justify-self: center;
+}
+
 //////////////////////////////////////
 
 //Product show page

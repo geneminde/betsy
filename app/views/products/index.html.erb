@@ -1,29 +1,34 @@
 <main>
   <div class="prod-container listings">
-    <h2>Planetary Products</h2>
-    <ul class="listing-items">
-      <% Product.where(is_retired: false).each do |product| %>
-          <li class=<%= product.available ? "not-retired" : "retired" %>>
-            <div>
-              <%= image_tag product.photo_url, alt: "Product image" %>
-              <br>
-              <%= link_to product.name.capitalize, product_path(product) %>
-            </div>
-            <div>
-              $<%= product.price %>
-              <br>
-              <% if product.available %>
-                <%= form_with model: @order_item, url: product_order_items_path(product) do |f| %>
-                  <%= f.label :quantity %>
-                  <%=  f.text_field :quantity %>
-                  <%= f.submit "Add to cart" %>
-                <% end %>
-              <% elsif product.quantity.zero? && !product.is_retired %>
-                Sold Out
-              <% end %>
-            </div>
-          </li>
-      <% end %>
-    </ul>
+    <%= render partial: "product_section",
+               locals: {
+                   section_name: 'Highest Rated'
+               }
+    %>
+<!--    <h2>Planetary Products</h2>-->
+<!--    <ul class="listing-items">-->
+      <%# Product.where(is_retired: false).each do |product| %>
+<!--          <li class=<%#= product.available ? "not-retired" : "retired" %>>-->
+<!--            <div>-->
+              <%#= image_tag product.photo_url, alt: "Product image" %>
+<!--              <br>-->
+              <%#= link_to product.name.capitalize, product_path(product) %>
+<!--            </div>-->
+<!--            <div>-->
+<!--              $<%#= product.price %>-->
+<!--              <br>-->
+              <%# if product.available %>
+                <%#= form_with model: @order_item, url: product_order_items_path(product) do |f| %>
+                  <%#= f.label :quantity %>
+                  <%#=  f.text_field :quantity %>
+                  <%#= f.submit "Add to cart" %>
+                <%# end %>
+              <%# elsif product.quantity.zero? && !product.is_retired %>
+<!--                Sold Out-->
+              <%# end %>
+<!--            </div>-->
+<!--          </li>-->
+      <%# end %>
+<!--    </ul>-->
   </div>
 </main>
