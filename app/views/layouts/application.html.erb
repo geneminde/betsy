@@ -40,31 +40,11 @@
                     <% end %>
                   <% end %>
                 </div>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <% if @categories %>
-                    <% @categories.each do |category| %>
-                      <a class="dropdown-item" href="<%= category_path(category.id) %>"><%= "#{category.name.capitalize}" %></a>
-                    <% end %>
-                    <% if session[:user_id] %>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="<%= new_category_path %>">Add new category</a>
-                    <% end %>
-                  <% else %>
-                    <a class="dropdown-item disabled" href="#">No Categories</a>
-                    <% if session[:user_id] %>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="<%= new_category_path %>">Add new category</a>
-                    <% end %>
-                  <% end %>
-                </div>
               </li>
             </div>
 
             <li class="nav-item">
               <%= link_to 'Products', products_path, class: 'nav-link' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'Merchants', users_path, class: 'nav-link' %>
             </li>
 
             <div class="dropdown show">
@@ -77,28 +57,9 @@
                     <% @users.each do |user| %>
                       <a class="dropdown-item" href="<%= user_path(user.id) %>"><%= "#{user.username.capitalize}" %></a>
                     <% end %>
-                    <% if session[:user_id] %>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="<%= user_path(@user.id) %>">Go To Merchant Page</a>
-                    <% end %>
                   <% end %>
-                </div>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <% if @categories %>
-                    <% @categories.each do |category| %>
-                      <a class="dropdown-item" href="<%= category_path(category.id) %>"><%= "#{category.name.capitalize}" %></a>
-                    <% end %>
-                    <% if session[:user_id] %>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="<%= new_category_path %>">Add new category</a>
-                    <% end %>
-                  <% else %>
-                    <a class="dropdown-item disabled" href="#">No Categories</a>
-                    <% if session[:user_id] %>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="<%= new_category_path %>">Add new category</a>
-                    <% end %>
-                  <% end %>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="<%= users_path %>">View Merchants List</a>
                 </div>
               </li>
             </div>

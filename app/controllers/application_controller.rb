@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :require_login
-  before_action :find_categories
+  before_action :find_categories, :find_users
 
   def current_user
     return @current_user = User.find_by(id: session[:user_id]) if session[:user_id]
@@ -44,5 +44,11 @@ class ApplicationController < ActionController::Base
   def find_categories
     @categories = Category.all
   end
+
+  def find_users
+    @users = User.all
+  end
+
+
 
 end
