@@ -4,7 +4,10 @@
   <div class="merch-stats">
     <ul>
       <% if defined? num_items %>
-        <li><%= user.products.where(is_retired: false).count %> products currently listed | </li>
+        <li>
+          <%= user.products.where(is_retired: false).count %>
+          <%= user.products.where(is_retired: false).count > 1 ? 'products' : 'product' %> currently listed |
+        </li>
         <li><%= user.order_items.count %> items sold | </li>
         <li>
           <%= render partial: "review_stats", locals: { user: @current_user } %>
