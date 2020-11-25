@@ -1,30 +1,45 @@
 
-<h2>Checkout</h2>
 
+<div class="checkout-container">
+  <h2>Checkout</h2>
   <%= form_with model: @order, url: order_path, method: :patch do |f| %>
-    <section class="shipping">
-      <p><%= f.label :customer_name, "Name" %></p>
-      <p><%= f.text_field :customer_name %></p>
-      <p><%= f.label :shipping_address %></p>
-      <p><%= f.text_area :shipping_address %></p>
-    </section>
-    <section class="credit-card">
-      <p>
-        <%= f.label :cardholder_name, "Cardholder Name" %>
-        <%= f.text_field :cardholder_name %>
+    <div class="form-group">
+      <%= f.label :customer_name, "Name" %>
+      <%= f.text_field :customer_name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :shipping_address %>
+      <%= f.text_area :shipping_address, class: "form-control" %>
+      <small id="addressHelpBlock" class="form-text text-muted">
+        Ex: 1234 Anyplace St, Anywhere, CA 99999
+      </small>
+    </div>
+    <div class="form-group">
+      <%= f.label :cardholder_name, "Cardholder Name" %>
+      <%= f.text_field :cardholder_name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :cc_number, "Card Number" %>
+      <%= f.text_field :cc_number, class: "form-control" %>
+    </div>
+    <div class="form-group">
 
-        <%= f.label :cc_number, "Card Number" %>
-        <%= f.text_field :cc_number %>
-      </p>
-      <p>
-        <%= f.label :cc_expiry, "Expiration (MM/YYYY)" %>
-        <%= f.text_field :cc_expiry %>
-
-        <%= f.label :ccv %>
-        <%= f.text_field :ccv %>
-      </p>
-
-
-      <%= f.submit "Submit Order" %>
-    </section>
+    </div>
+    <div class="form-row">
+      <div class="col">
+        <%= f.label :cc_expiry, "Expiration Date" %>
+        <%= f.text_field :cc_expiry, class: "form-control" %>
+        <small id="expirationHelpBlock" class="form-text text-muted">
+          MM/YYYY
+        </small>
+      </div>
+      <div class="col">
+      <%= f.label :ccv, "CCV" %>
+      <%= f.text_field :ccv, class: "form-control" %>
+    </div>
+    </div>
+    <div class="text-right">
+      <%= f.submit "Submit Order", class: "btn btn-primary" %>
+    </div>
   <% end %>
+</div>
