@@ -46,6 +46,12 @@ main {
 //  right: 0;
 //}
 
+
+.navbar-expand-sm .navbar-nav .nav-link {
+  padding-right: 0.5rem;
+  padding-left: 2.0rem;
+}
+
 .flash-msg__section {
   margin: 1rem 0 1rem 0;
 }
