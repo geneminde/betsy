@@ -63,18 +63,6 @@ describe Order do
     end
   end
 
-  describe 'empty_cart?' do
-    it 'returns true if there are no items in the cart.html.erb' do
-      expect(empty_order.empty_cart?).must_equal true
-    end
-
-    it 'returns false if there are items in the cart.html.erb' do
-      order = orders(:order4)
-
-      expect(order.empty_cart?).must_equal false
-    end
-  end
-
   describe 'complete_order' do
     it 'changes the order status to "paid"' do
       order = orders(:order11)
