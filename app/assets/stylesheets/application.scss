@@ -246,6 +246,21 @@ input[type=submit].complete:visited, {
   font-size: 0.8rem;
 }
 
+div.merch-container section.prod-section {
+  display: grid;
+  justify-items: left;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+#weekly-spotlight-button.merch-dash {
+  padding: 3px 9px;
+  font-size: 0.8rem;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+
 //////////////////////////////////////
 
 //Product index page

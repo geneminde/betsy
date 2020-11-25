@@ -7,22 +7,17 @@
                    contact: "Questions?  Comments?  Reach me @ #{@user.email}"
                }
     %>
-    <%= render partial: "product_listing",
+    <%= render partial: "products/product_section",
                locals: {
                    user: @user,
-                   section_header: 'Items for Sale',
-                   products: @user.products.where("quantity > ?", 0).where(is_retired: false),
-                   item_class: 'not-retired'
+                   section_name: 'Products for Sale',
+                   in_stock: 'is-only'
                }
     %>
     <div class="separator"></div>
     <section class="ratings">
       <h3>Reviews</h3>
-      <%= render partial: "reviews/review_listing",
-                 locals: {
-                     subject: @user
-                 }
-      %>
+      <%= render partial: "reviews/review_listing", locals: { subject: @user } %>
     </section>
   </div>
 </main>

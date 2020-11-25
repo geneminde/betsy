@@ -1,0 +1,12 @@
+<% if user.average_rating %>
+  <% user.average_rating.round(0).times do %>
+    <span class="star-rating">☆</span>
+  <% end %>
+  (<%= user.average_rating %>)
+<% else %>
+  <% if user == @user %>
+    No reviews yet for this merchant 🛸
+  <% else %>
+    You have no reviews yet 🛸
+  <% end %>
+<% end %>

@@ -5,7 +5,7 @@
   <br>
   <h5>
     Average Rating:
-    <% subject.average_rating.to_i.times do %>
+    <% subject.average_rating.round(0).times do %>
       <span class="star-rating">☆</span>
     <% end %>
     (<%= subject.average_rating %>)
