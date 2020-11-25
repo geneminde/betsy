@@ -59,10 +59,10 @@ product_upload_failures = []
 
 CSV.foreach(PRODUCT_FILE, :headers => true) do |row|
   product = Product.new
-  product.name = row['name']
+  product.name = row['name'].titleize
   product.price = rand(10..1000)
   product.photo_url = row['photo']
-  product.description = row['description']
+  product.description = row['description'].titleize
   product.quantity = rand(0..100)
   product.is_retired = [true, false].sample
   product.available = product.quantity.zero? || product.is_retired ? false : true
