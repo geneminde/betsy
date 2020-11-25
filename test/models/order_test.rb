@@ -15,7 +15,7 @@ describe Order do
   describe 'initialize' do
 
     it 'can be initialized' do
-      order = Order.new
+      order = Order.new(status: "pending")
       expect(order.valid?).must_equal true
     end
 
@@ -32,7 +32,16 @@ describe Order do
   end
 
   describe 'validations' do
+    it 'is valid with a status' do
+      order = Order.new(status: "pending")
+      expect(order.valid?).must_equal true
+    end
 
+    it 'is invalid without a status' do
+      order = Order.new
+
+      expect(order.valid?).must_equal false
+    end
   end
 
   describe 'relations' do
