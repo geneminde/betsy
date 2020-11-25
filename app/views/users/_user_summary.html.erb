@@ -13,7 +13,7 @@
             <% end %>
             (<%= user.average_rating %>)
           <% else %>
-            No reviews yet 🙈
+            You have no reviews yet 🙈
           <% end %>
         </li>
       <% else %>
@@ -22,11 +22,14 @@
           <%= user.products.where(is_retired: false).count > 1 ? 'products' : 'product' %> currently listed |
         </li>
         <li>
-          Average Rating:
-          <% user.average_rating.round(0).times do %>
-            <span class="star-rating">☆</span>
+          <% if user.average_rating %>
+            <% user.average_rating.round(0).times do %>
+              <span class="star-rating">☆</span>
+            <% end %>
+            (<%= user.average_rating %>)
+          <% else %>
+            No reviews yet for this merchant 🙈
           <% end %>
-          (<%= user.average_rating %>)
         </li>
       <% end %>
     </ul>
