@@ -29,6 +29,55 @@
           <%= render partial: "prod_carousel", locals: { product: product } %>
         <% end %>
       </div>
+    <% elsif defined? in_stock %>
+      <% if user == @current_user %>
+        <div class="all-items">
+          <% Product.where(is_retired: false).where("quantity > ?", 0).where(user_id: user.id).each do |product| %>
+            <%= render partial: "products/prod_carousel",
+                       locals: {
+                           product: product,
+                           user: @current_user,
+                           stock_button: 'Retire Product',
+                           button_id2: 'weekly-spotlight-button'
+                       }
+            %>
+          <% end %>
+      <% else %>
+        <% Product.where(is_retired: false).where("quantity > ?", 0).where(user_id: user.id).each do |product| %>
+          <%= render partial: "products/prod_carousel",
+                     locals: {
+                         product: product,
+                         user: @user
+                     }
+          %>
+        <% end %>
+      <% end %>
+      </div>
+    <% elsif defined? out_of_stock %>
+      <div class="all-items">
+        <% Product.where(is_retired: false).where(quantity: 0).where(user_id: user.id).each do |product| %>
+          <%= render partial: "products/prod_carousel",
+                     locals: {
+                         product: product,
+                         user: @current_user,
+                         button_id2: 'weekly-spotlight-button'
+                     }
+          %>
+        <% end %>
+      </div>
+    <% elsif defined? retired %>
+      <div class="all-items">
+        <% Product.where(is_retired: true).where(user_id: user.id).each do |product| %>
+          <%= render partial: "products/prod_carousel",
+                     locals: {
+                         product: product,
+                         user: @current_user,
+                         stock_button: 'Return to Stock',
+                         button_id2: 'weekly-spotlight-button'
+                     }
+          %>
+        <% end %>
+      </div>
     <% else %>
       <% Product.where(is_retired: false).limit(4).each do |product| %>
         <%= render partial: "prod_carousel", locals: { product: product } %>

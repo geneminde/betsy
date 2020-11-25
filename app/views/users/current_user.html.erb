@@ -8,33 +8,27 @@
                    contact: "Contact: #{@current_user.email}"
                }
     %>
-    <%= render partial: "product_listing",
+    <%= render partial: "products/product_section",
                locals: {
                    user: @current_user,
-                   section_header: 'In Stock Items',
-                   products: @current_user.products.where("quantity > ?", 0).where(is_retired: false),
-                   button: 'Retire',
-                   item_class: 'not-retired'
+                   section_name: 'In Stock Products',
+                   in_stock: 'is-only'
                }
     %>
     <div class="separator"></div>
-    <%= render partial: "product_listing",
+    <%= render partial: "products/product_section",
                locals: {
                    user: @current_user,
-                   section_header: 'Out of Stock Items',
-                   products: @current_user.products.where(quantity: 0).where(is_retired: false),
-                   button: 'Retire',
-                   item_class: 'retired'
+                   section_name: 'Out of Stock Products',
+                   out_of_stock: 'oos-only'
                }
     %>
     <div class="separator"></div>
-    <%= render partial: "product_listing",
+    <%= render partial: "products/product_section",
                locals: {
                    user: @current_user,
-                   section_header: 'Retired Items',
-                   products: @current_user.products.where(is_retired: true),
-                   button: 'Return to Stock',
-                   item_class: 'retired'
+                   section_name: 'Retired Products',
+                   retired: 'retired-only'
                }
     %>
     <div class="separator"></div>

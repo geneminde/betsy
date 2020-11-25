@@ -9,4 +9,12 @@
   <% else %>
     <div class></div>
   <% end %>
+  <% if defined? button_id2 %>
+    <div class="create-button merch-dash" id=<%= button_id2 %>><%= link_to 'Edit', edit_product_path(product) %></div>
+    <% if defined? stock_button %>
+      <div class="create-button merch-dash" id=<%= button_id2 %>>
+        <%= link_to stock_button, retire_product_path(product), method: :patch %>
+      </div>
+    <% end %>
+  <% end %>
 </div>
