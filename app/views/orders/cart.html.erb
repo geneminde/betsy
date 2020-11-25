@@ -1,9 +1,5 @@
 
-<% if @order.empty_cart? || @order.nil? %>
-
-  <%= render partial: "empty" %>
-
-<% else %>
+<% if session[:order_id] && has_order_items? %>
 
   <h2>Shopping Cart</h2>
 
@@ -15,5 +11,9 @@
     <div class="create-button"><%= link_to "Checkout", edit_order_path(@order) %></div>
     <div class="create-button"><%= link_to "Continue Shopping", root_path %></div>
   </section>
+
+<% else %>
+
+  <%= render partial: "empty" %>
 
 <% end %>

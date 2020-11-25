@@ -10,7 +10,7 @@ module ApplicationHelper
   end
 
   def has_order_items?
-    order = Order.find_by(session[:order_id])
+    order = Order.find_by(id: session[:order_id])
     return order.order_items.blank? ? false : true
   end
 end

@@ -19,7 +19,19 @@ describe OrdersController do
   end
 
   describe 'cart' do
+    it 'gets the cart page if there are items in the cart' do
+      order = create_cart
 
+      get cart_path
+
+      must_respond_with :success
+    end
+
+    it 'gets the cart page if there are is no active cart' do
+      get cart_path
+
+      must_respond_with :success
+    end
   end
 
   describe 'edit' do
