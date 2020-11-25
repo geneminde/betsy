@@ -7,14 +7,7 @@
         <li><%= user.products.where(is_retired: false).count %> products currently listed | </li>
         <li><%= user.order_items.count %> items sold | </li>
         <li>
-          <% if user.average_rating %>
-            <% user.average_rating.round(0).times do %>
-              <span class="star-rating">☆</span>
-            <% end %>
-            (<%= user.average_rating %>)
-          <% else %>
-            You have no reviews yet 🙈
-          <% end %>
+          <%= render partial: "review_stats", locals: { user: @current_user } %>
         </li>
       <% else %>
         <li>
@@ -22,14 +15,7 @@
           <%= user.products.where(is_retired: false).count > 1 ? 'products' : 'product' %> currently listed |
         </li>
         <li>
-          <% if user.average_rating %>
-            <% user.average_rating.round(0).times do %>
-              <span class="star-rating">☆</span>
-            <% end %>
-            (<%= user.average_rating %>)
-          <% else %>
-            No reviews yet for this merchant 🙈
-          <% end %>
+          <%= render partial: "review_stats", locals: { user: @user } %>
         </li>
       <% end %>
     </ul>
@@ -40,7 +26,5 @@
     <div class="create-button"><%= link_to 'Create a new product', new_user_product_path(@current_user) %></div>
     <div class="create-button"><%= link_to 'All Orders', orders_path %></div>
   <% end %>
-
-
 </section>
 <div class="separator"></div>
