@@ -6,10 +6,24 @@
       <% if defined? num_items %>
         <li><%= user.products.where(is_retired: false).count %> products currently listed | </li>
         <li><%= user.order_items.count %> items sold | </li>
-        <li>TO:DO: Average rating or num ratings</li>
+        <li>
+          <% user.average_rating.round(0).times do %>
+            <span class="star-rating">☆</span>
+          <% end %>
+          (<%= user.average_rating %>)
+        </li>
       <% else %>
-        <li><%= user.products.where(is_retired: false).count %> products currently listed | </li>
-        <li>TO:DO: Average rating or num ratings</li>
+        <li>
+          <%= user.products.where(is_retired: false).count %>
+          <%= user.products.where(is_retired: false).count > 1 ? 'products' : 'product' %> currently listed |
+        </li>
+        <li>
+          Average Rating:
+          <% user.average_rating.round(0).times do %>
+            <span class="star-rating">☆</span>
+          <% end %>
+          (<%= user.average_rating %>)
+        </li>
       <% end %>
     </ul>
   </div>
