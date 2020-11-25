@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
   skip_before_action :require_login, only: [:index, :show]
   before_action :find_product, only: [:show, :edit, :retire, :update]
   before_action :find_user, only: [:edit, :new]
+  before_action :current_user, only: [:edit]
   before_action :verify_authorized, only: [:edit, :update, :retire]
 
   def index
