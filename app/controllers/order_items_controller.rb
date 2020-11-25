@@ -85,7 +85,7 @@ class OrderItemsController < ApplicationController
       existing_order_item = OrderItem.find_by(product: @product, order: @cart)
 
       # Modify the params hash to work with create and update actions
-      params[:order_item] = { quantity: params[:quantity] }
+      params[:order_item] = { quantity: params[:quantity].to_i + existing_order_item.quantity.to_i}
 
       save_update(existing_order_item)
     end
