@@ -15,7 +15,7 @@ describe Order do
   describe 'initialize' do
 
     it 'can be initialized' do
-      order = Order.new
+      order = Order.new(status: "pending")
       expect(order.valid?).must_equal true
     end
 
@@ -32,7 +32,16 @@ describe Order do
   end
 
   describe 'validations' do
+    it 'is valid with a status' do
+      order = Order.new(status: "pending")
+      expect(order.valid?).must_equal true
+    end
 
+    it 'is invalid without a status' do
+      order = Order.new
+
+      expect(order.valid?).must_equal false
+    end
   end
 
   describe 'relations' do
@@ -60,18 +69,6 @@ describe Order do
 
     it 'returns 0 if there are no items in the cart.html.erb' do
       expect(empty_order.subtotal).must_equal 0
-    end
-  end
-
-  describe 'empty_cart?' do
-    it 'returns true if there are no items in the cart.html.erb' do
-      expect(empty_order.empty_cart?).must_equal true
-    end
-
-    it 'returns false if there are items in the cart.html.erb' do
-      order = orders(:order4)
-
-      expect(order.empty_cart?).must_equal false
     end
   end
 

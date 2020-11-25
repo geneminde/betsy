@@ -46,6 +46,12 @@ main {
 //  right: 0;
 //}
 
+
+.navbar-expand-sm .navbar-nav .nav-link {
+  padding-right: 0.5rem;
+  padding-left: 2.0rem;
+}
+
 .flash-msg__section {
   margin: 1rem 0 1rem 0;
 }
@@ -117,10 +123,10 @@ h2#merch-icon {
 
 //Merch dash and user show views
 .merch-container, .prod-container, .prod-show-container, .review-container {
-  width: 80%;
-  display: grid;
-  margin-left: auto;
-  margin-right: auto;
+  width: 80% !important;
+  display: grid !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 .merch-container section {

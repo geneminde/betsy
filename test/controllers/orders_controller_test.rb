@@ -91,7 +91,19 @@ describe OrdersController do
     end
 
     it 'will not update the order for invalid inputs' do
+      invalid_params = {
+          order: {
+              status: nil
+          }
+      }
+      order = create_cart
+      order_id = order.id
 
+      expect {
+        patch order_path(order_id), params: invalid_params
+      }.wont_change "Order.count"
+
+      must_respond_with :bad_request
     end
   end
 
