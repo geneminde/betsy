@@ -78,7 +78,7 @@ describe OrderItemsController do
 
       created_order_item = OrderItem.order(created_at: :desc).first
 
-      expect(created_order_item.quantity).must_equal 2
+      expect(created_order_item.quantity).must_equal 7
     end
   end
 
