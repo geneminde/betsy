@@ -4,12 +4,22 @@
   <div class="merch-stats">
     <ul>
       <% if defined? num_items %>
-        <li><%= user.products.where(is_retired: false).count %> products currently listed | </li>
+        <li>
+          <%= user.products.where(is_retired: false).count %>
+          <%= user.products.where(is_retired: false).count > 1 ? 'products' : 'product' %> currently listed |
+        </li>
         <li><%= user.order_items.count %> items sold | </li>
-        <li>TO:DO: Average rating or num ratings</li>
+        <li>
+          <%= render partial: "review_stats", locals: { user: @current_user } %>
+        </li>
       <% else %>
-        <li><%= user.products.where(is_retired: false).count %> products currently listed | </li>
-        <li>TO:DO: Average rating or num ratings</li>
+        <li>
+          <%= user.products.where(is_retired: false).count %>
+          <%= user.products.where(is_retired: false).count > 1 ? 'products' : 'product' %> currently listed |
+        </li>
+        <li>
+          <%= render partial: "review_stats", locals: { user: @user } %>
+        </li>
       <% end %>
     </ul>
   </div>
@@ -19,7 +29,5 @@
     <div class="create-button"><%= link_to 'Create a new product', new_user_product_path(@current_user) %></div>
     <div class="create-button"><%= link_to 'All Orders', orders_path %></div>
   <% end %>
-
-
 </section>
 <div class="separator"></div>
