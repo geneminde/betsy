@@ -1,39 +1,20 @@
-<h2>Order Confirmation</h2>
-<h3>Order Placed: <%= @order.updated_at.strftime('%c') %></h3>
-<h3>Order Status: <%= @order.status %></h3>
+
+
+<section class="confirmation">
+  <h2>Order Confirmation</h2>
+  <h3>Order Placed: <%= readable_date(@order.updated_at) %> <%= readable_time(@order.updated_at) %></h3>
+  <h3>Order Status: <%= @order.status %></h3>
+</section>
+
 <section class="summary">
-  <table class="table">
-    <thead>
-    <tr>
-      <th>Product</th>
-      <th>Price</th>
-      <th>Quantity</th>
-      <th>Item Total</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @order.order_items.each do |item| %>
-      <tr>
-        <td><%= link_to "#{item.product.name}", product_path(item.product.id) %></td>
-        <td><%= item.product.price %></td>
-        <td><%= item.quantity %></td>
-        <td><%= item.subtotal %></td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
+  <%= render partial: "cart_items", locals: { order: @order } %>
 
-  <section class="subtotal">
-    <p>
-      Subtotal: <%= @order.subtotal %>
-    </p>
-    <p>
-      Shipping: Free!
-    </p>
-    <p>
-      Total: <%= @order.subtotal %>
-    </p>
-  </section>
+  <%= render partial: "subtotal", locals: { order: @order } %>
 
-  <%= link_to "Return to Homepage", root_path %>
+</section>
+
+<section class="home-button end">
+  <div class="create-button">
+    <%= link_to "Continue Shopping", root_path %>
+  </div>
 </section>

@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   skip_before_action :require_login, except: [:index, :merchant_order]
-  before_action :find_order, only: [:merchant_order, :show, :confirmation]
+  before_action :find_order, only: [:merchant_order, :confirmation]
 
 
   def index
@@ -8,14 +8,6 @@ class OrdersController < ApplicationController
   end
 
   def merchant_order; end
-
-  def show
-    @order = Order.find_by(id: params[:id])
-
-    if @order.nil? || @order.empty_cart?
-      redirect_to cart_path
-    end
-  end
 
   def edit
     @order = Order.find_by(id: session[:order_id])
@@ -56,7 +48,9 @@ class OrdersController < ApplicationController
     end
   end
 
-  def cart; end
+  def cart
+    @order = Order.find_by(id: session[:order_id])
+  end
   
   private
 

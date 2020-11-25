@@ -1,0 +1,35 @@
+<section class="order-info">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Item Total</th>
+      <% if order.status == "pending" %>
+        <th></th>
+      <% end %>
+    </tr>
+    </thead>
+    <tbody>
+    <% order.order_items.each do |item| %>
+      <tr>
+        <td><%= item.product.name %></td>
+        <td><%= number_to_currency(item.product.price) %></td>
+
+        <% if order.status == "pending" %>
+          <td><%= render partial: "order_items/edit_order_item", locals: { order_item: item } %></td>
+        <% else %>
+          <td><%= item.quantity %></td>
+        <% end %>
+        <td><%=  number_to_currency(item.subtotal) %></td>
+
+        <% if order.status == "pending" %>
+          <td><%= button_to "Remove Item", order_item_path(item), method: :delete,
+                            data: {confirm: "Are you sure you want to remove #{item.product.name} from your cart?"} %></td>
+        <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</section>
