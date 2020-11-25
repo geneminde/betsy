@@ -18,7 +18,7 @@ class OrderItem < ApplicationRecord
   end
 
   def cant_exceed_inventory
-    if self.product && self.quantity && ( self.quantity > self.product.quantity )
+    if self.product && self.quantity && ( self.quantity > self.product.quantity ) && self.order.status == "pending"
       errors.add(:quantity, "Cannot add #{self.quantity}. Only #{self.product.quantity} in stock.")
     end
   end
