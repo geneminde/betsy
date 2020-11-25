@@ -207,6 +207,26 @@ describe ProductsController do
         must_respond_with :redirect
         must_redirect_to product_path(new_product_id)
       end
+      it "creates a kickback for a product that wasn't created" do
+        new_product = {
+            product: {
+                name: '',
+                description: 'delicious',
+                price: 50,
+                quantity: 10,
+                user_id: User.first.id
+            }
+        }
+
+        expect {
+          post products_path, params: new_product
+        }.wont_change 'Product.count', 1
+
+
+        expect(flash[:error])
+        assert 'Product was NOT added'
+        assert :new
+      end
     end
 
     describe 'retire' do

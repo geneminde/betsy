@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   skip_before_action :require_login, only: [:index, :show]
   before_action :find_product, only: [:show, :edit, :retire, :update]
+  before_action :find_user, only: [:edit, :new]
   before_action :verify_authorized, only: [:edit, :update, :retire]
 
   def index
@@ -28,8 +29,7 @@ class ProductsController < ApplicationController
   end
 
   def new
-    user = User.find_by(id: session[:user_id])
-    @product = user.products.new
+    @product = @user.products.new
   end
 
   def create
@@ -70,5 +70,9 @@ class ProductsController < ApplicationController
       redirect_back(fallback_location: products_path)
       return
     end
+  end
+
+  def find_user
+    @user = User.find_by(id: session[:user_id])
   end
 end

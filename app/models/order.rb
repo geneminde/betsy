@@ -3,6 +3,8 @@ class Order < ApplicationRecord
   has_many :order_items
   has_many :products, through: :order_items
 
+  validates :status, presence: true
+
   scope :user_orders, -> (user_id) { joins(:products).where(products: {user_id: user_id}).distinct }
 
   def subtotal

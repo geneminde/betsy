@@ -17,7 +17,7 @@
           <% end %>
         </p>
         <h6>Description:</h6>
-        <p><%= @product.description %></p>
+        <p><%= @product.description.titleize %></p>
         <h6>Seller:</h6>
         <p><%= link_to @product.user.username, user_path(@product.user) %> (<%= @product.user.reviews.count %> reviews)</p>
 
