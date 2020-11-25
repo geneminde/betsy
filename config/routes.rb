@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   resources :categories, only: [:show, :new, :create]
 
-  resources :orders, except: [:show, :destroy] do
+  resources :orders, only: [:index, :edit, :update] do
     get '/confirmation', to: 'orders#confirmation'
   end
   get '/users/current/orders', to: 'orders#index'
