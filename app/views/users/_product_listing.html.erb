@@ -6,7 +6,7 @@
         <div class="item">
           <%= image_tag product.photo_url, alt: "Product image" %>
           <br>
-          <%= link_to product.name, product_path(product) %>: $<%= product.price %>
+          <%= link_to product.name, product_path(product) %>: $<%= number_with_delimiter(product.price) %>
           <br>
           <% if defined? button %>
             <%= link_to 'Edit', edit_product_path(product) %> |

@@ -1,33 +1,11 @@
 <main>
   <div class="prod-container listings">
-    <h2><%= @category.name.capitalize %> Products</h2>
-    <% if @category.products.blank? %>
-      <p>No products found</p>
-    <% else %>
-      <ul class="listing-items">
-        <% @category.active_products.each do |product| %>
-          <li class=<%= product.available ? "not-retired" : "retired" %>>
-            <div>
-              <%= image_tag product.photo_url, alt: "Product image" %>
-              <br>
-              <%= link_to product.name.capitalize, product_path(product) %>
-            </div>
-            <div>
-              $<%= product.price %>
-              <br>
-              <% if product.available %>
-                <%= form_with model: @order_item, url: product_order_items_path(product) do |f| %>
-                  <%= f.label :quantity %>
-                  <%=  f.text_field :quantity %>
-                  <%= f.submit "Add to cart" %>
-                <% end %>
-              <% else  %>
-                Sold Out
-              <% end %>
-            </div>
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
+    <%= render partial: "products/product_section",
+               locals: {
+                   section_name: "Category: #{@category.name.capitalize}",
+                   category: "#{@category.name}",
+                   category_instance: @category
+               }
+    %>
   </div>
 </main>

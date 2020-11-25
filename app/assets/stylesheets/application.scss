@@ -108,6 +108,8 @@ main {
   font-size: 0.8rem;
 }
 
+//////////////////////////////////////
+
 //Merch dash and user show views
 .merch-container, .prod-container, .prod-show-container, .review-container {
   width: 80%;
@@ -167,6 +169,11 @@ main {
   max-height: 100px;
   width: auto;
   margin: 10px 0 5px 0;
+}
+
+.retired, .not-retired {
+  display: flex;
+  justify-content: center;
 }
 
 .retired img {
@@ -241,9 +248,78 @@ input[type=submit].complete:visited, {
   text-align: center;
 }
 
-.prod_container listing_items li {
-  list-style: none;
-  flex: 0 0 25% !important;
+section.prod-section {
+  display: grid;
+  justify-items: center;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.prod-section h3 {
+  margin-bottom: 20px;
+}
+
+#weekly-spotlight-button {
+  padding: 3px 9px;
+  font-size: 0.8rem;
+}
+
+.prod-highlights {
+  display: flex;
+  justify-content: space-between;
+}
+
+.prod-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  //width: 25%;
+  flex-direction: column;
+  margin: 25px 25px 25px 25px;
+  font-size: 0.9rem;
+  color: #414F62;
+}
+
+.prod-img {
+  display: flex;
+  height: 150px;
+  justify-content: center;
+  align-content: center;
+}
+
+.prod-img img {
+  height: 130px;
+  width: auto;
+}
+
+.prod-item h6 {
+  text-align: center;
+}
+
+.prod-item a {
+  color: #3a0ca3;
+}
+
+.sold-out {
+  display: inline-block;
+  margin: 0px;
+  margin-top: 10px;
+  position: relative;
+  text-align: center;
+  width: auto;
+  border-radius: 8px;
+  border-width: 1px !important;
+  border-style: solid;
+  outline: none;
+  padding: 3px 9px;
+  border-color: #414F62;
+  background: transparent;
+}
+
+.all-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 //////////////////////////////////////
@@ -262,7 +338,8 @@ input[type=submit].complete:visited, {
 }
 
 .prod-description {
-  width: 40%;
+  width: 45%;
+  font-size: 0.9rem;
 }
 
 .ratings {
