@@ -16,6 +16,7 @@ class Order < ApplicationRecord
       self.status = "paid"
       self.order_items.each do |item|
         item.product.decrement!("quantity", item.quantity)
+        item.product.save
       end
       self.date_placed = DateTime.now
       self.save
