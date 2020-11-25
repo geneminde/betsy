@@ -15,14 +15,14 @@
     <% order.order_items.each do |item| %>
       <tr>
         <td><%= item.product.name %></td>
-        <td><%= item.product.price %></td>
+        <td><%= number_to_currency(item.product.price) %></td>
 
         <% if order.status == "pending" %>
           <td><%= render partial: "order_items/edit_order_item", locals: { order_item: item } %></td>
         <% else %>
           <td><%= item.quantity %></td>
         <% end %>
-        <td><%= item.subtotal %></td>
+        <td><%=  number_to_currency(item.subtotal) %></td>
 
         <% if order.status == "pending" %>
           <td><%= button_to "Remove Item", order_item_path(item), method: :delete,
