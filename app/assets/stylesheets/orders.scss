@@ -110,3 +110,19 @@ i {
 
 }
 
+.end {
+  display: flex;
+  justify-content: flex-end
+}
+
+.subtotal, .checkout-button{
+   margin-right: 5rem;
+}
+
+.order-info, .confirmation, .cart-header, .home-button {
+  padding: 5rem
+}
+
+.total {
+  font-weight: 500
+}

@@ -1,44 +1,15 @@
-<% if order %>
-  <table class="table">
-    <h2>Shopping Cart</h2>
-    <thead>
-      <tr>
-        <th>Product</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Item Total</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% order.order_items.each do |item| %>
-        <tr>
-          <td><%= item.product.name %></td>
-          <td><%= item.product.price %></td>
+<% if @order %>
+  <h2>Shopping Cart</h2>
 
-          <td><%= render partial: "order_items/edit_order_item", locals: { order_item: item } %></td>
+  <%= render partial: "cart_items", locals: { order: @order }%>
 
-          <td><%= item.subtotal %></td>
+  <%= render partial: "subtotal", locals: { order: @order } %>
 
-          <td><%= button_to "Remove Item", order_item_path(item), method: :delete, data: {confirm: "Are you sure you want to remove #{item.product.name} from your cart?"} %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <section class="checkout-button end">
+    <div class="create-button"><%= link_to "Checkout", edit_order_path %></div>
+    <div class="create-button"><%= link_to "Continue Shopping", root_path %></div>
 
-  <section class="subtotal">
-    <p>
-      Subtotal: <%= order.subtotal %>
-    </p>
-    <p>
-      Shipping:
-    </p>
-    <p>
-      Total:
-    </p>
   </section>
-
-  <%= link_to "Checkout", edit_order_path %>
 
 
 <% end %>

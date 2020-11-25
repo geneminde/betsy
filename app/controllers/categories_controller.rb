@@ -1,10 +1,7 @@
 class CategoriesController < ApplicationController
-  skip_before_action :require_login, except: [:new, :create, :edit, :update]
+  skip_before_action :require_login, only: [:show]
   before_action :find_category, only: [:show, :edit, :update]
 
-  def index
-    @categories = Category.all
-  end
 
   def show
     if @category.nil?

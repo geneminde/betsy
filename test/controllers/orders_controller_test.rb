@@ -18,20 +18,19 @@ describe OrdersController do
     end
   end
 
-  describe 'show' do
-    it 'it gets the cart page when an active cart exists' do
+  describe 'cart' do
+    it 'gets the cart page if there are items in the cart' do
       order = create_cart
 
-      get order_path(order.id)
+      get cart_path
 
       must_respond_with :success
     end
 
-    it 'it gets an empty cart page for empty carts/invalid ids' do
-      order_id = -1
+    it 'gets the cart page if there are is no active cart' do
+      get cart_path
 
-      get order_path(order_id)
-      must_redirect_to cart_path
+      must_respond_with :success
     end
   end
 

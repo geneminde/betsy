@@ -1,0 +1,12 @@
+<div class="prod-item">
+  <div class="prod-img <%= product.available ? 'not-retired' : 'retired' %>">
+    <%= image_tag product.photo_url, alt: "Product image" %>
+  </div>
+  <h6><%= link_to product.name, product_path(product) %></h6>
+  $<%= number_with_delimiter(product.price) %>
+  <% if product.quantity == 0 %>
+    <div class="sold-out">Sold Out</div>
+  <% else %>
+    <div class></div>
+  <% end %>
+</div>
