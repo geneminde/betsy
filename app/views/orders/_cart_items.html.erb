@@ -3,6 +3,7 @@
     <thead>
     <tr>
       <th>Product</th>
+      <th></th>
       <th>Price</th>
       <th>Quantity</th>
       <th>Item Total</th>
@@ -14,6 +15,8 @@
     <tbody>
     <% order.order_items.each do |item| %>
       <tr>
+        <th scope="row"><%= link_to image_tag(item.product.photo_url, alt: "Product photo description"), product_path(item.product) %></th>
+
         <td><%= item.product.name %></td>
         <td><%= number_to_currency(item.product.price) %></td>
 
