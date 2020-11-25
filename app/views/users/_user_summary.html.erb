@@ -7,10 +7,14 @@
         <li><%= user.products.where(is_retired: false).count %> products currently listed | </li>
         <li><%= user.order_items.count %> items sold | </li>
         <li>
-          <% user.average_rating.round(0).times do %>
-            <span class="star-rating">☆</span>
+          <% if user.average_rating %>
+            <% user.average_rating.round(0).times do %>
+              <span class="star-rating">☆</span>
+            <% end %>
+            (<%= user.average_rating %>)
+          <% else %>
+            No reviews yet 🙈
           <% end %>
-          (<%= user.average_rating %>)
         </li>
       <% else %>
         <li>
