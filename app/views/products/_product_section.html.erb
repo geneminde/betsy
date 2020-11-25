@@ -42,17 +42,19 @@
                        }
             %>
           <% end %>
+        </div>
       <% else %>
-        <% Product.where(is_retired: false).where("quantity > ?", 0).where(user_id: user.id).each do |product| %>
-          <%= render partial: "products/prod_carousel",
-                     locals: {
-                         product: product,
-                         user: @user
-                     }
-          %>
-        <% end %>
+        <div class="all-items">
+          <% Product.where(is_retired: false).where("quantity > ?", 0).where(user_id: user.id).each do |product| %>
+            <%= render partial: "products/prod_carousel",
+                       locals: {
+                           product: product,
+                           user: @user
+                       }
+            %>
+          <% end %>
+        </div>
       <% end %>
-      </div>
     <% elsif defined? out_of_stock %>
       <div class="all-items">
         <% Product.where(is_retired: false).where(quantity: 0).where(user_id: user.id).each do |product| %>
