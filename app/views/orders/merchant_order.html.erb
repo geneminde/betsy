@@ -22,9 +22,9 @@
   </div>
 
   <div class="price-container">
-    <p>$<%= @order.items_subtotal(@current_user) %></p>
+    <p>$<%= number_with_delimiter(@order.items_subtotal(@current_user)) %></p>
     <p>Free!</p>
-    <p>$<%= @order.items_subtotal(@current_user) %></p>
+    <p>$<%= number_with_delimiter(@order.items_subtotal(@current_user)) %></p>
   </div>
 
   <div class="customer-container">
