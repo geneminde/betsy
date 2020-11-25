@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
-  resources :categories, except: [:index, :destroy]
+  resources :categories, only: [:show, :new, :create]
 
   resources :orders, except: [:show, :destroy] do
     get '/confirmation', to: 'orders#confirmation'

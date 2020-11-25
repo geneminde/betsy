@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   skip_before_action :require_login, only: [:show]
-  before_action :find_category, only: [:show, :edit, :update]
+  before_action :find_category, only: [:show]
 
 
   def show
@@ -27,31 +27,6 @@ class CategoriesController < ApplicationController
       return
     end
   end
-
-  def edit
-    if @category.nil?
-      flash[:error] = "Category does not exist"
-      redirect_back(fallback_location: current_user_path)
-      return
-    end
-  end
-
-  def update
-    if @category.nil?
-      flash[:error] = "Category does not exist"
-      redirect_back(fallback_location: current_user_path)
-      return
-    elsif @category.update(category_params)
-      flash[:success] = "#{@category.name.capitalize} updated successfully"
-      redirect_to current_user_path
-      return
-    else
-      flash.now[:error] = "Category not updated"
-      render :edit, status: :bad_request
-      return
-    end
-  end
-
 
   private
 
