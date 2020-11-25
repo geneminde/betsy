@@ -34,7 +34,8 @@ describe OrderItem do
       expect(order_item.errors.messages[:quantity]).must_include "can't be blank"
     end
 
-    it "order item quantity can't be greater than inventory" do
+    it "order item quantity can't be greater than inventory when order is pending" do
+      order_item.order.status = "pending"
       product_inventory = order_item.product.quantity
       order_item.quantity = product_inventory + 10
 
