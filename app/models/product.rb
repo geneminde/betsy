@@ -21,7 +21,6 @@ class Product < ApplicationRecord
   def toggle_retire
     product = self
     product.is_retired = (product.is_retired == true ? false : true)
-
     product.save
   end
 

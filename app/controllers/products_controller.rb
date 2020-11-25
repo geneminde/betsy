@@ -1,8 +1,7 @@
 class ProductsController < ApplicationController
   skip_before_action :require_login, only: [:index, :show]
   before_action :find_product, only: [:show, :edit, :retire, :update]
-  before_action :find_user, only: [:edit, :new]
-  before_action :current_user, only: [:edit]
+  before_action :current_user, only: [:edit, :update, :create]
   before_action :verify_authorized, only: [:edit, :update, :retire]
 
   def index
@@ -18,6 +17,8 @@ class ProductsController < ApplicationController
   def edit; end
 
   def update
+    @product.user = @current_user
+
     if @product.update(product_params)
       flash[:success] = "#{@product.name} updated successfully"
       redirect_to current_user_path
@@ -30,11 +31,12 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @product = @user.products.new
+    @product = @current_user.products.new
   end
 
   def create
     @product = Product.new(product_params)
+    @product.user = @current_user
 
     if @product.save
       flash[:success] = "Successfully created #{@product.name}"
@@ -60,7 +62,6 @@ class ProductsController < ApplicationController
         :description,
         :quantity,
         :available,
-        :user_id,
         category_ids: []
       )
   end
@@ -71,9 +72,5 @@ class ProductsController < ApplicationController
       redirect_back(fallback_location: products_path)
       return
     end
-  end
-
-  def find_user
-    @user = User.find_by(id: session[:user_id])
   end
 end
