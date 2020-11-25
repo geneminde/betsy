@@ -8,56 +8,64 @@
                    button_link: '#all_items'
                }
     %>
-    <div class="separator"></div>
-    <%= render partial: "product_section",
-               locals: {
-                   section_name: 'Books 📚',
-                   button_id: 'weekly-spotlight-button',
-                   category: 'book',
-                   button_text: 'All Books',
-                   button_link: category_path(Category.find_by(name: 'book').id)
-               }
+    <%
+      if Category.find_by(name: 'book') &&
+          Category.find_by(name: 'tourism') &&
+          Category.find_by(name: 'industrials') &&
+          Category.find_by(name: 'terrafirma') &&
+          Category.find_by(name: 'gag')
     %>
-    <div class="separator"></div>
-    <%= render partial: "product_section",
-               locals: {
-                   section_name: 'Tourism 🔭',
-                   button_id: 'weekly-spotlight-button',
-                   category: 'tourism',
-                   button_text: 'All Tourism',
-                   button_link: category_path(Category.find_by(name: 'tourism').id)
-               }
-    %>
-    <div class="separator"></div>
-    <%= render partial: "product_section",
-               locals: {
-                   section_name: 'Industrials 🪨',
-                   button_id: 'weekly-spotlight-button',
-                   category: 'industrials',
-                   button_text: 'All Industrials',
-                   button_link: category_path(Category.find_by(name: 'industrials').id)
-               }
-    %>
-    <div class="separator"></div>
-    <%= render partial: "product_section",
-               locals: {
-                   section_name: 'Terrafirma 🌋',
-                   button_id: 'weekly-spotlight-button',
-                   category: 'terrafirma',
-                   button_text: 'All Terrafirma',
-                   button_link: category_path(Category.find_by(name: 'terrafirma').id)
-               }
-    %>
-    <div class="separator"></div>
-    <%= render partial: "product_section",
-               locals: {
-                   section_name: 'Gag 🤪',
-                   button_id: 'weekly-spotlight-button',
-                   category: 'gag',
-                   button_text: 'All Gags',
-                   button_link: category_path(Category.find_by(name: 'gag').id)
-               }
-    %>
+      <div class="separator"></div>
+      <%= render partial: "product_section",
+                 locals: {
+                     section_name: 'Books 📚',
+                     button_id: 'weekly-spotlight-button',
+                     category: 'book',
+                     button_text: 'All Books',
+                     button_link: category_path(Category.find_by(name: 'book').id)
+                 }
+      %>
+      <div class="separator"></div>
+      <%= render partial: "product_section",
+                 locals: {
+                     section_name: 'Tourism 🔭',
+                     button_id: 'weekly-spotlight-button',
+                     category: 'tourism',
+                     button_text: 'All Tourism',
+                     button_link: category_path(Category.find_by(name: 'tourism').id)
+                 }
+      %>
+      <div class="separator"></div>
+      <%= render partial: "product_section",
+                 locals: {
+                     section_name: 'Industrials 🪨',
+                     button_id: 'weekly-spotlight-button',
+                     category: 'industrials',
+                     button_text: 'All Industrials',
+                     button_link: category_path(Category.find_by(name: 'industrials').id)
+                 }
+      %>
+      <div class="separator"></div>
+      <%= render partial: "product_section",
+                 locals: {
+                     section_name: 'Terrafirma 🌋',
+                     button_id: 'weekly-spotlight-button',
+                     category: 'terrafirma',
+                     button_text: 'All Terrafirma',
+                     button_link: category_path(Category.find_by(name: 'terrafirma').id)
+                 }
+      %>
+      <div class="separator"></div>
+      <%= render partial: "product_section",
+                 locals: {
+                     section_name: 'Gag 🤪',
+                     button_id: 'weekly-spotlight-button',
+                     category: 'gag',
+                     button_text: 'All Gags',
+                     button_link: category_path(Category.find_by(name: 'gag').id)
+                 }
+      %>
+    <% end %>
     <div class="separator"></div>
     <%= render partial: "product_section",
                locals: {
