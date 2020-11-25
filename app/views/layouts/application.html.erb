@@ -71,16 +71,8 @@
         <div class="flash-alert <%= type %>">
           <%= message %>
       <% end %>
-      <% if @product %>
-        <%= render partial: "products/error_display", locals: { model: @product } %>
-      <% elsif @review %>
-        <%= render partial: "products/error_display", locals: { model: @review } %>
-      <% elsif @order_item %>
-        <%= render partial: "products/error_display", locals: { model: @order_item } %>
-      <% elsif @order %>
-        <%= render partial: "products/error_display", locals: { model: @order } %>
-      <% elsif @user %>
-        <%= render partial: "products/error_display", locals: { model: @user } %>
+      <% [@product, @review, @order_item, @order, @user].each do |model| %>
+        <%= render partial: "products/error_display", locals: { model: model } %>
       <% end %>
         </div>
     </section>
