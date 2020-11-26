@@ -36,10 +36,6 @@ class UsersController < ApplicationController
       return redirect_to root_path
     end
 
-    # # BELOW IS FOR TESTING PURPOSES ONLY - TO DELETE BEFORE FINAL SUBMISSION
-    # session[:user_id] = User.find(10).id
-    # redirect_to root_path
-
     auth_hash = request.env['omniauth.auth']
 
     user = User.find_by(uid: auth_hash[:uid], provider: params[:provider])
