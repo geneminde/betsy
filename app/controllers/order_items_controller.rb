@@ -53,10 +53,6 @@ class OrderItemsController < ApplicationController
 
   private
 
-  # def order_item_params
-  #   return params.require(:order_item).permit(:quantity, :order_id, :product_id)
-  # end
-
   def find_order_item
     @order_item = OrderItem.find_by(id: params[:id])
 
