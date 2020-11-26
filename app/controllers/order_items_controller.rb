@@ -4,7 +4,7 @@ class OrderItemsController < ApplicationController
   before_action :has_cart?, only: [:create, :update]
   before_action :consolidate_cart, only: [:create, :update]
 
-  # Add item to order/cart.html.erb
+  # Add item to order/cart
   def create
     @product = Product.find_by(id: params[:product_id])
 
@@ -53,10 +53,6 @@ class OrderItemsController < ApplicationController
 
   private
 
-  # def order_item_params
-  #   return params.require(:order_item).permit(:quantity, :order_id, :product_id)
-  # end
-
   def find_order_item
     @order_item = OrderItem.find_by(id: params[:id])
 
@@ -68,10 +64,9 @@ class OrderItemsController < ApplicationController
   end
 
   def add_to_cart(order_item)
-    if @cart  # If order/cart has not been created
+    if @cart
       order_item.order_id = @cart.id
-    else  # If order has been created with items in cart
-
+    else
       order = Order.create(status: "pending")
       order.order_items << order_item
       session[:order_id] = order.id
