@@ -1,4 +1,4 @@
-<% if model.errors.any? %>
+<% if model && model.errors.any? %>
   <ul>
     <% model.errors.each do |column, message| %>
       <li><strong><%= column.capitalize %></strong>: <%= message %></li>
